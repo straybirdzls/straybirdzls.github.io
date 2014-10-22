@@ -1,0 +1,8 @@
+---
+layout: post
+title: "First Blog"
+date: 2014-10-22 17:36:54 +0800
+comments: true
+categories: 
+---
+This is just a test
