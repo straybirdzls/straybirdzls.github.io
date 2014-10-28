@@ -93,32 +93,34 @@
 
 <div id="code">    
 
-@interface Singleton : NSObject   
-+ (Singleton *)sharedInstance;   
+@interface Singleton : NSObject     
+<br/>
++ (Singleton *)sharedInstance;     
+<br/>
 @end    
-
-@implementation Singleton   
-
-static  Singleton *sharedInstance = nil ;  
-
-+ (Singleton *) sharedInstance  
-
-{  
-
-static  dispatch_once_t onceToken;  // 锁  
-
-dispatch_once (& onceToken, ^ {     // 最多调用一次  
-
-sharedInstance = [[self alloc] init];  
-
-});  
-
-return  sharedInstance;  
-
-}  
-
-@end  
-
+<br/>       
+@implementation Singleton     
+<br/>
+static  Singleton *sharedInstance = nil ;     
+<br/>         
++ (Singleton *) sharedInstance       
+<br/>     
+{      
+<br/>
+static dispatch_once_t onceToken;  // 锁      
+<br/>
+dispatch_once (& onceToken, ^ {     // 最多调用一次        
+<br/>
+sharedInstance = [[self alloc] init];      
+<br/>    
+});      
+<br/>
+return  sharedInstance;        
+<br/>     
+}        
+<br/>
+@end       
+<br/>
 </div>
 
 
@@ -128,14 +130,14 @@ return  sharedInstance;
 
 <div id="code">    
 
-Singleton *signleton1= [Singleton sharedInstance];  
-
-NSLog(@&#8221;singleton1 is %@&#8221;,signleton1);  
-
-Singleton *signleton2= [[Singleton alloc]init];  
-
-NSLog(@&#8221;singleton2 is %@&#8221;,signleton2);  
-
+Singleton *signleton1= [Singleton sharedInstance];       
+<br/>
+NSLog(@&#8221;singleton1 is %@&#8221;,signleton1);       
+<br/>
+Singleton *signleton2= [[Singleton alloc]init];       
+<br/>
+NSLog(@&#8221;singleton2 is %@&#8221;,signleton2);       
+<br/>
 </div>
 
 
@@ -154,12 +156,13 @@ NSLog(@&#8221;singleton2 is %@&#8221;,signleton2);
 <div id="code">  
 
 +(instanceType)allocWithZone:(struc _NZone)zone  
-
+<br/>
 {  
-
+<br/>
 return [self sharedInstance];  
-  
-}  
+<br/>
+} 
+<br/>
 
 </div>
 
@@ -171,21 +174,21 @@ return [self sharedInstance];
 <div id="code">
 
 +(instanceType)allocWithZone:(struc _NZone)zone  
-
+<br/>
 {   
-
+<br/>
 static dispatch_once_t onceToken;  
-
+<br/>
 dispatch_once(&onceToken,^{  
-
+<br/>
 sharedInstance = [super allocWithZone:zone];  
-
+<br/>
 });  
-
+<br/>
 return sharedInstance;   
-
+<br/>
 }  
-  
+<br/>
 </div>
 
 
