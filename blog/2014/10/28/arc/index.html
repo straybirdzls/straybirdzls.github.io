@@ -163,7 +163,7 @@ return [self sharedInstance];
 
 <p></p>
 
-<p>但一运行，会发现程序进入了hang住了。分析程序可知，程序在block中block住了。同样考虑到线程安全，allocWithZone的代码应该这样写：</p>
+<p>但一运行，会发现程序hang住了。分析程序可知，程序在block中block住了。同样考虑到线程安全，allocWithZone的代码应该这样写：</p>
 
 <div id="code">
 
