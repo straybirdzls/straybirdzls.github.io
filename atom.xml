@@ -4,7 +4,7 @@
   <title><![CDATA[Straybird's Blog]]></title>
   <link href="http://straybirdzls.github.io/atom.xml" rel="self"/>
   <link href="http://straybirdzls.github.io/"/>
-  <updated>2014-10-28T20:30:52+08:00</updated>
+  <updated>2014-10-28T20:38:15+08:00</updated>
   <id>http://straybirdzls.github.io/</id>
   <author>
     <name><![CDATA[Straybird]]></name>
@@ -24,21 +24,28 @@
 
 <div id="code">    
 
-#import <Foundation/Foundation.h>  
-@interface Singleton : NSObject  
-+ (Singleton *)sharedInstance;  
-@end  
+@interface Singleton : NSObject   
++ (Singleton *)sharedInstance;   
+@end    
 
-#import Singleton.h&#8221;  
-@implementation Singleton  
+@implementation Singleton   
+
 static  Singleton *sharedInstance = nil ;  
+
 + (Singleton *) sharedInstance  
-{
+
+{  
+
 static  dispatch_once_t onceToken;  // 锁  
+
 dispatch_once (& onceToken, ^ {     // 最多调用一次  
+
 sharedInstance = [[self alloc] init];  
+
 });  
+
 return  sharedInstance;  
+
 }  
 
 @end  
@@ -53,8 +60,11 @@ return  sharedInstance;
 <div id="code">    
 
 Singleton *signleton1= [Singleton sharedInstance];  
+
 NSLog(@&#8221;singleton1 is %@&#8221;,signleton1);  
+
 Singleton *signleton2= [[Singleton alloc]init];  
+
 NSLog(@&#8221;singleton2 is %@&#8221;,signleton2);  
 
 </div>
@@ -62,7 +72,7 @@ NSLog(@&#8221;singleton2 is %@&#8221;,signleton2);
 
 <p>可以看出多个实例被创建出来了。</p>
 
-<p>怎么防止这一点呢？我们需要注意的几点：
+<p>怎么防止这一点呢？我们需要注意的几点：<br/>
 1.Objective-c并不像C++那样，可以直接将构造函数设成private，使外部不能调用<br/>
 2.只能考虑在alloc分配内存的时候把路给堵死<br/>
 3.alloc中实际上调用了allocWithZone:，就算把alloc堵死了，也不能防止allocWithZone被用户直接调用<br/>
@@ -73,8 +83,11 @@ NSLog(@&#8221;singleton2 is %@&#8221;,signleton2);
 <div id="code">  
 
 +(instanceType)allocWithZone:(struc _NZone)zone  
+
 {  
+
 return [self sharedInstance];  
+  
 }  
 
 </div>
@@ -87,12 +100,19 @@ return [self sharedInstance];
 <div id="code">
 
 +(instanceType)allocWithZone:(struc _NZone)zone  
-{  
+
+{   
+
 static dispatch_once_t onceToken;  
+
 dispatch_once(&onceToken,^{  
+
 sharedInstance = [super allocWithZone:zone];  
-})  
-return sharedInstance;  
+
+});  
+
+return sharedInstance;   
+
 }  
   
 </div>
