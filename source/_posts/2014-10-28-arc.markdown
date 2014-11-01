@@ -10,7 +10,7 @@ categories:
 
 首先看一个ARC+GCD实现：
   
-	@interface Singleton : NSObject     
+	@interface Singleton : NSObject
 	+ (Singleton *)sharedInstance;     
 	@end     
 	   
