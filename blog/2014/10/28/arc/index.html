@@ -88,57 +88,30 @@
 
 <p>首先看一个ARC+GCD实现：</p>
 
-<div id="code">    
-
-@interface Singleton : NSObject     
-<br/>
+<pre><code>@interface Singleton : NSObject     
 + (Singleton *)sharedInstance;     
-<br/>
-@end    
-<br/>       
+@end     
+
 @implementation Singleton     
-<br/>
-static  Singleton *sharedInstance = nil ;     
-<br/>         
-+ (Singleton *) sharedInstance       
-<br/>     
+static  Singleton *sharedInstance = nil ;             
++ (Singleton *) sharedInstance           
 {      
-<br/>
-static dispatch_once_t onceToken;  // 锁      
-<br/>
-dispatch_once (& onceToken, ^ {     // 最多调用一次        
-<br/>
-sharedInstance = [[self alloc] init];      
-<br/>    
-});      
-<br/>
-return  sharedInstance;        
-<br/>     
+    static dispatch_once_t onceToken;  // 锁      
+    dispatch_once (&amp; onceToken, ^ {     // 最多调用一次        
+    sharedInstance = [[self alloc] init];         
+    });      
+    return  sharedInstance;            
 }        
-<br/>
 @end       
-<br/>
-</div>
-
-
-<p></p>
+</code></pre>
 
 <p>这个实现很简单，但是并不能防止用户通过[[Singleton alloc]init]创建多个实例，通过小小的测试即可：</p>
 
-<div id="code">    
-
-Singleton *signleton1= [Singleton sharedInstance];       
-<br/>
-NSLog(@&#8221;singleton1 is %@&#8221;,signleton1);       
-<br/>
+<pre><code>Singleton *signleton1= [Singleton sharedInstance];       
+NSLog(@"singleton1 is %@",signleton1);       
 Singleton *signleton2= [[Singleton alloc]init];       
-<br/>
-NSLog(@&#8221;singleton2 is %@&#8221;,signleton2);       
-<br/>
-</div>
-
-
-<p></p>
+NSLog(@"singleton2 is %@",signleton2);       
+</code></pre>
 
 <p>可以看出多个实例被创建出来了。</p>
 
@@ -148,48 +121,25 @@ NSLog(@&#8221;singleton2 is %@&#8221;,signleton2);
 3.alloc中实际上调用了allocWithZone:，就算把alloc堵死了，也不能防止allocWithZone被用户直接调用<br/>
 &ndash;>>所以我们必须通过allocWithZone将用户堵死</p>
 
-<p>参考<a href= "https://developer.apple.com/legacy/library/documentation/Cocoa/Conceptual/CocoaFundamentals/CocoaObjects/CocoaObjects.html#//apple_ref/doc/uid/TP40002974-CH4-SW32">非ARC的实现</a>，我们很容易写出如下所示的代码：</p>
+<p>参考<a href="" title="https://developer.apple.com/legacy/library/documentation/Cocoa/Conceptual/CocoaFundamentals/CocoaObjects/CocoaObjects.html#//apple_ref/doc/uid/TP40002974-CH4-SW32">非ARC的实现</a>，我们很容易写出如下所示的代码：</p>
 
-<div id="code">  
-
-+(instanceType)allocWithZone:(struc _NZone)zone  
-<br/>
+<pre><code>+(instanceType)allocWithZone:(struc _NZone)zone  
 {  
-<br/>
-return [self sharedInstance];  
-<br/>
-} 
-<br/>
-
-</div>
-
-
-<p></p>
+    return [self sharedInstance];  
+}    
+</code></pre>
 
 <p>但一运行，会发现程序hang住了。分析程序可知，程序在block中block住了。同样考虑到线程安全，allocWithZone的代码应该这样写：</p>
 
-<div id="code">
-
-+(instanceType)allocWithZone:(struc _NZone)zone  
-<br/>
+<pre><code>+(instanceType)allocWithZone:(struc _NZone)zone  
 {   
-<br/>
-static dispatch_once_t onceToken;  
-<br/>
-dispatch_once(&onceToken,^{  
-<br/>
-sharedInstance = [super allocWithZone:zone];  
-<br/>
-});  
-<br/>
-return sharedInstance;   
-<br/>
-}  
-<br/>
-</div>
-
-
-<p></p>
+    static dispatch_once_t onceToken;  
+    dispatch_once(&amp;onceToken,^{  
+    sharedInstance = [super allocWithZone:zone];
+    });  
+    return sharedInstance;   
+}   
+</code></pre>
 
 <p>再运行之前的测试代码，这回单例只有一个了。</p>
 </div>
@@ -227,6 +177,8 @@ return sharedInstance;
         <a class="basic-alignment left" href="/blog/2014/10/22/title/" title="Previous Post: 成长悄然来临">&laquo; 成长悄然来临</a>
       
       
+        <a class="basic-alignment right" href="/blog/2014/11/01/chuaijing/" title="Next Post: 柴静－看见">柴静－看见 &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -238,6 +190,10 @@ return sharedInstance;
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/01/chuaijing/">柴静－看见</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/10/28/arc/">Objective-C单例模式之ARC+GCD实现</a>
