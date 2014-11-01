@@ -9,7 +9,7 @@
   <meta name="author" content="Straybird">
 
   
-  <meta name="description" content="今天在网易公开课上看了柴静新书发布的一个视频,看完之后蛮有感触的，我不懂新闻学，也不懂传播，但是我仍然能从这位知性女性温柔而又坚定中的阐述中获得力量。 关于独立和自由 柴静在回答一个读者的提问中，提到独立这个话题。她说， 我们那时候，陈虻审我们的片子，老有一些意见，甚至就直接把我们的片子毙了。 &hellip;">
+  <meta name="description" content="最近开始写博客了，用的是markdown写然后生成静态网页，最开始的时候只匆匆过了一遍markdown语法，然后写的时候也懒得去看，觉得很多时候还不如直接使用html方便，但这样导致的问题就是文章的存根不太漂亮，然后我对html的很多标签并不太熟悉， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,75 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/11/01/marddown/">Marddown语法个人总结</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-01T19:40:01+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>7:40 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近开始写博客了，用的是markdown写然后生成静态网页，最开始的时候只匆匆过了一遍markdown语法，然后写的时候也懒得去看，觉得很多时候还不如直接使用html方便，但这样导致的问题就是文章的存根不太漂亮，然后我对html的很多标签并不太熟悉，所以写的时候markdown和html标签混合使用，会遇到一些问题，然后查询所花费的时间也不少。考虑既然想把写博客这件事情继续下去，那还是应该先花些时间在基本建设上。今天将markdown语法好好地看了一下，主要记录一下我在写博文中最常用到的一些。</p>
+
+<h4>标题</h4>
+
+<p>使用＃就可以使用标题了，其中1个到6个分别对应h1到h6。</p>
+
+<h4>换行</h4>
+
+<p>markdown中如果一段文字前面有空行，则认为是一个新的段落，会自动加上<code>&lt;p&gt;</code> 标签。但如果有时候不想加空行，有更简便的方法可以换行，那就是在一行的末尾加上2个或以上的空格然后回车。</p>
+
+<h4>代码</h4>
+
+<p>技术人员在博客中加入代码是很常用的。有2种形式:</p>
+
+<p>第一种是一段代码，直接在每行开头上加入tab或者4个空格就可以了。之后转换的时候会自动加上<code>&lt;pre&gt;&lt;code&gt;</code>标签。</p>
+
+<p>第二种是在行内加代码，只需要用｀｀包住代码就可以了 ，我上面的加黄的代码就是用这种方式写的。转换的时候会自动加上<code>&lt;code&gt;</code>标签。</p>
+
+<h4>引用</h4>
+
+<p>我们在博文中有时候会引用别人的话语，只需要在段落前加上>就可以了,转换的时候会自动加上<code>&lt;blockquote&gt;</code>。可惜的是我在上篇文章中使用引用，发现字体太大，想通过<code>font－size</code>设置一直都不能成功，不知道是什么原因，之后我会再研究一下octopress,看能不能找到原因，也争取写一篇关于octopress的文章。</p>
+
+<h4>列表</h4>
+
+<p>无序列表用<code>+,-,*</code>都可以，注意符号之后必须增加一个空格之后才可以加列表的元素。转换的时候会自动加上<code>&lt;ol&gt;&lt;ul&gt;</code>。</p>
+
+<p>有序列表用数字接着一个英文句话就可以，值得注意的是前面的数字并不会影响最后生成的静态网站。转换的时候会自动加上<code>&lt;ol&gt;&lt;li&gt;</code>。</p>
+
+<h4>链接</h4>
+
+<p>链接也是很常用的，只需要使用<code>[文字](链接地址，title)</code>形式就可以了。其中tile可以省略。转换的时候会自动加上<code>&lt;a href&gt;</code>。</p>
+
+<h4>HTML</h4>
+
+<p>Markdown兼容HTML,可以直接使用HTML标签。</p>
+
+<p>不过对区块元素，比如<code>&lt;div&gt;、&lt;table&gt;、&lt;pre&gt;、&lt;p&gt;</code>等标签必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进。Markdown 的生成器有足够智能，不会在 HTML 区块标签外加上不必要的 <code>&lt;p&gt;</code> 标签。需要注意一点的是HTML 区块标签间的 Markdown格式语法将不会被处理。</p>
+
+<p>而HTML的区段标签则可以随意使用，而且其中的Markdown格式语法是有效的。</p>
+
+<p>我这里也列出了一些我觉得比较常用的一些语法，Markdown确实很方便，可以节约很多排版格式的时间，其实还有很多别的比如图片、文字强调等，有兴趣了解更多的，可以看这个<a href="http://markdown.tw/">链接</a>，如果我在写博客的过程中发现有更多常用的语法，也会继续更新。最后推荐一个在mac上写Markdown的app：mou，这个app很方便使用，可以实时预览，同时convert功能可以免去我们记忆这些Markdown语法，但是考虑效率的话，个人还是觉得记住这些语法更好，熟能生巧，用的多了自然也就都记住了。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -270,6 +339,10 @@ NSLog(@"singleton2 is %@",signleton2);
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/01/marddown/">Marddown语法个人总结</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/11/01/chuaijing/">柴静－看见</a>
