@@ -9,7 +9,8 @@
   <meta name="author" content="Straybird">
 
   
-  <meta name="description" content="单例模式是什么，这里姑且不谈，只谈谈ARC+GCD实现下单例模式比较特殊和受争议的点。 首先看一个ARC+GCD实现： @interface Singleton : NSObject + (Singleton *)sharedInstance; @end @implementation &hellip;">
+  <meta name="description" content="单例模式是什么，这里姑且不谈，只谈谈ARC+GCD实现下单例模式比较特殊和受争议的点。 首先看一个ARC+GCD实现： @interface Singleton : NSObject
++ (Singleton *)sharedInstance; @end @implementation &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -88,7 +89,7 @@
 
 <p>首先看一个ARC+GCD实现：</p>
 
-<pre><code>@interface Singleton : NSObject     
+<pre><code>@interface Singleton : NSObject
 + (Singleton *)sharedInstance;     
 @end     
 
