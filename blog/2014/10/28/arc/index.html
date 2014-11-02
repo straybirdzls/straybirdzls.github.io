@@ -9,9 +9,8 @@
   <meta name="author" content="Straybird">
 
   
-  <meta name="description" content="单例模式是什么，这里姑且不谈，只谈谈ARC+GCD实现下单例模式比较特殊和受争议的点。 首先看一个ARC+GCD实现： @interface Singleton : NSObject
-+ (Singleton *)sharedInstance; @end @implementation &hellip;">
-  
+  <meta name="description" content="Objective-C单例模式之ARC+GCD实现">
+  <meta name="keywords" content="Objective-C,单例模式,ARC,GCD">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -57,8 +56,8 @@
 </form>
   
 <ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/">首页</a></li>
+  <li><a href="/blog/archives">所有文章</a></li>
 </ul>
 
 </nav>
@@ -105,6 +104,8 @@ static  Singleton *sharedInstance = nil ;
 }        
 @end       
 </code></pre>
+
+<p>&lt;!—more—></p>
 
 <p>这个实现很简单，但是并不能防止用户通过[[Singleton alloc]init]创建多个实例，通过小小的测试即可：</p>
 
@@ -224,7 +225,7 @@ NSLog(@"singleton2 is %@",signleton2);
     <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
 <div class="ds-thread"></div>
 <script type="text/javascript">
-  var duoshuoQuery = {short_name:"beyondvincent"};
+  var duoshuoQuery = {short_name:"straybird"};
   (function() {
     var ds = document.createElement('script');
     ds.type = 'text/javascript';ds.async = true;

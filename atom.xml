@@ -4,7 +4,7 @@
   <title><![CDATA[Straybird's Blog]]></title>
   <link href="http://straybirdzls.github.io/atom.xml" rel="self"/>
   <link href="http://straybirdzls.github.io/"/>
-  <updated>2014-11-02T11:47:15+08:00</updated>
+  <updated>2014-11-02T13:13:31+08:00</updated>
   <id>http://straybirdzls.github.io/</id>
   <author>
     <name><![CDATA[Straybird]]></name>
@@ -18,7 +18,8 @@
     <link href="http://straybirdzls.github.io/blog/2014/11/01/marddown/"/>
     <updated>2014-11-01T22:00:01+08:00</updated>
     <id>http://straybirdzls.github.io/blog/2014/11/01/marddown</id>
-    <content type="html"><![CDATA[<p>最近开始写博客了，用的是Markdown写然后生成静态网页，最开始的时候只匆匆过了一遍Markdown语法，然后写的时候也懒得去看，觉得很多时候还不如直接使用html方便，但这样导致的问题就是文章的存根不太漂亮，然后我对html的很多标签并不太熟悉，所以写的时候Markdown和html标签混合使用，会遇到一些问题，然后查询所花费的时间也不少。考虑既然想把写博客这件事情继续下去，那还是应该先花些时间在基础建设上。今天将Markdown语法好好地看了一下，下面总结一下，主要记录一下我在写博文中最常用到的一些。</p>
+    <content type="html"><![CDATA[<p>最近开始写博客了，用的是Markdown写然后生成静态网页，最开始的时候只匆匆过了一遍Markdown语法，然后写的时候也懒得去看，觉得很多时候还不如直接使用html方便，但这样导致的问题就是文章的存根不太漂亮，然后我对html的很多标签并不太熟悉，所以写的时候Markdown和html标签混合使用，会遇到一些问题，然后查询所花费的时间也不少。考虑既然想把写博客这件事情继续下去，那还是应该先花些时间在基础建设上。今天将Markdown语法好好地看了一下，下面总结一下，主要记录一下我在写博文中最常用到的一些。
+&lt;!—more—></p>
 
 <h4>标题</h4>
 
@@ -67,9 +68,8 @@
     <link href="http://straybirdzls.github.io/blog/2014/11/01/chuaijing/"/>
     <updated>2014-11-01T20:00:50+08:00</updated>
     <id>http://straybirdzls.github.io/blog/2014/11/01/chuaijing</id>
-    <content type="html"><![CDATA[
-
-<p>今天在网易公开课上看了柴静新书发布的一个<a href="http://v.163.com/movie/2014/7/V/6/MA1I1BARD_MA1II0AV6.html">视频</a>,看完之后蛮有感触的，我不懂新闻学，也不懂传播，但是我仍然能从这位知性女性温柔而又坚定中的阐述中获得力量。</p>
+    <content type="html"><![CDATA[<p>今天在网易公开课上看了柴静新书发布的一个<a href="http://v.163.com/movie/2014/7/V/6/MA1I1BARD_MA1II0AV6.html">视频</a>,看完之后蛮有感触的，我不懂新闻学，也不懂传播，但是我仍然能从这位知性女性温柔而又坚定中的阐述中获得力量。
+&lt;!—more—></p>
 
 <h3>关于独立和自由</h3>
 
@@ -128,6 +128,8 @@ static  Singleton *sharedInstance = nil ;
 @end       
 </code></pre>
 
+<p>&lt;!—more—></p>
+
 <p>这个实现很简单，但是并不能防止用户通过[[Singleton alloc]init]创建多个实例，通过小小的测试即可：</p>
 
 <pre><code>Singleton *signleton1= [Singleton sharedInstance];       
@@ -177,7 +179,8 @@ NSLog(@"singleton2 is %@",signleton2);
 
 <h3>序</h3>
 
-<p>不知不觉中已经在杭州待了1年半了，回想起，似乎大部分时光都过得很简单。最近时常有种长大了，不再是小孩子了的感觉，但内心却是无比地抗拒，想永远地当个孩子，想永远无忧无虑，永远不知道伤心，难过，孤独是什么滋味。但就如同突然开始在意起自己地长相，突然开始明白人与人的差距一样，成长就是这样，它悄然来袭，给你一个措手不及。</p>
+<p>不知不觉中已经在杭州待了1年半了，回想起，似乎大部分时光都过得很简单。最近时常有种长大了，不再是小孩子了的感觉，但内心却是无比地抗拒，想永远地当个孩子，想永远无忧无虑，永远不知道伤心，难过，孤独是什么滋味。但就如同突然开始在意起自己地长相，突然开始明白人与人的差距一样，成长就是这样，它悄然来袭，给你一个措手不及。
+&lt;!—more—></p>
 
 <h3>成长之痛</h3>
 
