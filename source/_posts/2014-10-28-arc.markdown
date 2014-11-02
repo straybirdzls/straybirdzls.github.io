@@ -27,7 +27,7 @@ keywords: Objective-C,单例模式,ARC,GCD
 		return  sharedInstance;            
 	}        
 	@end       
-<!—more—> 
+<!--more-->
 
 这个实现很简单，但是并不能防止用户通过[[Singleton alloc]init]创建多个实例，通过小小的测试即可：     
 
