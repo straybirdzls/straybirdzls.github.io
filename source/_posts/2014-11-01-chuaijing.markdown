@@ -8,13 +8,6 @@ description: "柴静－看见"
 keywords: 柴静,看见,独立,自由,榜样
 ---
 
-<style type="text/css">
-blockquote
-{
-	font-size: 0.75em;
-}
-</style>
-
 今天在网易公开课上看了柴静新书发布的一个[视频](http://v.163.com/movie/2014/7/V/6/MA1I1BARD_MA1II0AV6.html),看完之后蛮有感触的，我不懂新闻学，也不懂传播，但是我仍然能从这位知性女性温柔而又坚定中的阐述中获得力量。
 <!—more—>
 ###关于独立和自由
