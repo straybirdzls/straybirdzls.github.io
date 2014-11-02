@@ -4,6 +4,8 @@ title: "Objective-C单例模式之ARC+GCD实现"
 date: 2014-10-28 19:30:43 +0800
 comments: true
 categories: 
+description: "Objective-C单例模式之ARC+GCD实现" 
+keywords: Objective-C,单例模式,ARC,GCD
 ---
 
 单例模式是什么，这里姑且不谈，只谈谈ARC+GCD实现下单例模式比较特殊和受争议的点。
@@ -25,7 +27,7 @@ categories:
 		return  sharedInstance;            
 	}        
 	@end       
- 
+<!—more—> 
 
 这个实现很简单，但是并不能防止用户通过[[Singleton alloc]init]创建多个实例，通过小小的测试即可：     
 
