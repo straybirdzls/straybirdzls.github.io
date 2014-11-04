@@ -4,7 +4,7 @@
   <title><![CDATA[Straybird's Blog]]></title>
   <link href="http://straybirdzls.github.io/atom.xml" rel="self"/>
   <link href="http://straybirdzls.github.io/"/>
-  <updated>2014-11-04T21:30:58+08:00</updated>
+  <updated>2014-11-04T21:34:34+08:00</updated>
   <id>http://straybirdzls.github.io/</id>
   <author>
     <name><![CDATA[Straybird]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[读书笔记(1):<iOS与OSX多线程和内存管理>]]></title>
+    <title type="html"><![CDATA[读书笔记(1) iOS与OSX多线程和内存管理]]></title>
     <link href="http://straybirdzls.github.io/blog/2014/11/04/memorybook/"/>
     <updated>2014-11-04T21:25:41+08:00</updated>
     <id>http://straybirdzls.github.io/blog/2014/11/04/memorybook</id>
