@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "读书笔记(1):<iOS与OSX多线程和内存管理>"
+title: "读书笔记(1) iOS与OSX多线程和内存管理"
 date: 2014-11-04 21:25:41 +0800
 comments: true
 categories: 
