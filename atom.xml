@@ -4,7 +4,7 @@
   <title><![CDATA[Straybird's Blog]]></title>
   <link href="http://straybirdzls.github.io/atom.xml" rel="self"/>
   <link href="http://straybirdzls.github.io/"/>
-  <updated>2014-11-04T21:26:07+08:00</updated>
+  <updated>2014-11-04T21:30:58+08:00</updated>
   <id>http://straybirdzls.github.io/</id>
   <author>
     <name><![CDATA[Straybird]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[读书笔记(1)：<iOS与OSX多线程和内存管理>]]></title>
+    <title type="html"><![CDATA[读书笔记(1):<iOS与OSX多线程和内存管理>]]></title>
     <link href="http://straybirdzls.github.io/blog/2014/11/04/memorybook/"/>
     <updated>2014-11-04T21:25:41+08:00</updated>
     <id>http://straybirdzls.github.io/blog/2014/11/04/memorybook</id>
@@ -33,6 +33,11 @@
 </code></pre>
 
 <p>打印释放池里的状态了。这个API是私有API,对于osx和iOS通用，还有一个API只对iOS可以使用，这里就不提了，个人觉得上面这个API就够用了。</p>
+
+<!--more-->
+
+
+<p></p>
 
 <h4>ARC下查看retain count</h4>
 
