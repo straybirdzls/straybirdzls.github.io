@@ -20,6 +20,7 @@ keywords: objective-c,多线程,内存管理,ARC
 	_objc_autoreleasePoolPrint();
 	
 打印释放池里的状态了。这个API是私有API,对于osx和iOS通用，还有一个API只对iOS可以使用，这里就不提了，个人觉得上面这个API就够用了。
+<!--more--> 
 
 ####ARC下查看retain count
 
