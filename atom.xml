@@ -4,7 +4,7 @@
   <title><![CDATA[Straybird's Blog]]></title>
   <link href="http://straybirdzls.github.io/atom.xml" rel="self"/>
   <link href="http://straybirdzls.github.io/"/>
-  <updated>2014-11-08T20:10:52+08:00</updated>
+  <updated>2014-11-08T23:01:11+08:00</updated>
   <id>http://straybirdzls.github.io/</id>
   <author>
     <name><![CDATA[Straybird]]></name>
@@ -219,7 +219,7 @@ NSError **pError = &amp;error;
 
 <h4>引用</h4>
 
-<p>我们在博文中有时候会引用别人的话语，只需要在段落前加上>就可以了,转换的时候会自动加上<code>&lt;blockquote&gt;</code>。值得注意的是，自带的引用字体太大，显得很不和谐，需要进行一些调整。</p>
+<p>我们在博文中有时候会引用别人的话语，只需要在段落前加上>就可以了,转换的时候会自动加上<code>&lt;blockquote&gt;</code>。值得注意的是，自带的引用字体太大，显得很不和谐，而且斜体也不是很好看，需要进行一些调整，在sass/base/_typography.scss中改动就可以了。</p>
 
 <h4>列表</h4>
 
@@ -244,7 +244,7 @@ NSError **pError = &amp;error;
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[柴静－看见]]></title>
+    <title type="html"><![CDATA[柴静-看见]]></title>
     <link href="http://straybirdzls.github.io/blog/2014/11/01/chuaijing/"/>
     <updated>2014-11-01T20:00:50+08:00</updated>
     <id>http://straybirdzls.github.io/blog/2014/11/01/chuaijing</id>
