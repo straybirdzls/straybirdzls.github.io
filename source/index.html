@@ -14,11 +14,11 @@ keywords: 生活,学习,objective-c,markdown
   {% endfor %}
   <div class="pagination">
     {% if paginator.next_page %}
-      <a class="prev" href="{{paginator.next_page_path}}">&larr; Older</a>
+      <a class="prev" href="{{paginator.next_page_path}}">上一页</a>
     {% endif %}
     <a href="/blog/archives">所有文章</a>
     {% if paginator.previous_page %}
-    <a class="next" href="{{paginator.previous_page_path}}">Newer &rarr;</a>
+    <a class="next" href="{{paginator.previous_page_path}}">下一页</a>
     {% endif %}
   </div>
 </div>

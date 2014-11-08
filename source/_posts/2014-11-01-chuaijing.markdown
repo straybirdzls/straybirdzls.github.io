@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "柴静－看见"
+title: "柴静-看见"
 date: 2014-11-01 20:00:50 +0800
 comments: true
 categories: 

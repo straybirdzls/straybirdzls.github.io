@@ -4,7 +4,7 @@ title: "读书笔记(2) iOS与OSX多线程和内存管理"
 date: 2014-11-08 20:00:04 +0800
 comments: true
 description: "读书笔记(2)：iOS与OSX多线程和内存管理" 
-keywords: objective-c,block,内存管理，多线程,ARC
+keywords: objective-c,block,内存管理,多线程,ARC
 categories: 
 ---
 续上文，这一篇主要记录block中的一些点。block中最需要理解的就2个概念：匿名函数,局部变量，表面看起来很简单，但实际上深究起来，里面的涵义大有可以挖掘的地方。
