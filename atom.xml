@@ -4,7 +4,7 @@
   <title><![CDATA[Straybird's Blog]]></title>
   <link href="http://straybirdzls.github.io/atom.xml" rel="self"/>
   <link href="http://straybirdzls.github.io/"/>
-  <updated>2014-11-08T20:08:00+08:00</updated>
+  <updated>2014-11-08T20:10:52+08:00</updated>
   <id>http://straybirdzls.github.io/</id>
   <author>
     <name><![CDATA[Straybird]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[读书笔记(2) iOS与OSX多线程和内存管理]]></title>
-    <link href="http://straybirdzls.github.io/blog/2014/11/04/memeorybook2/"/>
-    <updated>2014-11-04T23:28:04+08:00</updated>
-    <id>http://straybirdzls.github.io/blog/2014/11/04/memeorybook2</id>
+    <link href="http://straybirdzls.github.io/blog/2014/11/08/memeorybook2/"/>
+    <updated>2014-11-08T20:00:04+08:00</updated>
+    <id>http://straybirdzls.github.io/blog/2014/11/08/memeorybook2</id>
     <content type="html"><![CDATA[<p>续上文，这一篇主要记录block中的一些点。block中最需要理解的就2个概念：匿名函数,局部变量，表面看起来很简单，但实际上深究起来，里面的涵义大有可以挖掘的地方。</p>
 
 <h4>访问局部变量</h4>
