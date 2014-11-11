@@ -11,7 +11,7 @@ keywords: objective-c,多线程,内存管理,ARC
 
 ####查看自动释放池的状态
 
-只需要使用先声明:
+只需要先使用声明:
 
 	extern void _objc_autoreleasePoolPrint();
 
