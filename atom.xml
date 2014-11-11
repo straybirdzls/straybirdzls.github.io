@@ -4,7 +4,7 @@
   <title><![CDATA[Straybird's Blog]]></title>
   <link href="http://straybirdzls.github.io/atom.xml" rel="self"/>
   <link href="http://straybirdzls.github.io/"/>
-  <updated>2014-11-08T23:01:11+08:00</updated>
+  <updated>2014-11-11T21:26:43+08:00</updated>
   <id>http://straybirdzls.github.io/</id>
   <author>
     <name><![CDATA[Straybird]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[读书笔记(3) iOS与OSX多线程和内存管理]]></title>
+    <link href="http://straybirdzls.github.io/blog/2014/11/08/memeorybook3/"/>
+    <updated>2014-11-08T20:30:54+08:00</updated>
+    <id>http://straybirdzls.github.io/blog/2014/11/08/memeorybook3</id>
+    <content type="html"><![CDATA[<p>今天是&lt;iOS与OSX多线程和内存管理>读书笔记的最后一篇了，主题是多线程。书中主要是讲GCD,并没有讲NSOperation的东西，我这一篇一方面简要地对GCD记录一些知识点，也谈一点点NSOperation方面的东西。对于NSOperation方面的知识，我看了很多人推荐的<a href="http://www.raywenderlich.com/19788/how-to-use-nsoperations-and-nsoperationqueues">教程</a>，觉得写得非常好，推荐想学习的人看一看。</p>
+
+<h4>慎用@sync</h4>
+
+<p>从字面意思<code>@async</code>是异步执行，那<code>@sync</code>就是同步执行了。使用<code>@sync</code>时一定要万分小心，比如主线程，则会直接造成阻塞，死锁。因为任务执行完之后才会返回，但任务又必须等待其之前的任务完成才能执行。</p>
+
+<!--more-->
+
+
+<h4>UI刷新</h4>
+
+<p>移动端非常注重用户体验，所以UI刷新一定要放在主线程。若使用GCD，可以用<code>dispatch_get_main_queue()</code>来获取主线程，若使用NSOperation,可以用<code>[NSOperationQueue mainQueue]</code>来获取，当然也可以通过delegate使用<code>performSelectorOnMainThread</code>来实现。</p>
+
+<h4>一些好用的关键字</h4>
+
+<p>在GCD中，有很多很好用的功能，比如<code>dispatch_once</code>可以保证代码只被调用一次;<code>dispatch_group_async</code>可以定义一组任务，当一组任务全部完成时，会通过<code>dispatch_group_notify</code>来给通知;<code>dispatch_barrier_async</code>用于等待其他任务的完成，并完成任务之后，才能启动之后的任务，对于数据库访问以及文件的读写都非常有用;<code>dispatch_apply</code>是跟<code>@sync</code>和<code>group</code>都有关系的，它可以定义一组任务，并等待其完成;<code>dispatch_semaphore</code>提供类似于<code>dispatch_barrier_async</code>的功能，但是可以保证更小的粒度，它是通过信号量的方式来工作的。</p>
+
+<h4>NSOperationQueue和GCD</h4>
+
+<p>自GCD出来后，NSOperationQueue就是用GCD来实现了。通过对上面推荐的教程的学习，NSOperation对于代码管理是非常方便的，而且可以cancel，对于依赖的管理也非常方便。根据苹果使用high level实现的惯例，一般情况下都是推荐使用NSOperation。当然GCD很轻量级，使用起来非常方便，所以根据具体的使用场景，也有很多需要的时候。</p>
+
+<p>其实书中还讲了很多其他方面的内容，GCD确实很强大，有了它，我们不用自己管理线程，因为这方面我还处于学习阶段，所以暂时还没能有一些比较深刻的见解，有兴趣的可以看objc的这个<a href="http://objcio.cn/issue-2/">专题</a>，讲得非常精彩。截止到现在，这本书&lt;iOS与OSX多线程和内存管理>我也算是粗略地过了一遍，但实践出真知，我现在还处于学习阶段，接下来要多多练习，方能将这些全部变成自己的知识。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[读书笔记(2) iOS与OSX多线程和内存管理]]></title>
@@ -35,7 +65,7 @@
 <!-- more -->
 
 
-<p>这是怎么实现的呢？block的底层实际上时结构体，这个结构体包含了一些信息，有其函数实现，也有isa指针等。当再block中访问局部变量时，结构体会增加相应的成员变量，并在初始化的时候记录这些局部变量的值。那么为什么不能修改呢？看具体的实现就知道了，只提供了访问的方式，没提供修改的方式。</p>
+<p>这是怎么实现的呢？block的底层实际上时结构体，这个结构体包含了一些信息，有其函数实现，也有isa指针等。当在block中访问局部变量时，结构体会增加相应的成员变量，并在初始化的时候记录这些局部变量的值。那么为什么不能修改呢？看具体的实现就知道了，只提供了访问的方式，没提供修改的方式。</p>
 
 <p>需要注意一点的是，block中不能访问c数组，原因也很明显了，c中不支持不能直接复制数组名。如想实现类似的功能，改成指针访问就可以了。</p>
 
@@ -76,7 +106,7 @@
 
 <h4>查看自动释放池的状态</h4>
 
-<p>只需要使用先声明:</p>
+<p>只需要先使用声明:</p>
 
 <pre><code>extern void _objc_autoreleasePoolPrint();
 </code></pre>

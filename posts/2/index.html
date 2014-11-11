@@ -71,6 +71,59 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/10/28/arc/">Objective-C单例模式之ARC+GCD实现</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-10-28T19:30:43+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>7:30 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>单例模式是什么，这里姑且不谈，只谈谈ARC+GCD实现下单例模式比较特殊和受争议的点。</p>
+
+<p>首先看一个ARC+GCD实现：</p>
+
+<pre><code>@interface Singleton : NSObject
++ (Singleton *)sharedInstance;     
+@end     
+
+@implementation Singleton     
+static  Singleton *sharedInstance = nil ;             
++ (Singleton *) sharedInstance           
+{      
+    static dispatch_once_t onceToken;  // 锁      
+    dispatch_once (&amp; onceToken, ^ {     // 最多调用一次        
+    sharedInstance = [[self alloc] init];         
+    });      
+    return  sharedInstance;            
+}        
+@end       
+</code></pre>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/10/28/arc/">阅读全文&rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2014/10/22/title/">成长悄然来临</a></h1>
     
     
@@ -117,6 +170,10 @@
     <section>
   <h1>最近文章</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/08/memeorybook3/">读书笔记(3) iOS与OSX多线程和内存管理</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/11/08/memeorybook2/">读书笔记(2) iOS与OSX多线程和内存管理</a>

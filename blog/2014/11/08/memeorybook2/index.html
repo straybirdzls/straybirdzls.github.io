@@ -101,7 +101,7 @@
 <!-- more -->
 
 
-<p>这是怎么实现的呢？block的底层实际上时结构体，这个结构体包含了一些信息，有其函数实现，也有isa指针等。当再block中访问局部变量时，结构体会增加相应的成员变量，并在初始化的时候记录这些局部变量的值。那么为什么不能修改呢？看具体的实现就知道了，只提供了访问的方式，没提供修改的方式。</p>
+<p>这是怎么实现的呢？block的底层实际上时结构体，这个结构体包含了一些信息，有其函数实现，也有isa指针等。当在block中访问局部变量时，结构体会增加相应的成员变量，并在初始化的时候记录这些局部变量的值。那么为什么不能修改呢？看具体的实现就知道了，只提供了访问的方式，没提供修改的方式。</p>
 
 <p>需要注意一点的是，block中不能访问c数组，原因也很明显了，c中不支持不能直接复制数组名。如想实现类似的功能，改成指针访问就可以了。</p>
 
@@ -163,6 +163,8 @@
         <a class="basic-alignment left" href="/blog/2014/11/04/memorybook/" title="Previous Post: 读书笔记(1) iOS与OSX多线程和内存管理">上一篇:&nbsp; 读书笔记(1) iOS与OSX多线程和内存管理</a>
       
       
+        <a class="basic-alignment right" href="/blog/2014/11/08/memeorybook3/" title="Next Post: 读书笔记(3) iOS与OSX多线程和内存管理">下一篇:&nbsp;读书笔记(3) iOS与OSX多线程和内存管理</a>
+      
     </p>
   </footer>
 </article>
@@ -174,6 +176,10 @@
     <section>
   <h1>最近文章</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/08/memeorybook3/">读书笔记(3) iOS与OSX多线程和内存管理</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/11/08/memeorybook2/">读书笔记(2) iOS与OSX多线程和内存管理</a>
