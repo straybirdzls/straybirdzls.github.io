@@ -14,6 +14,8 @@ published: true
 
 从字面意思`@async`是异步执行，那`@sync`就是同步执行了。使用`@sync`时一定要万分小心，比如主线程，则会直接造成阻塞，死锁。因为任务执行完之后才会返回，但任务又必须等待其之前的任务完成才能执行。
 
+<!--more-->
+
 ####UI刷新
 
 移动端非常注重用户体验，所以UI刷新一定要放在主线程。若使用GCD，可以用`dispatch_get_main_queue()`来获取主线程，若使用NSOperation,可以用`[NSOperationQueue mainQueue]`来获取，当然也可以通过delegate使用`performSelectorOnMainThread`来实现。
