@@ -4,7 +4,7 @@
   <title><![CDATA[Straybird's Blog]]></title>
   <link href="http://straybirdzls.github.io/atom.xml" rel="self"/>
   <link href="http://straybirdzls.github.io/"/>
-  <updated>2014-11-16T20:22:34+08:00</updated>
+  <updated>2014-11-16T22:19:31+08:00</updated>
   <id>http://straybirdzls.github.io/</id>
   <author>
     <name><![CDATA[Straybird]]></name>
@@ -14,11 +14,11 @@
 
   
   <entry>
-    <title type="html"><![CDATA[“谈谈Foundation”]]></title>
+    <title type="html"><![CDATA[谈谈Foundation]]></title>
     <link href="http://straybirdzls.github.io/blog/2014/11/16/xianche/"/>
     <updated>2014-11-16T20:20:49+08:00</updated>
     <id>http://straybirdzls.github.io/blog/2014/11/16/xianche</id>
-    <content type="html"><![CDATA[<p>Founcation Kit是Cocoa中非常重要的一员，其提供了很多方便使用的数据对象类型。Foundation是基于Core Foundation实现的，或者是用纯C语言写的，它们之间进行转变也非常方便。这一篇我主要是记录一些在学习Foundation中觉得应该特别注意的几个点。</p>
+    <content type="html"><![CDATA[<p>Founcation Kit是Cocoa中非常重要的一员，其提供了很多方便使用的数据对象类型。Foundation是基于Core Foundation实现的，后者是用纯C语言写的，它们之间进行转变也非常方便。这一篇我主要是记录一些在学习Foundation中觉得应该特别注意的几个点。</p>
 
 <h4>类簇</h4>
 
