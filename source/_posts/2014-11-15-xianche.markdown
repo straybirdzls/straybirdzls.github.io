@@ -1,9 +1,9 @@
 ---
 layout: post
-title: “谈谈Foundation”
+title: "谈谈Foundation"
 date: 2014-11-16 20:20:49 +0800
 comments: true
-description: “谈谈Foundation”
+description: "谈谈Foundation"
 keywords: Foundation,Objective-c,iOS,Core Foundation
 categories: 
 ---
