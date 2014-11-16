@@ -1,0 +1,49 @@
+---
+layout: post
+title: “谈谈Foundation”
+date: 2014-11-16 20:20:49 +0800
+comments: true
+description: “谈谈Foundation”
+keywords: Foundation,Objective-c,iOS,Core Foundation
+categories: 
+---
+
+Founcation Kit是Cocoa中非常重要的一员，其提供了很多方便使用的数据对象类型。Foundation是基于Core Foundation实现的，或者是用纯C语言写的，它们之间进行转变也非常方便。这一篇我主要是记录一些在学习Foundation中觉得应该特别注意的几个点。
+
+####类簇
+
+在Foundation中类簇非常常见，比如`NSArray,NSNumber`等。类簇的本质其实是抽象工厂模式，使用这个的好处就是用户在使用这些`NSArray,NSNumber`时，不用去考虑具体实例化的对象是属于什么类。值得注意一点的是，千万不要创建类簇的子类，处理不好的话会是灾难。关于类簇，更多的信息可见参考文献2，该文阐述的非常清晰，并给出了具体的使用场景。
+
+<!--more-->
+
+####Copy
+
+关于拷贝，objective-c中提供了`copy`关键字，容易混淆的还有`retain`关键字。一般认为`retain`为指针拷贝，`copy`为内容拷贝，内容拷贝中又包含了深拷贝和浅拷贝。对于不可变的对象而言，copy做的事情与retain保持了一致:引用计数加1;对于可变的对象而言，copy是浅拷贝。测试代码如下:
+
+	NSMutableArray *mutableArray = [NSMutableArray arrayWithObject:@"test"];
+	NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionaryWithObject:@"test1" forKey:@"1"];
+	[mutableArray addObject:mutableDictionary];
+	NSArray *array = [mutableArray copy];
+	[mutableDictionary setObject:@"test2" forKey:@"2"];
+	[mutableArray addObject:@"test3"];
+	NSLog(@"array is %@",array);
+	NSLog(@"mutableArray is %@",mutableArray);
+
+输出结果如下，可以看到array中mutableDictionary依然会跟着改变。
+
+	array is (test,{1 = test1;2 = test2;})
+	mutableArray is (test,{1 = test1;2 = test2;},test3)
+
+####什么时候不应该使用属性?
+
+这一点属于摘录，在参考文献1中提到
+
+>在初始化方法或者是 dealloc 中最好不要使用属性，因为你无法确定 self 到底是不是确实调用的是你想要的实例
+
+在[此文](此文)中,我也看到类似的论述，虽然也许在`init`或者`dealloc`使用属性大部分时候不会带来问题，但还是应该小心为妙。
+
+在参考文献1中，关于Foundation，都是一些非常好的文章，我这里只记录了我暂时看到的几点，只是一点点皮毛，推荐有兴趣的人看看那些文章。
+
+### 参考文献
+[objc中国:#7 Foundation](http://objccn.io/issue-7/)  
+[类簇来iOS开发中的应用](http://limboy.me/ios/2014/01/04/class-cluster.html)

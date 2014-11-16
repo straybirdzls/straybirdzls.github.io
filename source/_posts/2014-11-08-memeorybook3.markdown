@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "读书笔记(3) iOS与OSX多线程和内存管理"
-date: 2014-11-08 20:30:54 +0800
+date: 2014-11-11 20:30:54 +0800
 comments: true
 description: "读书笔记(3)：iOS与OSX多线程和内存管理" 
 keywords: objective-c,GCD,block,内存管理,多线程,ARC
