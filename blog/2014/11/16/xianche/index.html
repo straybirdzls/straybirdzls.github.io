@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Objective-C单例模式之ARC+GCD实现 - Straybird&#8217;s Blog</title>
+  <title>“谈谈Foundation” - Straybird&#8217;s Blog</title>
   <meta name="author" content="Straybird">
 
   
-  <meta name="description" content="Objective-C单例模式之ARC+GCD实现">
-  <meta name="keywords" content="Objective-C,单例模式,ARC,GCD">
+  <meta name="description" content="“谈谈Foundation”">
+  <meta name="keywords" content="Foundation,Objective-c,iOS,Core Foundation">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://straybirdzls.github.io/blog/2014/10/28/arc">
+  <link rel="canonical" href="http://straybirdzls.github.io/blog/2014/11/16/xianche">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Straybird's Blog" type="application/atom+xml">
@@ -68,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">Objective-C单例模式之ARC+GCD实现</h1>
+      <h1 class="entry-title">“谈谈Foundation”</h1>
     
     
       <p class="meta">
@@ -77,74 +77,56 @@
 
 
 
-<time class='entry-date' datetime='2014-10-28T19:30:43+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>7:30 pm</span></time>
+<time class='entry-date' datetime='2014-11-16T20:20:49+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:20 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>单例模式是什么，这里姑且不谈，只谈谈ARC+GCD实现下单例模式比较特殊和受争议的点。</p>
+<div class="entry-content"><p>Founcation Kit是Cocoa中非常重要的一员，其提供了很多方便使用的数据对象类型。Foundation是基于Core Foundation实现的，或者是用纯C语言写的，它们之间进行转变也非常方便。这一篇我主要是记录一些在学习Foundation中觉得应该特别注意的几个点。</p>
 
-<p>首先看一个ARC+GCD实现：</p>
+<h4>类簇</h4>
 
-<pre><code>@interface Singleton : NSObject
-+ (Singleton *)sharedInstance;     
-@end     
-
-@implementation Singleton     
-static  Singleton *sharedInstance = nil ;             
-+ (Singleton *) sharedInstance           
-{      
-    static dispatch_once_t onceToken;  // 锁      
-    dispatch_once (&amp; onceToken, ^ {     // 最多调用一次        
-    sharedInstance = [[self alloc] init];         
-    });      
-    return  sharedInstance;            
-}        
-@end       
-</code></pre>
+<p>在Foundation中类簇非常常见，比如<code>NSArray,NSNumber</code>等。类簇的本质其实是抽象工厂模式，使用这个的好处就是用户在使用这些<code>NSArray,NSNumber</code>时，不用去考虑具体实例化的对象是属于什么类。值得注意一点的是，千万不要创建类簇的子类，处理不好的话会是灾难。关于类簇，更多的信息可见参考文献2，该文阐述的非常清晰，并给出了具体的使用场景。</p>
 
 <!--more-->
 
 
-<p>这个实现很简单，但是并不能防止用户通过[[Singleton alloc]init]创建多个实例，通过小小的测试即可：</p>
+<h4>Copy</h4>
 
-<pre><code>Singleton *signleton1= [Singleton sharedInstance];       
-NSLog(@"singleton1 is %@",signleton1);       
-Singleton *signleton2= [[Singleton alloc]init];       
-NSLog(@"singleton2 is %@",signleton2);       
+<p>关于拷贝，objective-c中提供了<code>copy</code>关键字，容易混淆的还有<code>retain</code>关键字。一般认为<code>retain</code>为指针拷贝，<code>copy</code>为内容拷贝，内容拷贝中又包含了深拷贝和浅拷贝。对于不可变的对象而言，copy做的事情与retain保持了一致:引用计数加1;对于可变的对象而言，copy是浅拷贝。测试代码如下:</p>
+
+<pre><code>NSMutableArray *mutableArray = [NSMutableArray arrayWithObject:@"test"];
+NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionaryWithObject:@"test1" forKey:@"1"];
+[mutableArray addObject:mutableDictionary];
+NSArray *array = [mutableArray copy];
+[mutableDictionary setObject:@"test2" forKey:@"2"];
+[mutableArray addObject:@"test3"];
+NSLog(@"array is %@",array);
+NSLog(@"mutableArray is %@",mutableArray);
 </code></pre>
 
-<p>可以看出多个实例被创建出来了。</p>
+<p>输出结果如下，可以看到array中mutableDictionary依然会跟着改变。</p>
 
-<p>怎么防止这一点呢？我们需要注意的几点：<br/>
-1.Objective-c并不像C++那样，可以直接将构造函数设成private，使外部不能调用<br/>
-2.只能考虑在alloc分配内存的时候把路给堵死<br/>
-3.alloc中实际上调用了allocWithZone:，就算把alloc堵死了，也不能防止allocWithZone被用户直接调用<br/>
-&ndash;>>所以我们必须通过allocWithZone将用户堵死</p>
-
-<p>参考<a href="" title="https://developer.apple.com/legacy/library/documentation/Cocoa/Conceptual/CocoaFundamentals/CocoaObjects/CocoaObjects.html#//apple_ref/doc/uid/TP40002974-CH4-SW32">非ARC的实现</a>，我们很容易写出如下所示的代码：</p>
-
-<pre><code>+(instanceType)allocWithZone:(struc _NZone)zone  
-{  
-    return [self sharedInstance];  
-}    
+<pre><code>array is (test,{1 = test1;2 = test2;})
+mutableArray is (test,{1 = test1;2 = test2;},test3)
 </code></pre>
 
-<p>但一运行，会发现程序hang住了。分析程序可知，程序在block中block住了。同样考虑到线程安全，allocWithZone的代码应该这样写：</p>
+<h4>什么时候不应该使用属性?</h4>
 
-<pre><code>+(instanceType)allocWithZone:(struc _NZone)zone  
-{   
-    static dispatch_once_t onceToken;  
-    dispatch_once(&amp;onceToken,^{  
-    sharedInstance = [super allocWithZone:zone];
-    });  
-    return sharedInstance;   
-}   
-</code></pre>
+<p>这一点属于摘录，在参考文献1中提到</p>
 
-<p>再运行之前的测试代码，这回单例只有一个了。</p>
+<blockquote><p>在初始化方法或者是 dealloc 中最好不要使用属性，因为你无法确定 self 到底是不是确实调用的是你想要的实例</p></blockquote>
+
+<p>在<a href="%E6%AD%A4%E6%96%87">此文</a>中,我也看到类似的论述，虽然也许在<code>init</code>或者<code>dealloc</code>使用属性大部分时候不会带来问题，但还是应该小心为妙。</p>
+
+<p>在参考文献1中，关于Foundation，都是一些非常好的文章，我这里只记录了我暂时看到的几点，只是一点点皮毛，推荐有兴趣的人看看那些文章。</p>
+
+<h3>参考文献</h3>
+
+<p><a href="http://objccn.io/issue-7/">objc中国:#7 Foundation</a><br/>
+<a href="http://limboy.me/ios/2014/01/04/class-cluster.html">类簇来iOS开发中的应用</a></p>
 </div>
 
 
@@ -160,7 +142,7 @@ NSLog(@"singleton2 is %@",signleton2);
 
 
 
-<time class='entry-date' datetime='2014-10-28T19:30:43+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>7:30 pm</span></time>
+<time class='entry-date' datetime='2014-11-16T20:20:49+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:20 pm</span></time>
       
 
 
@@ -175,10 +157,8 @@ NSLog(@"singleton2 is %@",signleton2);
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/10/22/title/" title="Previous Post: 成长悄然来临">上一篇:&nbsp; 成长悄然来临</a>
+        <a class="basic-alignment left" href="/blog/2014/11/11/memeorybook3/" title="Previous Post: 读书笔记(3) iOS与OSX多线程和内存管理">上一篇:&nbsp; 读书笔记(3) iOS与OSX多线程和内存管理</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/11/01/chuaijing/" title="Next Post: 柴静-看见">下一篇:&nbsp;柴静-看见</a>
       
     </p>
   </footer>

@@ -4,7 +4,7 @@
   <title><![CDATA[Straybird's Blog]]></title>
   <link href="http://straybirdzls.github.io/atom.xml" rel="self"/>
   <link href="http://straybirdzls.github.io/"/>
-  <updated>2014-11-11T21:26:43+08:00</updated>
+  <updated>2014-11-16T20:22:34+08:00</updated>
   <id>http://straybirdzls.github.io/</id>
   <author>
     <name><![CDATA[Straybird]]></name>
@@ -14,10 +14,61 @@
 
   
   <entry>
+    <title type="html"><![CDATA[“谈谈Foundation”]]></title>
+    <link href="http://straybirdzls.github.io/blog/2014/11/16/xianche/"/>
+    <updated>2014-11-16T20:20:49+08:00</updated>
+    <id>http://straybirdzls.github.io/blog/2014/11/16/xianche</id>
+    <content type="html"><![CDATA[<p>Founcation Kit是Cocoa中非常重要的一员，其提供了很多方便使用的数据对象类型。Foundation是基于Core Foundation实现的，或者是用纯C语言写的，它们之间进行转变也非常方便。这一篇我主要是记录一些在学习Foundation中觉得应该特别注意的几个点。</p>
+
+<h4>类簇</h4>
+
+<p>在Foundation中类簇非常常见，比如<code>NSArray,NSNumber</code>等。类簇的本质其实是抽象工厂模式，使用这个的好处就是用户在使用这些<code>NSArray,NSNumber</code>时，不用去考虑具体实例化的对象是属于什么类。值得注意一点的是，千万不要创建类簇的子类，处理不好的话会是灾难。关于类簇，更多的信息可见参考文献2，该文阐述的非常清晰，并给出了具体的使用场景。</p>
+
+<!--more-->
+
+
+<h4>Copy</h4>
+
+<p>关于拷贝，objective-c中提供了<code>copy</code>关键字，容易混淆的还有<code>retain</code>关键字。一般认为<code>retain</code>为指针拷贝，<code>copy</code>为内容拷贝，内容拷贝中又包含了深拷贝和浅拷贝。对于不可变的对象而言，copy做的事情与retain保持了一致:引用计数加1;对于可变的对象而言，copy是浅拷贝。测试代码如下:</p>
+
+<pre><code>NSMutableArray *mutableArray = [NSMutableArray arrayWithObject:@"test"];
+NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionaryWithObject:@"test1" forKey:@"1"];
+[mutableArray addObject:mutableDictionary];
+NSArray *array = [mutableArray copy];
+[mutableDictionary setObject:@"test2" forKey:@"2"];
+[mutableArray addObject:@"test3"];
+NSLog(@"array is %@",array);
+NSLog(@"mutableArray is %@",mutableArray);
+</code></pre>
+
+<p>输出结果如下，可以看到array中mutableDictionary依然会跟着改变。</p>
+
+<pre><code>array is (test,{1 = test1;2 = test2;})
+mutableArray is (test,{1 = test1;2 = test2;},test3)
+</code></pre>
+
+<h4>什么时候不应该使用属性?</h4>
+
+<p>这一点属于摘录，在参考文献1中提到</p>
+
+<blockquote><p>在初始化方法或者是 dealloc 中最好不要使用属性，因为你无法确定 self 到底是不是确实调用的是你想要的实例</p></blockquote>
+
+<p>在<a href="%E6%AD%A4%E6%96%87">此文</a>中,我也看到类似的论述，虽然也许在<code>init</code>或者<code>dealloc</code>使用属性大部分时候不会带来问题，但还是应该小心为妙。</p>
+
+<p>在参考文献1中，关于Foundation，都是一些非常好的文章，我这里只记录了我暂时看到的几点，只是一点点皮毛，推荐有兴趣的人看看那些文章。</p>
+
+<h3>参考文献</h3>
+
+<p><a href="http://objccn.io/issue-7/">objc中国:#7 Foundation</a><br/>
+<a href="http://limboy.me/ios/2014/01/04/class-cluster.html">类簇来iOS开发中的应用</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[读书笔记(3) iOS与OSX多线程和内存管理]]></title>
-    <link href="http://straybirdzls.github.io/blog/2014/11/08/memeorybook3/"/>
-    <updated>2014-11-08T20:30:54+08:00</updated>
-    <id>http://straybirdzls.github.io/blog/2014/11/08/memeorybook3</id>
+    <link href="http://straybirdzls.github.io/blog/2014/11/11/memeorybook3/"/>
+    <updated>2014-11-11T20:30:54+08:00</updated>
+    <id>http://straybirdzls.github.io/blog/2014/11/11/memeorybook3</id>
     <content type="html"><![CDATA[<p>今天是&lt;iOS与OSX多线程和内存管理>读书笔记的最后一篇了，主题是多线程。书中主要是讲GCD,并没有讲NSOperation的东西，我这一篇一方面简要地对GCD记录一些知识点，也谈一点点NSOperation方面的东西。对于NSOperation方面的知识，我看了很多人推荐的<a href="http://www.raywenderlich.com/19788/how-to-use-nsoperations-and-nsoperationqueues">教程</a>，觉得写得非常好，推荐想学习的人看一看。</p>
 
 <h4>慎用@sync</h4>
