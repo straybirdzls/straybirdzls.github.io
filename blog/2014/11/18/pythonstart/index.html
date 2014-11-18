@@ -90,17 +90,21 @@
 
 <p>python中识别代码快是用缩进的，值得注意的是要保持缩进的格式一致，一定记得不要将tab和空格混用，否则容易带来很难检查的缩进错误，建议编写python代码时，将编辑器做一些设定，让tab自动成为空格。</p>
 
-<p><!--more--!></p>
+<!--more-->
+
 
 <h4>值得注意的语法</h4>
 
 <p>python中还是有不少语法跟之前接触过的有不少的差别，这里列一些我觉得值得注意的</p>
 
-<p>1.语句末尾不需要;作为结束符，有的话会报错<br/>
-2.很多常见的语句都需要用:结尾 比如<code>if/elif/else／if not,try/except,def,while,for...in</code>,且这些语句的内容都不需要用()包起来，我一开始总是习惯性地打括号。<br/>
-3.for&hellip;in:非常好用，不仅仅对于数组，对于字符串也可以直接使用，遍历起来非常方便。对于文件也非常好用，利用<code>open()</code>打开文件之后，就可以直接用其来遍历文件的内容，如果用<code>read</code>,则是将文件内容读入到字符串中。<br/>
-4.字符串自带的处理函数很丰富，使用<code>dir(str)</code>即可查看内建的字符串函数，很常用的有<code>lstrip()/strip()/rstrip()</code>,<code>split()</code>,<code>startswith()/endswith()</code>等等。<br/>
-5.很好用的<code>in</code>,这里的<code>in</code>不是<code>for...in</code>里面的那个，其可以直接用来判断字符串中是否包含子串，数组中是否包含某元素等。</p>
+<ol>
+<li>语句末尾不需要;作为结束符，有的话会报错</li>
+<li>很多常见的语句都需要用:结尾 比如<code>if/elif/else／if not,try/except,def,while,for...in</code>,且这些语句的内容都不需要用()包起来，我一开始总是习惯性地打括号。</li>
+<li>for&hellip;in:非常好用，不仅仅对于数组，对于字符串也可以直接使用，遍历起来非常方便。对于文件也非常好用，利用<code>open()</code>打开文件之后，就可以直接用其来遍历文件的内容，如果用<code>read</code>,则是将文件内容读入到字符串中。</li>
+<li>字符串自带的处理函数很丰富，使用<code>dir(str)</code>即可查看内建的字符串函数，很常用的有<code>lstrip()/strip()/rstrip()</code>,<code>split()</code>,<code>startswith()/endswith()</code>等等。</li>
+<li>很好用的<code>in</code>,这里的<code>in</code>不是<code>for...in</code>里面的那个，其可以直接用来判断字符串中是否包含子串，数组中是否包含某元素等。</li>
+</ol>
+
 
 <h4>is和==</h4>
 
