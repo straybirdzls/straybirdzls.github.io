@@ -4,7 +4,7 @@
   <title><![CDATA[Straybird's Blog]]></title>
   <link href="http://straybirdzls.github.io/atom.xml" rel="self"/>
   <link href="http://straybirdzls.github.io/"/>
-  <updated>2014-11-18T23:30:53+08:00</updated>
+  <updated>2014-11-18T23:34:09+08:00</updated>
   <id>http://straybirdzls.github.io/</id>
   <author>
     <name><![CDATA[Straybird]]></name>
@@ -18,7 +18,7 @@
     <link href="http://straybirdzls.github.io/blog/2014/11/18/pythonstart/"/>
     <updated>2014-11-18T22:50:01+08:00</updated>
     <id>http://straybirdzls.github.io/blog/2014/11/18/pythonstart</id>
-    <content type="html"><![CDATA[<p>最近开始学习coursera上的<a href="https://class.coursera.org/pythonlearn-003">python教程</a>,这本课程相当简单，是面向刚接触编程的，对于已经有个编程基础的，可以权当花少量的时间，过一下语法。我学这门课程花的时间也不多，发现python语法中的确有一些不一样的地方，这里记录一下。</p>
+    <content type="html"><![CDATA[<p>最近开始学习coursera上的<a href="https://class.coursera.org/pythonlearn-003">python教程</a>,这门课程相当简单，是面向刚接触编程的，对于已经有个编程基础的，可以权当花少量的时间，过一下语法。我学这门课程花的时间也不多，发现python语法中的确有一些不一样的地方，这里记录一下。</p>
 
 <h4>缩排</h4>
 
