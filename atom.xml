@@ -4,7 +4,7 @@
   <title><![CDATA[Straybird's Blog]]></title>
   <link href="http://straybirdzls.github.io/atom.xml" rel="self"/>
   <link href="http://straybirdzls.github.io/"/>
-  <updated>2014-11-16T22:19:31+08:00</updated>
+  <updated>2014-11-18T23:20:20+08:00</updated>
   <id>http://straybirdzls.github.io/</id>
   <author>
     <name><![CDATA[Straybird]]></name>
@@ -91,6 +91,37 @@ mutableArray is (test,{1 = test1;2 = test2;},test3)
 <p>自GCD出来后，NSOperationQueue就是用GCD来实现了。通过对上面推荐的教程的学习，NSOperation对于代码管理是非常方便的，而且可以cancel，对于依赖的管理也非常方便。根据苹果使用high level实现的惯例，一般情况下都是推荐使用NSOperation。当然GCD很轻量级，使用起来非常方便，所以根据具体的使用场景，也有很多需要的时候。</p>
 
 <p>其实书中还讲了很多其他方面的内容，GCD确实很强大，有了它，我们不用自己管理线程，因为这方面我还处于学习阶段，所以暂时还没能有一些比较深刻的见解，有兴趣的可以看objc的这个<a href="http://objcio.cn/issue-2/">专题</a>，讲得非常精彩。截止到现在，这本书&lt;iOS与OSX多线程和内存管理>我也算是粗略地过了一遍，但实践出真知，我现在还处于学习阶段，接下来要多多练习，方能将这些全部变成自己的知识。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Python学习笔记]]></title>
+    <link href="http://straybirdzls.github.io/blog/2014/11/08/pythonstart/"/>
+    <updated>2014-11-08T22:50:01+08:00</updated>
+    <id>http://straybirdzls.github.io/blog/2014/11/08/pythonstart</id>
+    <content type="html"><![CDATA[<p>最近开始学习coursera上的<a href="https://class.coursera.org/pythonlearn-003">python教程</a>,这本课程相当简单，是面向刚接触编程的，对于已经有个编程基础的，可以权当花少量的时间，过一下语法。我学这门课程花的时间也不多，发现python语法中的确有一些不一样的地方，这里记录一下。</p>
+
+<h4>缩排</h4>
+
+<p>python中识别代码快是用缩进的，值得注意的是要保持缩进的格式一致，一定记得不要将tab和空格混用，否则容易带来很难检查的缩进错误，建议编写python代码时，将编辑器做一些设定，让tab自动成为空格。</p>
+
+<p><!--more--!></p>
+
+<h4>值得注意的语法</h4>
+
+<p>python中还是有不少语法跟之前接触过的有不少的差别，这里列一些我觉得值得注意的</p>
+
+<p>1.语句末尾不需要;作为结束符，有的话会报错<br/>
+2.很多常见的语句都需要用:结尾 比如<code>if/elif/else／if not,try/except,def,while,for...in</code>,且这些语句的内容都不需要用()包起来，我一开始总是习惯性地打括号。<br/>
+3.for&hellip;in:非常好用，不仅仅对于数组，对于字符串也可以直接使用，遍历起来非常方便。对于文件也非常好用，利用<code>open()</code>打开文件之后，就可以直接用其来遍历文件的内容，如果用<code>read</code>,则是将文件内容读入到字符串中。<br/>
+4.字符串自带的处理函数很丰富，使用<code>dir(str)</code>即可查看内建的字符串函数，很常用的有<code>lstrip()/strip()/rstrip()</code>,<code>split()</code>,<code>startswith()/endswith()</code>等等。<br/>
+5.很好用的<code>in</code>,这里的<code>in</code>不是<code>for...in</code>里面的那个，其可以直接用来判断字符串中是否包含子串，数组中是否包含某元素等。</p>
+
+<h4>is和==</h4>
+
+<p>python中判断是否相等，有<code>is</code>和<code>==</code>，其中<code>is</code>是判断是否相等，而==则用同时判断值和类型，比如1=＝1.0返回True，而1 is 1.1返回False。提到<code>is</code>，就不得不提<code>None</code>,<code>None</code>表示参数未定义，一般情况下判断是否为<code>None</code>，都推荐用<code>is</code>。</p>
+
+<p>由于这个公开课还没有完结，而课程是一周一周出的，我这里暂时也只记录了前面7周的一些笔记，后面的课程跟了，也会来更新记录。</p>
 ]]></content>
   </entry>
   
