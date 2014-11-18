@@ -8,7 +8,7 @@ keywords: python,入门,缩排,is,==,strip()
 categories: 
 ---
 
-最近开始学习coursera上的[python教程](https://class.coursera.org/pythonlearn-003),这本课程相当简单，是面向刚接触编程的，对于已经有个编程基础的，可以权当花少量的时间，过一下语法。我学这门课程花的时间也不多，发现python语法中的确有一些不一样的地方，这里记录一下。
+最近开始学习coursera上的[python教程](https://class.coursera.org/pythonlearn-003),这门课程相当简单，是面向刚接触编程的，对于已经有个编程基础的，可以权当花少量的时间，过一下语法。我学这门课程花的时间也不多，发现python语法中的确有一些不一样的地方，这里记录一下。
 
 ####缩排
 
