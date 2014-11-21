@@ -71,6 +71,71 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/11/21/views/">Ios学习笔记1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-21T20:40:43+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>8:40 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>接触iOS这个平台也有1年多的时间了，中途有看过一些书，也看过一些博客，但终究觉得是纸上得来终觉浅。最近也好好思考了一下，对于iOS的学习一直都是随性的，想到啥了就学啥，导致的结果就是有些部分因为比较感兴趣，学的比较深入，有些部分却是一个完完全全的初学者，所以当自己想去写点什么的时候，总是有点力不从心。总结了一下，现在对于objetctive－c的语法，以及ios的内存管理，多线程等方面至少是应该跨过了初学者的层次，但是对于view，controller还有Apple提供的api等知道的甚少。正好最近有同事推荐了<iOS Programming: The Big Nerd Ranch Guides>，网上看了一下，觉得挺不错的，对于现阶段的我，正好可以查缺补漏，同时练手和巩固已有知识。这个学习笔记系列也就是我学习过程中的一些记录。</p>
+
+<h3>id和instancetype</h3>
+
+<p><code>instanceytype</code>只能够作为返回值类型，并且会返回当前的class类型，相对于id而言，其可以让编译器帮我们做更多的事情。之前我也想过，为什么初始化中一定要返回<code>id</code>或者<code>instancetype</code>，不能直接返回类类型呢？在书中也找到了答案，其实很简单，如果类被子类化了怎么办?子类覆盖?我们知道objeitive－c中是不能有selector名字一致但是返回类型不一致的方法的。</p>
+
+<h3>view/controller相关</h3>
+
+<h5>Point和Pixel</h5>
+
+<p>涉及到viewer层面，就不得不提Point和Pixel了，Point的大小参数是保持一致的，根据屏幕分辨率的不同，其对应的Pixel的数量会发生改变。在非Retina屏中，1个Point就是Pixel，但在Retina中，以额Point变为了2*2Pixel。所以对于图片而言，苹果提高了非常便捷的方式，就是用2份图片，在Retina中使用的在名字后加上@2x就可以了。</p>
+
+<h5>lazy loading</h5>
+
+<p>对于view而言，没有显示在屏幕之上前，viewcontroller是没有必要去loading的，同时也考虑到移动端的内存，我们应该尽量做到这样。所以我们一定要注意，没有必要的时候不要在这之前调用self.view，尤其不要在init中调用，这样会造成view的提前加载。</p>
+
+<h5>xib命名</h5>
+
+<p>xib的命名最好与viewcontroller的名字保持一致，这是为什么呢？因为<code>initWithNibName</code>调用时，如果发现nib参数为空，会检测与viewcontroller同名的nib文件，也就是说名字保持一致后，就可以直接使用init初始化了，这样是不是方便很多？</p>
+
+<h5>File&rsquo;s owner</h5>
+
+<p>对于xib而言，设置file&rsquo;s owner非常重要，这是为什么呢，如果不设置，当viewcontroller加载nib时，元素都准备好了，却会发现自己的view指向nil，将xib的file&rsquo;s owner设置为对应的view controller，就可以将view的outlet设置为file&rsquo;s owner了，这样，加载的时候，view controller成为file&rsquo;s owner，就能找到对应的view了。</p>
+
+<h5>outlet的背后</h5>
+
+<p>在xib上设置outlet只需要简单的拖动，那实际上view上的元素outlet到底是怎么跟viewcontroller中的property连接起来的呢？这背后其作用的就是<code>kvc(key-value coding)</code>了,首先会寻找setter/getter，然后是成员变量(var和_var)，所以当设置好outlet之后，如果将对应的property改名，就会寻找不到，也是这个原因。</p>
+
+<h5>Core Graphics</h5>
+
+<p>Core Graphics是用纯c语言实现的2D作图引擎，其中有一些以Ref结尾的类型需要注意，他们其实是指针对象的，用Ref又作了一层封装以与其他的Core框架对象保持一致(Core Foundation中也有很多这样的)，尽管这些对象是存在堆上的，但是ARC不帮忙管理内存，需要我们自己管理。大部分时候我们我们都会选用跟高层面的实现UIBezierPath,但是阴影和渐变只能用Core Foundation实现。</p>
+
+<p>这一篇记录的也比较杂，主要是根据学习的顺序吧，记录的目的也就是帮助自己巩固知新。</p>
+
+<h3>参考文献</h3>
+
+<p>书籍: iOS Programming: The Big Nerd Ranch Guides</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2014/11/18/pythonstart/">Python学习笔记</a></h1>
     
     
@@ -226,54 +291,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/04/memorybook/">读书笔记(1) iOS与OSX多线程和内存管理</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-04T21:25:41+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:25 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>最近这些天看了&lt;iOS与OSX多线程和内存管理>这边书，觉得这本书还是写得很不错的，这一篇对内存管理中的一些点记一些笔记，主要集中在ARC上，关于block的以后再谈。我这里也不准备从最基本的概念入手，因为介绍ARC的文章已经太多了，所以我只记录一些我觉得比较特殊的点。</p>
-
-<h4>查看自动释放池的状态</h4>
-
-<p>只需要先使用声明:</p>
-
-<pre><code>extern void _objc_autoreleasePoolPrint();
-</code></pre>
-
-<p>就可以使用</p>
-
-<pre><code>_objc_autoreleasePoolPrint();
-</code></pre>
-
-<p>打印释放池里的状态了。这个API是私有API,对于osx和iOS通用，还有一个API只对iOS可以使用，这里就不提了，个人觉得上面这个API就够用了。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/11/04/memorybook/">阅读全文&rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">上一页</a>
@@ -287,6 +304,10 @@
     <section>
   <h1>最近文章</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/21/views/">Ios学习笔记1</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/11/18/pythonstart/">Python学习笔记</a>

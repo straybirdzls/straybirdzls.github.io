@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Python学习笔记 - Straybird&#8217;s Blog</title>
+  <title>Ios学习笔记1 - Straybird&#8217;s Blog</title>
   <meta name="author" content="Straybird">
 
   
-  <meta name="description" content="python学习笔记">
-  <meta name="keywords" content="python,入门,缩排,is,==,strip()">
+  <meta name="description" content="ios学习笔记1">
+  <meta name="keywords" content="ios,Core Foubdation,views,id,instancetype,file's owner,Core Graphics">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://straybirdzls.github.io/blog/2014/11/18/pythonstart">
+  <link rel="canonical" href="http://straybirdzls.github.io/blog/2014/11/21/views">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Straybird's Blog" type="application/atom+xml">
@@ -68,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">Python学习笔记</h1>
+      <h1 class="entry-title">Ios学习笔记1</h1>
     
     
       <p class="meta">
@@ -77,43 +77,50 @@
 
 
 
-<time class='entry-date' datetime='2014-11-18T22:50:01+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:50 pm</span></time>
+<time class='entry-date' datetime='2014-11-21T20:40:43+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>8:40 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>最近开始学习coursera上的<a href="https://class.coursera.org/pythonlearn-003">python教程</a>,这门课程相当简单，是面向刚接触编程的，对于已经有个编程基础的，可以权当花少量的时间，过一下语法。我学这门课程花的时间也不多，发现python语法中的确有一些不一样的地方，这里记录一下。</p>
+<div class="entry-content"><p>接触iOS这个平台也有1年多的时间了，中途有看过一些书，也看过一些博客，但终究觉得是纸上得来终觉浅。最近也好好思考了一下，对于iOS的学习一直都是随性的，想到啥了就学啥，导致的结果就是有些部分因为比较感兴趣，学的比较深入，有些部分却是一个完完全全的初学者，所以当自己想去写点什么的时候，总是有点力不从心。总结了一下，现在对于objetctive－c的语法，以及ios的内存管理，多线程等方面至少是应该跨过了初学者的层次，但是对于view，controller还有Apple提供的api等知道的甚少。正好最近有同事推荐了<iOS Programming: The Big Nerd Ranch Guides>，网上看了一下，觉得挺不错的，对于现阶段的我，正好可以查缺补漏，同时练手和巩固已有知识。这个学习笔记系列也就是我学习过程中的一些记录。</p>
 
-<h4>缩排</h4>
+<h3>id和instancetype</h3>
 
-<p>python中识别代码快是用缩进的，值得注意的是要保持缩进的格式一致，一定记得不要将tab和空格混用，否则容易带来很难检查的缩进错误，建议编写python代码时，将编辑器做一些设定，让tab自动成为空格。</p>
+<p><code>instanceytype</code>只能够作为返回值类型，并且会返回当前的class类型，相对于id而言，其可以让编译器帮我们做更多的事情。之前我也想过，为什么初始化中一定要返回<code>id</code>或者<code>instancetype</code>，不能直接返回类类型呢？在书中也找到了答案，其实很简单，如果类被子类化了怎么办?子类覆盖?我们知道objeitive－c中是不能有selector名字一致但是返回类型不一致的方法的。</p>
 
-<!--more-->
+<h3>view/controller相关</h3>
 
+<h5>Point和Pixel</h5>
 
-<h4>值得注意的语法</h4>
+<p>涉及到viewer层面，就不得不提Point和Pixel了，Point的大小参数是保持一致的，根据屏幕分辨率的不同，其对应的Pixel的数量会发生改变。在非Retina屏中，1个Point就是Pixel，但在Retina中，以额Point变为了2*2Pixel。所以对于图片而言，苹果提高了非常便捷的方式，就是用2份图片，在Retina中使用的在名字后加上@2x就可以了。</p>
 
-<p>python中还是有不少语法跟之前接触过的有不少的差别，这里列一些我觉得值得注意的</p>
+<h5>lazy loading</h5>
 
-<ol>
-<li>语句末尾不需要;作为结束符，有的话会报错</li>
-<li>很多常见的语句都需要用:结尾 比如<code>if/elif/else／if not,try/except,def,while,for...in</code>,且这些语句的内容都不需要用()包起来，我一开始总是习惯性地打括号。</li>
-<li><code>for...in:</code>非常好用，不仅仅对于数组，对于字符串也可以直接使用，遍历起来非常方便。对于文件也非常好用，利用<code>open()</code>打开文件之后，就可以直接用其来遍历文件的内容，如果用<code>read</code>,则是将文件内容读入到字符串中。</li>
-<li>字符串自带的处理函数很丰富，使用<code>dir(str)</code>即可查看内建的字符串函数，很常用的有<code>lstrip()/strip()/rstrip()</code>,<code>split()</code>,<code>startswith()/endswith()</code>等等。</li>
-<li>很好用的<code>in</code>,这里的<code>in</code>不是<code>for...in</code>里面的那个，其可以直接用来判断字符串中是否包含子串，数组中是否包含某元素等,当然对应的还有<code>not in</code>。</li>
-<li><code>list</code>很好用，遍历等的方式也都跟字符串保持一致，但字符串本身赋值后就不能修改，修改会报错，其是&#8221;不可变的&#8221;，而<code>list</code>则可以，其是&#8221;可变的&#8221;。</li>
-<li>字符串使用<code>split()</code>可以生成<code>list</code>，<code>split()</code>也可以带参数，指定分割字符串所用的符号,非常好用。</li>
-<li>多行知注释是以    <code>'''</code>来包含的。</li>
-</ol>
+<p>对于view而言，没有显示在屏幕之上前，viewcontroller是没有必要去loading的，同时也考虑到移动端的内存，我们应该尽量做到这样。所以我们一定要注意，没有必要的时候不要在这之前调用self.view，尤其不要在init中调用，这样会造成view的提前加载。</p>
 
+<h5>xib命名</h5>
 
-<h4>is和==</h4>
+<p>xib的命名最好与viewcontroller的名字保持一致，这是为什么呢？因为<code>initWithNibName</code>调用时，如果发现nib参数为空，会检测与viewcontroller同名的nib文件，也就是说名字保持一致后，就可以直接使用init初始化了，这样是不是方便很多？</p>
 
-<p>python中判断是否相等，有<code>is</code>和<code>==</code>，其中<code>is</code>是判断是否相等，而==则用同时判断值和类型，比如1=＝1.0返回True，而1 is 1.1返回False。提到<code>is</code>，就不得不提<code>None</code>,<code>None</code>表示参数未定义，一般情况下判断是否为<code>None</code>，都推荐用<code>is</code>。</p>
+<h5>File&rsquo;s owner</h5>
 
-<p>由于这个公开课还没有完结，而课程是一周一周出的，我这里暂时也只记录了前面8周的一些笔记，后面的课程跟了，也会来更新记录。</p>
+<p>对于xib而言，设置file&rsquo;s owner非常重要，这是为什么呢，如果不设置，当viewcontroller加载nib时，元素都准备好了，却会发现自己的view指向nil，将xib的file&rsquo;s owner设置为对应的view controller，就可以将view的outlet设置为file&rsquo;s owner了，这样，加载的时候，view controller成为file&rsquo;s owner，就能找到对应的view了。</p>
+
+<h5>outlet的背后</h5>
+
+<p>在xib上设置outlet只需要简单的拖动，那实际上view上的元素outlet到底是怎么跟viewcontroller中的property连接起来的呢？这背后其作用的就是<code>kvc(key-value coding)</code>了,首先会寻找setter/getter，然后是成员变量(var和_var)，所以当设置好outlet之后，如果将对应的property改名，就会寻找不到，也是这个原因。</p>
+
+<h5>Core Graphics</h5>
+
+<p>Core Graphics是用纯c语言实现的2D作图引擎，其中有一些以Ref结尾的类型需要注意，他们其实是指针对象的，用Ref又作了一层封装以与其他的Core框架对象保持一致(Core Foundation中也有很多这样的)，尽管这些对象是存在堆上的，但是ARC不帮忙管理内存，需要我们自己管理。大部分时候我们我们都会选用跟高层面的实现UIBezierPath,但是阴影和渐变只能用Core Foundation实现。</p>
+
+<p>这一篇记录的也比较杂，主要是根据学习的顺序吧，记录的目的也就是帮助自己巩固知新。</p>
+
+<h3>参考文献</h3>
+
+<p>书籍: iOS Programming: The Big Nerd Ranch Guides</p>
 </div>
 
 
@@ -129,7 +136,7 @@
 
 
 
-<time class='entry-date' datetime='2014-11-18T22:50:01+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:50 pm</span></time>
+<time class='entry-date' datetime='2014-11-21T20:40:43+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>8:40 pm</span></time>
       
 
 
@@ -144,10 +151,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/11/16/xianche/" title="Previous Post: 谈谈Foundation">上一篇:&nbsp; 谈谈Foundation</a>
+        <a class="basic-alignment left" href="/blog/2014/11/18/pythonstart/" title="Previous Post: python学习笔记">上一篇:&nbsp; python学习笔记</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/11/21/views/" title="Next Post: ios学习笔记1">下一篇:&nbsp;ios学习笔记1</a>
       
     </p>
   </footer>
