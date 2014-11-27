@@ -44,7 +44,7 @@ keywords: Objective-C,单例模式,ARC,GCD
 3.alloc中实际上调用了allocWithZone:，就算把alloc堵死了，也不能防止allocWithZone被用户直接调用  
 -->>所以我们必须通过allocWithZone将用户堵死  
 
-参考[非ARC的实现]("https://developer.apple.com/legacy/library/documentation/Cocoa/Conceptual/CocoaFundamentals/CocoaObjects/CocoaObjects.html#//apple_ref/doc/uid/TP40002974-CH4-SW32")，我们很容易写出如下所示的代码： 
+参考[非ARC的实现](https://developer.apple.com/legacy/library/documentation/Cocoa/Conceptual/CocoaFundamentals/CocoaObjects/CocoaObjects.html#//apple_ref/doc/uid/TP40002974-CH4-SW32)，我们很容易写出如下所示的代码： 
 
 	+(instanceType)allocWithZone:(struc _NZone)zone  
 	{  
