@@ -4,7 +4,7 @@
   <title><![CDATA[Straybird's Blog]]></title>
   <link href="http://straybirdzls.github.io/atom.xml" rel="self"/>
   <link href="http://straybirdzls.github.io/"/>
-  <updated>2014-11-21T21:04:38+08:00</updated>
+  <updated>2014-11-27T22:25:50+08:00</updated>
   <id>http://straybirdzls.github.io/</id>
   <author>
     <name><![CDATA[Straybird]]></name>
@@ -14,11 +14,39 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Ios学习笔记2]]></title>
+    <link href="http://straybirdzls.github.io/blog/2014/11/26/viewcontroller/"/>
+    <updated>2014-11-26T22:12:09+08:00</updated>
+    <id>http://straybirdzls.github.io/blog/2014/11/26/viewcontroller</id>
+    <content type="html"><![CDATA[<p>这一篇接上篇，依然是iOS Programming: The Big Nerd Ranch Guides这本书的学习笔记，这本书对于各种点讲的还比较清楚，这一篇主要集中在view controller相关的点上。</p>
+
+<!--more-->
+
+
+<h4>View Controller之间的关系</h4>
+
+<p>刚开始的时候，容易被View Controller之间的关系搞迷糊，其实归根到底关系就2种，family关系和presented/presenting关系。<br/>
+family关系，显而易见，就是包含关系了，一个view controller包含几个子view controller，可以通过UIViewController的viewControllers来获取。子view controller可以通过parentViewController/navigationController/tabBarController/splitViewController来获取父controller，当然后3个都是会顺着view controller的关系往上查找相应的view controller类型，若没有，则返回nil。<br/>
+presented/presenting关系，描述的是一种模态controller，presented的controller将会之于当前view的top之上，可以通过presentedViewController/presentingViewController来访问。值得注意的是1).family中有一个view controll而有presentedViewController，则其他的也跟着拥有; 2).默认的presentingViewController会去controller family里寻找最父级的controller，如果不想拥有这种行为，需要将view controller的definesPresentationContext属性设为YES,并将modalPresentationStyle设置为UIModalPresentationCurrentContext。</p>
+
+<h4>UITableViewController</h4>
+
+<p>UITableViewController是实际中非常常用的view conroller，其自带了一个tableView，然后还拥有delegate和datasource，datasource主要是用来管理数据源，其只用来数据源的获取和刷新，真正跟tableview交互的是delegate。UITableViewController自带的API非常丰富，从我的学习中，有需求的时候就多看看API的说明，总能找到一款满足需求的API。</p>
+
+<p>本来还想再多写一点，结果发现很多东西不是三言两语可以说得清楚，只需要自己动手跟着书中的例子走一遍，然后再实践几次，慢慢地熟悉了，就都了然于心了。</p>
+
+<h3>参考文献</h3>
+
+<p>书籍: iOS Programming: The Big Nerd Ranch Guides</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[iOS学习笔记1]]></title>
     <link href="http://straybirdzls.github.io/blog/2014/11/21/views/"/>
     <updated>2014-11-21T20:40:43+08:00</updated>
     <id>http://straybirdzls.github.io/blog/2014/11/21/views</id>
-    <content type="html"><![CDATA[<p>接触iOS这个平台也有1年多的时间了，中途有看过一些书，也看过一些博客，但终究觉得是纸上得来终觉浅。最近也好好思考了一下，对于iOS的学习一直都是随性的，想到啥了就学啥，导致的结果就是有些部分因为比较感兴趣，学的比较深入，有些部分却是一个完完全全的初学者，所以当自己想去写点什么的时候，总是有点力不从心。总结了一下，现在对于objetctive－c的语法，以及ios的内存管理，多线程等方面至少是应该跨过了初学者的层次，但是对于view，controller还有Apple提供的api等知道的甚少。正好最近有同事推荐了<iOS Programming: The Big Nerd Ranch Guides>，网上看了一下，觉得挺不错的，对于现阶段的我，正好可以查缺补漏，同时练手和巩固已有知识。这个学习笔记系列也就是我学习过程中的一些记录。</p>
+    <content type="html"><![CDATA[<p>接触iOS这个平台也有1年多的时间了，中途有看过一些书，也看过一些博客，但终究觉得是纸上得来终觉浅。最近也好好思考了一下，对于iOS的学习一直都是随性的，想到啥了就学啥，导致的结果就是有些部分因为比较感兴趣，学的比较深入，有些部分却是一个完完全全的初学者，所以当自己想去写点什么的时候，总是有点力不从心。总结了一下，现在对于objetctive－c的语法，以及ios的内存管理，多线程等方面至少是应该跨过了初学者的层次，但是对于view，controller还有Apple提供的api等知道的甚少。正好最近有同事推荐了iOS Programming: The Big Nerd Ranch Guides，网上看了一下，觉得挺不错的，对于现阶段的我，正好可以查缺补漏，同时练手和巩固已有知识。这个学习笔记系列也就是我学习过程中的一些记录。</p>
 
 <!--more-->
 
@@ -31,7 +59,7 @@
 
 <h5>Point和Pixel</h5>
 
-<p>涉及到viewer层面，就不得不提Point和Pixel了，Point的大小参数是保持一致的，根据屏幕分辨率的不同，其对应的Pixel的数量会发生改变。在非Retina屏中，1个Point就是Pixel，但在Retina中，以额Point变为了2*2Pixel。所以对于图片而言，苹果提高了非常便捷的方式，就是用2份图片，在Retina中使用的在名字后加上@2x就可以了。</p>
+<p>涉及到viewer层面，就不得不提Point和Pixel了，Point的大小参数是保持一致的，根据屏幕分辨率的不同，其对应的Pixel的数量会发生改变。在非Retina屏中，1个Point就是Pixel，但在Retina中，一个Point变为了2*2Pixel。所以对于图片而言，苹果提高了非常便捷的方式，就是用2份图片，在Retina中使用的在名字后加上@2x就可以了。</p>
 
 <h5>lazy loading</h5>
 
@@ -88,6 +116,7 @@
 <li><code>list</code>很好用，遍历等的方式也都跟字符串保持一致，但字符串本身赋值后就不能修改，修改会报错，其是&#8221;不可变的&#8221;，而<code>list</code>则可以，其是&#8221;可变的&#8221;。</li>
 <li>字符串使用<code>split()</code>可以生成<code>list</code>，<code>split()</code>也可以带参数，指定分割字符串所用的符号,非常好用。</li>
 <li>多行知注释是以    <code>'''</code>来包含的。</li>
+<li><code>dictionary</code>和<code>list</code>一个很重要的区别是后者可以保持元素的顺序，而前者不能。对于<code>dictionary</code>而言，<code>for...in:</code>遍历的<code>iterator</code>是<code>key</code>,使用<code>list(dic)</code>，即可转变成<code>list</code>, 当然其值为<code>key</code>,而<code>keys</code> <code>values</code> <code>items</code>也可以将其转变为对应的<code>list</code>。<code>get</code>非常有用，其有2个参数，其中第一个参数为<code>key</code>,第二个参数为默认值，也就是如果找到了<code>key</code>,则返回对应的<code>values</code>，如果没有，则返回默认值。</li>
 </ol>
 
 
@@ -95,7 +124,7 @@
 
 <p>python中判断是否相等，有<code>is</code>和<code>==</code>，其中<code>is</code>是判断是否相等，而==则用同时判断值和类型，比如1=＝1.0返回True，而1 is 1.1返回False。提到<code>is</code>，就不得不提<code>None</code>,<code>None</code>表示参数未定义，一般情况下判断是否为<code>None</code>，都推荐用<code>is</code>。</p>
 
-<p>由于这个公开课还没有完结，而课程是一周一周出的，我这里暂时也只记录了前面8周的一些笔记，后面的课程跟了，也会来更新记录。</p>
+<p>由于这个公开课还没有完结，而课程是一周一周出的，我这里暂时也只记录了前面9周的一些笔记，后面的课程跟了，也会来更新记录。</p>
 ]]></content>
   </entry>
   
@@ -496,7 +525,7 @@ NSLog(@"singleton2 is %@",signleton2);
 3.alloc中实际上调用了allocWithZone:，就算把alloc堵死了，也不能防止allocWithZone被用户直接调用<br/>
 &ndash;>>所以我们必须通过allocWithZone将用户堵死</p>
 
-<p>参考<a href="" title="https://developer.apple.com/legacy/library/documentation/Cocoa/Conceptual/CocoaFundamentals/CocoaObjects/CocoaObjects.html#//apple_ref/doc/uid/TP40002974-CH4-SW32">非ARC的实现</a>，我们很容易写出如下所示的代码：</p>
+<p>参考<a href="https://developer.apple.com/legacy/library/documentation/Cocoa/Conceptual/CocoaFundamentals/CocoaObjects/CocoaObjects.html#//apple_ref/doc/uid/TP40002974-CH4-SW32">非ARC的实现</a>，我们很容易写出如下所示的代码：</p>
 
 <pre><code>+(instanceType)allocWithZone:(struc _NZone)zone  
 {  

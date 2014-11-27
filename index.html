@@ -71,6 +71,40 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/11/26/viewcontroller/">Ios学习笔记2</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-26T22:12:09+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:12 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>这一篇接上篇，依然是iOS Programming: The Big Nerd Ranch Guides这本书的学习笔记，这本书对于各种点讲的还比较清楚，这一篇主要集中在view controller相关的点上。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/11/26/viewcontroller/">阅读全文&rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2014/11/21/views/">iOS学习笔记1</a></h1>
     
     
@@ -87,7 +121,7 @@
   </header>
 
 
-  <div class="entry-content"><p>接触iOS这个平台也有1年多的时间了，中途有看过一些书，也看过一些博客，但终究觉得是纸上得来终觉浅。最近也好好思考了一下，对于iOS的学习一直都是随性的，想到啥了就学啥，导致的结果就是有些部分因为比较感兴趣，学的比较深入，有些部分却是一个完完全全的初学者，所以当自己想去写点什么的时候，总是有点力不从心。总结了一下，现在对于objetctive－c的语法，以及ios的内存管理，多线程等方面至少是应该跨过了初学者的层次，但是对于view，controller还有Apple提供的api等知道的甚少。正好最近有同事推荐了<iOS Programming: The Big Nerd Ranch Guides>，网上看了一下，觉得挺不错的，对于现阶段的我，正好可以查缺补漏，同时练手和巩固已有知识。这个学习笔记系列也就是我学习过程中的一些记录。</p>
+  <div class="entry-content"><p>接触iOS这个平台也有1年多的时间了，中途有看过一些书，也看过一些博客，但终究觉得是纸上得来终觉浅。最近也好好思考了一下，对于iOS的学习一直都是随性的，想到啥了就学啥，导致的结果就是有些部分因为比较感兴趣，学的比较深入，有些部分却是一个完完全全的初学者，所以当自己想去写点什么的时候，总是有点力不从心。总结了一下，现在对于objetctive－c的语法，以及ios的内存管理，多线程等方面至少是应该跨过了初学者的层次，但是对于view，controller还有Apple提供的api等知道的甚少。正好最近有同事推荐了iOS Programming: The Big Nerd Ranch Guides，网上看了一下，觉得挺不错的，对于现阶段的我，正好可以查缺补漏，同时练手和巩固已有知识。这个学习笔记系列也就是我学习过程中的一些记录。</p>
 
 </div>
   
@@ -214,52 +248,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/08/memeorybook2/">读书笔记(2) iOS与OSX多线程和内存管理</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-08T20:00:04+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:00 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>续上文，这一篇主要记录block中的一些点。block中最需要理解的就2个概念：匿名函数,局部变量，表面看起来很简单，但实际上深究起来，里面的涵义大有可以挖掘的地方。</p>
-
-<h4>访问局部变量</h4>
-
-<p>在block中可以使用局部变量，如下所示：</p>
-
-<pre><code>int i = 1;
-^{
-    NSLog(@"i is %d",i);
-}();
-</code></pre>
-
-<p>第一反应也许你会觉得这有什么了不起的？block定义在i之后，可以访问不是很正常么？想想函数，再想想block这种匿名函数，就会明白这的确是有些不一样的。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/11/08/memeorybook2/">阅读全文&rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">上一页</a>
@@ -273,6 +261,10 @@
     <section>
   <h1>最近文章</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/26/viewcontroller/">Ios学习笔记2</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/11/21/views/">iOS学习笔记1</a>
@@ -308,10 +300,6 @@
     
       <li class="post">
         <a href="/blog/2014/10/28/arc/">Objective-C单例模式之ARC+GCD实现</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/22/title/">成长悄然来临</a>
       </li>
     
   </ul>

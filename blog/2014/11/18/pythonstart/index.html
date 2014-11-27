@@ -106,6 +106,7 @@
 <li><code>list</code>很好用，遍历等的方式也都跟字符串保持一致，但字符串本身赋值后就不能修改，修改会报错，其是&#8221;不可变的&#8221;，而<code>list</code>则可以，其是&#8221;可变的&#8221;。</li>
 <li>字符串使用<code>split()</code>可以生成<code>list</code>，<code>split()</code>也可以带参数，指定分割字符串所用的符号,非常好用。</li>
 <li>多行知注释是以    <code>'''</code>来包含的。</li>
+<li><code>dictionary</code>和<code>list</code>一个很重要的区别是后者可以保持元素的顺序，而前者不能。对于<code>dictionary</code>而言，<code>for...in:</code>遍历的<code>iterator</code>是<code>key</code>,使用<code>list(dic)</code>，即可转变成<code>list</code>, 当然其值为<code>key</code>,而<code>keys</code> <code>values</code> <code>items</code>也可以将其转变为对应的<code>list</code>。<code>get</code>非常有用，其有2个参数，其中第一个参数为<code>key</code>,第二个参数为默认值，也就是如果找到了<code>key</code>,则返回对应的<code>values</code>，如果没有，则返回默认值。</li>
 </ol>
 
 
@@ -113,7 +114,7 @@
 
 <p>python中判断是否相等，有<code>is</code>和<code>==</code>，其中<code>is</code>是判断是否相等，而==则用同时判断值和类型，比如1=＝1.0返回True，而1 is 1.1返回False。提到<code>is</code>，就不得不提<code>None</code>,<code>None</code>表示参数未定义，一般情况下判断是否为<code>None</code>，都推荐用<code>is</code>。</p>
 
-<p>由于这个公开课还没有完结，而课程是一周一周出的，我这里暂时也只记录了前面8周的一些笔记，后面的课程跟了，也会来更新记录。</p>
+<p>由于这个公开课还没有完结，而课程是一周一周出的，我这里暂时也只记录了前面9周的一些笔记，后面的课程跟了，也会来更新记录。</p>
 </div>
 
 
@@ -162,6 +163,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/11/26/viewcontroller/">Ios学习笔记2</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/11/21/views/">iOS学习笔记1</a>
       </li>
     
@@ -195,10 +200,6 @@
     
       <li class="post">
         <a href="/blog/2014/10/28/arc/">Objective-C单例模式之ARC+GCD实现</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/22/title/">成长悄然来临</a>
       </li>
     
   </ul>
