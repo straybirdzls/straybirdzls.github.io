@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Ios学习笔记2 - Straybird&#8217;s Blog</title>
+  <title>iOS学习笔记2 - Straybird&#8217;s Blog</title>
   <meta name="author" content="Straybird">
 
   
-  <meta name="description" content="ios学习笔记2">
+  <meta name="description" content="iOS学习笔记2">
   <meta name="keywords" content="ios,Core Foubdation,views,id,instancetype,file's owner,Core Graphics">
 
   <!-- http://t.co/dKP3o1e -->
@@ -68,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">Ios学习笔记2</h1>
+      <h1 class="entry-title">iOS学习笔记2</h1>
     
     
       <p class="meta">
@@ -91,9 +91,11 @@
 
 <h4>View Controller之间的关系</h4>
 
-<p>刚开始的时候，容易被View Controller之间的关系搞迷糊，其实归根到底关系就2种，family关系和presented/presenting关系。<br/>
-family关系，显而易见，就是包含关系了，一个view controller包含几个子view controller，可以通过UIViewController的viewControllers来获取。子view controller可以通过parentViewController/navigationController/tabBarController/splitViewController来获取父controller，当然后3个都是会顺着view controller的关系往上查找相应的view controller类型，若没有，则返回nil。<br/>
-presented/presenting关系，描述的是一种模态controller，presented的controller将会之于当前view的top之上，可以通过presentedViewController/presentingViewController来访问。值得注意的是1).family中有一个view controll而有presentedViewController，则其他的也跟着拥有; 2).默认的presentingViewController会去controller family里寻找最父级的controller，如果不想拥有这种行为，需要将view controller的definesPresentationContext属性设为YES,并将modalPresentationStyle设置为UIModalPresentationCurrentContext。</p>
+<p>刚开始的时候，容易被View Controller之间的关系搞迷糊，其实归根到底关系就2种，family关系和presented/presenting关系。</p>
+
+<p>family关系，显而易见，就是包含关系了，一个view controller包含几个子view controller，可以通过UIViewController的viewControllers来获取。子view controller可以通过parentViewController/navigationController/tabBarController/splitViewController来获取父controller，当然后3个都是会顺着view controller的关系往上查找相应的view controller类型，若没有，则返回nil。</p>
+
+<p>presented/presenting关系，描述的是一种模态controller，presented的controller将会之于当前view的top之上，可以通过presentedViewController/presentingViewController来访问。值得注意的是1).family中有一个view controlly拥有presentedViewController，则其他的也跟着拥有; 2).默认的presentingViewController会去controller family里寻找最父级的controller，如果不想拥有这种行为，需要将view controller的definesPresentationContext属性设为YES,并将modalPresentationStyle设置为UIModalPresentationCurrentContext。</p>
 
 <h4>UITableViewController</h4>
 
@@ -150,7 +152,7 @@ presented/presenting关系，描述的是一种模态controller，presented的co
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/11/26/viewcontroller/">Ios学习笔记2</a>
+        <a href="/blog/2014/11/26/viewcontroller/">iOS学习笔记2</a>
       </li>
     
       <li class="post">
