@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "ios学习笔记2"
+title: "iOS学习笔记2"
 date: 2014-11-26 22:12:09 +0800
 comments: true
-description: "ios学习笔记2"
+description: "iOS学习笔记2"
 keywords: ios,Core Foubdation,views,id,instancetype,file's owner,Core Graphics
 categories: 
 ---
@@ -15,8 +15,10 @@ categories:
 ####View Controller之间的关系
 
 刚开始的时候，容易被View Controller之间的关系搞迷糊，其实归根到底关系就2种，family关系和presented/presenting关系。  
+
 family关系，显而易见，就是包含关系了，一个view controller包含几个子view controller，可以通过UIViewController的viewControllers来获取。子view controller可以通过parentViewController/navigationController/tabBarController/splitViewController来获取父controller，当然后3个都是会顺着view controller的关系往上查找相应的view controller类型，若没有，则返回nil。  
-presented/presenting关系，描述的是一种模态controller，presented的controller将会之于当前view的top之上，可以通过presentedViewController/presentingViewController来访问。值得注意的是1).family中有一个view controll而有presentedViewController，则其他的也跟着拥有; 2).默认的presentingViewController会去controller family里寻找最父级的controller，如果不想拥有这种行为，需要将view controller的definesPresentationContext属性设为YES,并将modalPresentationStyle设置为UIModalPresentationCurrentContext。
+
+presented/presenting关系，描述的是一种模态controller，presented的controller将会之于当前view的top之上，可以通过presentedViewController/presentingViewController来访问。值得注意的是1).family中有一个view controlly拥有presentedViewController，则其他的也跟着拥有; 2).默认的presentingViewController会去controller family里寻找最父级的controller，如果不想拥有这种行为，需要将view controller的definesPresentationContext属性设为YES,并将modalPresentationStyle设置为UIModalPresentationCurrentContext。
 
 ####UITableViewController
 
