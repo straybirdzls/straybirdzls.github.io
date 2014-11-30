@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>读书笔记(2) iOS与OSX多线程和内存管理 - Straybird&#8217;s Blog</title>
+  <title>谈谈iOS Security - Straybird&#8217;s Blog</title>
   <meta name="author" content="Straybird">
 
   
-  <meta name="description" content="读书笔记(2)：iOS与OSX多线程和内存管理">
-  <meta name="keywords" content="objective-c,block,内存管理,多线程,ARC">
+  <meta name="description" content="谈谈iOS Security">
+  <meta name="keywords" content="ios,security">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://straybirdzls.github.io/blog/2014/11/08/memeorybook2">
+  <link rel="canonical" href="http://straybirdzls.github.io/blog/2014/11/30/security">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Straybird's Blog" type="application/atom+xml">
@@ -68,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">读书笔记(2) iOS与OSX多线程和内存管理</h1>
+      <h1 class="entry-title">谈谈iOS Security</h1>
     
     
       <p class="meta">
@@ -77,59 +77,40 @@
 
 
 
-<time class='entry-date' datetime='2014-11-08T20:00:04+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:00 pm</span></time>
+<time class='entry-date' datetime='2014-11-30T21:33:59+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:33 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>续上文，这一篇主要记录block中的一些点。block中最需要理解的就2个概念：匿名函数,局部变量，表面看起来很简单，但实际上深究起来，里面的涵义大有可以挖掘的地方。</p>
+<div class="entry-content"><p>近一年多跟iOS的交互中有一半都是与security的，其实现在关于iOS security的讨论也有非常多了，这里只是对于自己的学习和工作做一个小小的总结。</p>
 
-<h4>访问局部变量</h4>
-
-<p>在block中可以使用局部变量，如下所示：</p>
-
-<pre><code>int i = 1;
-^{
-    NSLog(@"i is %d",i);
-}();
-</code></pre>
-
-<p>第一反应也许你会觉得这有什么了不起的？block定义在i之后，可以访问不是很正常么？想想函数，再想想block这种匿名函数，就会明白这的确是有些不一样的。</p>
-
-<!-- more -->
+<!--more-->
 
 
-<p>这是怎么实现的呢？block的底层实际上时结构体，这个结构体包含了一些信息，有其函数实现，也有isa指针等。当在block中访问局部变量时，结构体会增加相应的成员变量，并在初始化的时候记录这些局部变量的值。那么为什么不能修改呢？看具体的实现就知道了，只提供了访问的方式，没提供修改的方式。</p>
+<h4>怎样测试一个app的安全?</h4>
 
-<p>需要注意一点的是，block中不能访问c数组，原因也很明显了，c中不支持不能直接复制数组名。如想实现类似的功能，改成指针访问就可以了。</p>
+<p>与安全相关的面试中，这是一个绝对的热点，根据我自己的浅见以及学习，我觉得需要考虑的如下：</p>
 
-<h4>修改局部变量</h4>
+<ol>
+<li><p>数据存储</p>
 
-<p>修改局部变量的实现针对局部变量的类型分2种：</p>
+<p> 数据存储表面看起来很简单，但实际上确实移是app中最容易出现的安全问题。在数据存储中，我们有很多需要注意的地方：1.第一步一定是play with app，这个的目的一方面是熟悉app的功能，另一方面是尽可能多的产生一些本地文件 2.本地数据的存储主要包含在2处，一个是app的sandbox，另一个就是keychain 3.app的sandbox中文件很多，这里需要注意的就是关键敏感信息的处理，一定是需要加密的，说到加密，加密算法的使用也非常重要，比如hash的话至少要加盐等，对于sandbox中的文件，我们需要认真对待，很多敏感信息泄漏都出在这里，比如用户名/密码，server地址等等 4.keychain在越狱的设备中不安全，也这是众所周知的，但很多app可能依然就将明文存在keychain中</p></li>
+<li><p>网络通信</p>
 
-<p>第一种是局部静态变量，这种的实现很简单，直接用指针获取代替变量获取，就可以实现修改了。</p>
+<p> 现在的移动app都会与服务器进行通信，网络通信中的中间人攻击很常见，http受到攻击太容易了，https的话要看有没有启用certificate pinning，没有的话，攻击起来也不困难。在与服务器的交互之中也涉及到一些web安全的东西，也要考虑暴露服务器的脆弱性的问题。有些app的服务器将数据传回客户端时候就完全信任客户端，这也是非常不安全的。</p></li>
+<li><p>动态攻击</p>
 
-<p>第二种是局部变量，也许你也会问这个不能跟局部静态变量一样吗？原因是block在局部变量的生命域结束之后还要能够存在。所以针对局部变量，情况更复杂一些。用 <code>__block</code>修饰的局部变量会被解析为struct类型，该struct类型中有一个指向自身的指针(<code>__forwarding</code>)，当变量从栈中复制到堆中时，该指针也将指向堆中的变量。为了实现block在局部变量生命域结束之后还能存在，则必须在必要的时候对block从栈中复制到堆中。</p>
+<p> 动态攻击涉及到的就是逆向工程了，逆向工程威力很强大，比如代码泄漏/bypass一些关键的逻辑等，所以要看app有没有做binary的保护，没有的话，可以做的事情那就多了。动态攻击方面主要是检查有没有暴露在外很容易攻击又很关键的接口，脆弱的逻辑等等。</p></li>
+</ol>
 
-<h4>局部对象</h4>
 
-<p>使用局部对象的情况跟变量略微有些不同，因为对象还会考虑所有权修饰符。block不能访问使用<code>__autoreleasing</code>的局部对象，访问<code>__strong</code>或者<code>__weak</code>时，其成员函数中也获取相应类型的变量。</p>
+<h4>需要学习的知识点</h4>
 
-<p>还有一点需要注意，没有使用<code>__block</code>修饰符时，虽然不能让对象重定位，但可以修改，比如增加object之类的，这是什么原因，很简单了，block在获取的时候，是直接赋值的，对象是指针访问，不能修改指针的指向，但修改其指向的内容时没问题的，普通的指向变量的指针也是一样。</p>
+<p>做安全一定是要懂开发的，对于ios的一些系统知识也需要了然于心，比如mach-o格式等，还需要掌握很多工具，比如class－dump/theos/gdb/lldb等等.</p>
 
-<h4>循环引用</h4>
-
-<p>使用block时一定要注意循环引用的问题，一般情况下2种方式解决，一种是使用<code>__weak</code>关键字，一种是使用<code>__block</code>(MRC中使用则不会retain，ARC中会，所以最需要设置为nil)。两种方式各有优劣，使用<code>__weak</code>要考虑<code>__unsafe_unretain</code>,使用<code>__block</code>，则如果block没有执行，循环引用一直存在。</p>
-
-<h4>block类型</h4>
-
-<p>block有3种，简单地说就是: global，stack和heap。</p>
-
-<p>MRC时代，当block中当问局部变量时，默认是在stack上，所以需要的时候需要将其复制到heap上。相较而言，ARC时代对block进行内存管理就容易多了，因为默认就在heap上，也没有stack上这种类型了。</p>
-
-<p>block在objective-c中的确是属于比较难一些的，但是究其根底，其实也还好，书中还有很多内容很精彩，尽管有些部分在ARC时代已经不适用了，但仍然很值得细细品味，我这里只记录了一些很简单的笔记。想自己看实现的也可以通过书中给出的简单的<code>clang -rewrite-objc</code>即可将objc代码转换成c/c++代码。最后附上一个block快速测试的一个<a href="http://blog.parse.com/2013/02/05/objective-c-blocks-quiz/">链接</a>，我也是看到别人的博客推荐，觉得很值得尝试下的。</p>
+<p>今晚由于时间紧张，暂时就写这么多了，回头有机会再细化补全。</p>
 </div>
 
 
@@ -145,7 +126,7 @@
 
 
 
-<time class='entry-date' datetime='2014-11-08T20:00:04+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:00 pm</span></time>
+<time class='entry-date' datetime='2014-11-30T21:33:59+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:33 pm</span></time>
       
 
 
@@ -160,10 +141,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/11/04/memorybook/" title="Previous Post: 读书笔记(1) iOS与OSX多线程和内存管理">上一篇:&nbsp; 读书笔记(1) iOS与OSX多线程和内存管理</a>
+        <a class="basic-alignment left" href="/blog/2014/11/26/viewcontroller/" title="Previous Post: iOS学习笔记2">上一篇:&nbsp; iOS学习笔记2</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/11/11/memeorybook3/" title="Next Post: 读书笔记(3) iOS与OSX多线程和内存管理">下一篇:&nbsp;读书笔记(3) iOS与OSX多线程和内存管理</a>
       
     </p>
   </footer>
