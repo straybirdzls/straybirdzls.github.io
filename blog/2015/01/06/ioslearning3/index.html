@@ -111,7 +111,7 @@
 
 <p>responder对象是是指可以响应event的对象。UIResponder是所有responder对象的基类， UIApplication，UIView，UIViewController等都是responder对象。first－responder是被指定为最先响应event的对象，可以通过canBecomeFirstResponder和ecomeFirstResponder message将object设置为first－responder。当first－responder无法响应event时，其会传递给next responder直到UIWindow，UIApplication。</p>
 
-<p>对于Touch实践，hit－test view即为first－responder，而其响应链的响应顺序如下：  <br/>
+<p>对于Touch event，hit－test view即为first－responder，而其响应链的响应顺序如下：  <br/>
 1. viewj将event传递其view controller中view hierarchy的superview，直到topmost view   <br/>
 2. topmost view将event传递给其view controller  <br/>
 3. view controller将event传递给其topmost view的superview  <br/>
