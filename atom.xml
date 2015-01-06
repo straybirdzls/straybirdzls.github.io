@@ -4,7 +4,7 @@
   <title><![CDATA[Straybird's Blog]]></title>
   <link href="http://straybirdzls.github.io/atom.xml" rel="self"/>
   <link href="http://straybirdzls.github.io/"/>
-  <updated>2015-01-01T11:14:59+08:00</updated>
+  <updated>2015-01-06T20:37:15+08:00</updated>
   <id>http://straybirdzls.github.io/</id>
   <author>
     <name><![CDATA[Straybird]]></name>
@@ -12,6 +12,83 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[iOS学习笔记3]]></title>
+    <link href="http://straybirdzls.github.io/blog/2015/01/06/ioslearning3/"/>
+    <updated>2015-01-06T20:35:21+08:00</updated>
+    <id>http://straybirdzls.github.io/blog/2015/01/06/ioslearning3</id>
+    <content type="html"><![CDATA[<p>最近又重新看了下斯坦福公开课的课程，也看了下effective objective-c这本书，还杂七杂八看了一些东西，课程和书还都没有看完，但已觉得学到了不少新的知识点，或者是以前没有意识到的知识点。这里记录一下。</p>
+
+<h3>语法糖</h3>
+
+<p>Objective-c中引入了语法糖，让NSArray，NSDictionary等Foundation里集合的语法显得简捷，但需要主要的是，语法糖也有一些需要注意的地方。</p>
+
+<ul>
+<li>创建的语法糖只对mutable对象有，对immutable没有</li>
+<li>不能增加nil的对象，会抛出exception,而使用非语法糖时，则会截断至nil</li>
+<li>subclass不能用，不过类簇也不推荐subclass，这个我在<a href="http://straybirdzls.github.io/blog/2014/11/16/xianche/">此文</a>中也提到过</li>
+</ul>
+
+
+<h3>Event响应机制</h3>
+
+<p>这一部分基本算是翻译自苹果的<a href="https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009541-CH1-SW1">官方文档</a>。
+ios中的事件分为3种，1.触摸事件 2.传感器事件 3.远程控制事件。当事件发生时，UIKit会创建对应的event并将其放入app的event队列中。事件在被响应需要经过层层传递，首先UIApplication会从event队列中选出top event进行分发，通常会发给UIWindow，最终传递给一个初始对象进行处理。
+对于触摸事件，初始对象被称为hit-test view，而找到其的过程称为hit-testing。hit-testing通过hitTest:withEvent:返回touch发生的view，其内部通过递归地调用pointInside:withEvent:来得到hit-test view.
+而对于传感器事件和远程控制事件，则交给first-responder对象处理。
+responder对象是是指可以响应event的对象。UIResponder是所有responder对象的基类， UIApplication，UIView，UIViewController等都是responder对象。first－responder是被指定为最先响应event的对象，可以通过canBecomeFirstResponder和ecomeFirstResponder message将object设置为first－responder。当first－responder无法响应event时，其会传递给next responder直到UIWindow，UIApplication。
+对于Touch实践，hit－test view即为first－responder，而其响应链的响应顺序如下：
+1. viewj将event传递其view controller中view hierarchy的superview，直到topmost view
+2. topmost view将event传递给其view controller
+3. view controller将event传递给其topmost view的superview
+1-3循环，直至根view controller，最终至UIWindow直至UIApplication。</p>
+
+<h3>消息机制</h3>
+
+<p>在iOS中，我们知道消息是通过runtime在实现表中进行查找来实现响应的，除了通过正常的方式创建方法外，runtime机制还会通过几下步骤进行消息传递：</p>
+
+<ol>
+<li>ResolveInstanceMethod/ResolveClassMethod,这是最后将方法加入IMP表中的机会，其中可以通过class_addMethond等加入对应的IMP，假如完之后会再进行一次消息的派送。因为这个的真正实现时将方法加入IMP表中，所以isResponseToSelector中是会查找到这其中的实现的。</li>
+<li>快速消息转发：可以通过ForwardingTargetForSelector来实现，只能将消息转发给一个对象</li>
+<li>标准转发，通过实现- (NSMethodSignature <em>)methodSignatureForSelector:(SEL)aSelector和- (void)forwardInvocation:(NSInvocation </em>)anInvocation这两个方法进行转发。NSMethodSignature是方法签名，为什么要有这个呢？那是因为selector其实只是一个字符串，从它并不能知道参数的类型和返回值的类型，而方法签名实际上是用来描述参数的类型和返回值的类型的。也就是说，相同的返回值与参数的所有selector的签名其实是一致的。而Objc运行时要根据对象返回的这个签名来抓取参数，然后才会调用- (void)forwardInvocation:(NSInvocation *)anInvocation这个方法。</li>
+</ol>
+
+
+<p>不得不说runtime真的好强大。</p>
+
+<h3>KVO实现</h3>
+
+<p>KVO用到了isa swizzling,以下是从别人文章里引用的，可惜很抱歉，我忘记具体时哪篇文章。</p>
+
+<blockquote><p>当某个类的对象第一次被观察时，系统就会在运行期动态地创建该类的一个派生类，在这个派生类中重写基类中任何被观察属性的 setter 方法。
+派生类在被重写的 setter 方法实现真正的通知机制，就如手动实现键值观察那样。这么做是基于设置属性会调用 setter 方法，而通过重写就获得了 KVO 需要的通知机制。当然前提是要通过遵循 KVO 的>属性设置方式来变更属性值，如果仅是直接修改属性对应的成员变量，是无法实现 KVO 的。
+同时派生类还重写了 class 方法以“欺骗”外部调用者它就是起初的那个类。然后系统将这个对象的 isa 指针指向这个新诞生的派生类，因此这个对象就成为该派生类的对象了，因而在该对象上对 setter 的调用就会调用重写的 setter，从而激活键值通知机制。此外，派生类还重写了 dealloc 方法来释放资源。</p></blockquote>
+
+<h3>安全相关</h3>
+
+<ul>
+<li>class-dump的工作原理:因为 obj-c的动态特性导致 obj-c的二进制代码中会保留类名和方法名，所以可以用 otool 得到这些信息，而class-dump所做的就是把otool -ov得到的信息组织成结构更清晰的信息输出</li>
+<li>通过在xcode中设置<code>-Wl,-sectcreate,__RESTRICT,__restrict,/dev/null</code>可以给输出的二进制文件中增加<strong>RESTRICT/</strong>restrict section来防止dylib注入，更多的信息，可以参见<a href="http://bbs.iosre.com/forum.php?mod=viewthread&amp;tid=432">这篇文章</a></li>
+</ul>
+
+
+<h3>一些容易犯的错误</h3>
+
+<ul>
+<li>NSDictionary/NSArray这种里面只能存储对象，不能存储普通的变量，这个在写代码时很容易忘记</li>
+<li>NSNotification Center 会通过_unsafe_unretain指向observer，所以不再需要的时候一定要记得remove，否则会带来意料不到的crash</li>
+</ul>
+
+
+<p>这一篇比较杂七杂八，因为本身就是平时学习笔记的一些归纳总结，方便自己温习查看。</p>
+
+<h2>参考文献</h2>
+
+<p><a href="https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009541-CH1-SW1">苹果官网EventHandling</a>  <br/>
+<a href="http://bbs.iosre.com/forum.php?mod=viewthread&amp;tid=432">防止tweak依附，App有高招；破解App保护，tweak留一手</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[2014年终总结]]></title>
@@ -41,7 +118,7 @@
 <li>2014年6月，得知feng哥下个月离职，虽早有心理准备，但还是觉得措手不及，很多东西都没有学好。走之前，feng哥还不忘给我一些良言，受益颇多。这2个月也学习了不少security的知识，花了不少自己的课外时间学习。回想起来，虽然以后不一定做这个方向，但这些学习对自己只有好处，开阔了视野，也开阔了思维。</li>
 <li>2014年8月22日，永远难忘，公司第一波裁员，jingxiong小伙伴不幸在名单之中，特别难受，但那时候已经开始觉得走了也没什么不好，很多时候我们都是一叶障目，不见森林，离开这里，寻找更广阔的天空也许更好。</li>
 <li>2014年9月，一批新人入组，有了第一个徒弟，经过苦逼的几个月之后，又开始对工作充满了热情，很认真地教，可惜实在是自己的翅膀还没硬，所以把自己搞得更加苦逼了。同时为了给新人腾位子，我搬到了feng哥曾经坐的window seat，每天可以晒到太阳，也开始喜欢每天跟gloria闲扯，聊聊天。可惜天有不测风云，9月底，这批新人被裁员了。从此有些时光一去不复返了。</li>
-<li>2014年10月，jin哥哥也走了，虽然知道让jin哥哥这种牛人，迟早留不住，但是其实他们对于公司很有感情，很多时候也是没有办法，人生需要move on，不同的时期需要不同的平台，这种选择显得非常的顺其自然。</li>
+<li>2014年10月，jin哥哥也走了，虽然知道像jin哥哥这种牛人，迟早留不住，但是其实他们对于公司很有感情，很多时候也是没有办法，人生需要move on，不同的时期需要不同的平台，这种选择显得非常的顺其自然。</li>
 <li>2014年12月，公司重组终于要慢慢落下帷幕，我也趁此机会申请了转SE,虽然说还很有多的不确定，也不知道未来是什么样，但在这个过程中，我无比感谢gloria和p姐对我的信任，努力为我争取机会，我会一直牢记在心。</li>
 </ul>
 
@@ -53,7 +130,7 @@
 <p>今年也花了不少时间在学习上，想努力提高自己。</p>
 
 <ul>
-<li>安全相关: ios学习了逆向工程以及一些基础的时间；web入了门，web前端黑客技术揭秘以及白帽子讲web安全都看了一些；粗略地学习了密码学。感觉安全这个行业还是很有前途的，但是实在是很难，而且需要非常浓烈的兴趣，我几次想深入学习，却又止步门外，未来可以怎样，还得看自己。</li>
+<li>安全相关: ios学习了逆向工程以及一些基础的实践；web入了门，web前端黑客技术揭秘以及白帽子讲web安全都看了一些；粗略地学习了密码学。感觉安全这个行业还是很有前途的，但是实在是很难，而且需要非常浓烈的兴趣，我几次想深入学习，却又止步门外，未来可以怎样，还得看自己。</li>
 <li>ios相关：温习了objective－c语言；看了iOS与OSX多线程和内存管理以及bignerd并写下几篇读书笔记；跟了一些博客，比如objc等</li>
 <li>其他：粗略地学习了ruby，python，javascript，php等，发现会一门语言之后，对于其他语言只入门实在是用处不大，对于语言的学习最好的场景还是使用和实践，否则很难进步。粗略学习了编译原理。尝试跟了下coursera和网易公开课的课程，却总是半途而废。</li>
 <li>博客：基于github搭建了个人博客，10月底到11月写下了不少文章，可惜12月份找了个理由便不再更新。</li>
@@ -229,7 +306,7 @@
 <li>很好用的<code>in</code>,这里的<code>in</code>不是<code>for...in</code>里面的那个，其可以直接用来判断字符串中是否包含子串，数组中是否包含某元素等,当然对应的还有<code>not in</code>。</li>
 <li><code>list</code>很好用，遍历等的方式也都跟字符串保持一致，但字符串本身赋值后就不能修改，修改会报错，其是&#8221;不可变的&#8221;，而<code>list</code>则可以，其是&#8221;可变的&#8221;。</li>
 <li>字符串使用<code>split()</code>可以生成<code>list</code>，<code>split()</code>也可以带参数，指定分割字符串所用的符号,非常好用。</li>
-<li>多行注释是以   <code>'''</code>来包含的。</li>
+<li><code>'''</code>可以用作注释用途，但是它不等价于注释。其中的内容可以通过help打印出来。</li>
 <li><code>dictionary</code>和<code>list</code>一个很重要的区别是后者可以保持元素的顺序，而前者不能。对于<code>dictionary</code>而言，<code>for...in:</code>遍历的<code>iterator</code>是<code>key</code>,使用<code>list(dic)</code>，即可转变成<code>list</code>, 当然其值为<code>key</code>,而<code>keys</code> <code>values</code> <code>items</code>也可以将其转变为对应的<code>list</code>。<code>get</code>非常有用，其有2个参数，其中第一个参数为<code>key</code>,第二个参数为默认值，也就是如果找到了<code>key</code>,则返回对应的<code>values</code>，如果没有，则返回默认值。</li>
 <li><code>tuple</code>和<code>list</code>的一个区别就是<code>list</code>是可变的，而<code>tuple</code>是可变的。<code>tuple</code>由<code>()</code>包围，<code>list</code>由<code>[]</code>包围，而 <code>dictionary</code>由<code>{}</code>包围。<code>tuple</code>有一个很重要的特性，其可放到表达式的左边同时给多个变量赋值。<code>tuple</code>可以比较大小，因此可以对包含<code>tuple</code>的<code>list</code>进行<code>sort</code>。对<code>dictionary</code>取<code>items</code>时就是将其变成包含<code>tuple</code>的<code>list</code>，因为可以同时使用<code>keys</code> 和<code>values</code>进行遍历。</li>
 <li>python的re模块提供了对正则表达式的支持，使用时只需要<code>import re</code>就可以啦，正则表达式并不是python的一部分，所以这里就不详细介绍了。</li>

@@ -105,7 +105,7 @@
 <li>很好用的<code>in</code>,这里的<code>in</code>不是<code>for...in</code>里面的那个，其可以直接用来判断字符串中是否包含子串，数组中是否包含某元素等,当然对应的还有<code>not in</code>。</li>
 <li><code>list</code>很好用，遍历等的方式也都跟字符串保持一致，但字符串本身赋值后就不能修改，修改会报错，其是&#8221;不可变的&#8221;，而<code>list</code>则可以，其是&#8221;可变的&#8221;。</li>
 <li>字符串使用<code>split()</code>可以生成<code>list</code>，<code>split()</code>也可以带参数，指定分割字符串所用的符号,非常好用。</li>
-<li>多行注释是以   <code>'''</code>来包含的。</li>
+<li><code>'''</code>可以用作注释用途，但是它不等价于注释。其中的内容可以通过help打印出来。</li>
 <li><code>dictionary</code>和<code>list</code>一个很重要的区别是后者可以保持元素的顺序，而前者不能。对于<code>dictionary</code>而言，<code>for...in:</code>遍历的<code>iterator</code>是<code>key</code>,使用<code>list(dic)</code>，即可转变成<code>list</code>, 当然其值为<code>key</code>,而<code>keys</code> <code>values</code> <code>items</code>也可以将其转变为对应的<code>list</code>。<code>get</code>非常有用，其有2个参数，其中第一个参数为<code>key</code>,第二个参数为默认值，也就是如果找到了<code>key</code>,则返回对应的<code>values</code>，如果没有，则返回默认值。</li>
 <li><code>tuple</code>和<code>list</code>的一个区别就是<code>list</code>是可变的，而<code>tuple</code>是可变的。<code>tuple</code>由<code>()</code>包围，<code>list</code>由<code>[]</code>包围，而 <code>dictionary</code>由<code>{}</code>包围。<code>tuple</code>有一个很重要的特性，其可放到表达式的左边同时给多个变量赋值。<code>tuple</code>可以比较大小，因此可以对包含<code>tuple</code>的<code>list</code>进行<code>sort</code>。对<code>dictionary</code>取<code>items</code>时就是将其变成包含<code>tuple</code>的<code>list</code>，因为可以同时使用<code>keys</code> 和<code>values</code>进行遍历。</li>
 <li>python的re模块提供了对正则表达式的支持，使用时只需要<code>import re</code>就可以啦，正则表达式并不是python的一部分，所以这里就不详细介绍了。</li>
@@ -165,6 +165,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/06/ioslearning3/">iOS学习笔记3</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/12/30/summary/">2014年终总结</a>
       </li>
     
@@ -198,10 +202,6 @@
     
       <li class="post">
         <a href="/blog/2014/11/04/memorybook/">读书笔记(1) iOS与OSX多线程和内存管理</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/11/01/marddown/">Markdown语法个人总结</a>
       </li>
     
   </ul>
