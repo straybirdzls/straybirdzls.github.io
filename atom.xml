@@ -4,7 +4,7 @@
   <title><![CDATA[Straybird's Blog]]></title>
   <link href="http://straybirdzls.github.io/atom.xml" rel="self"/>
   <link href="http://straybirdzls.github.io/"/>
-  <updated>2015-01-06T20:59:38+08:00</updated>
+  <updated>2015-01-06T21:30:20+08:00</updated>
   <id>http://straybirdzls.github.io/</id>
   <author>
     <name><![CDATA[Straybird]]></name>
@@ -43,7 +43,7 @@
 
 <p>而对于传感器事件和远程控制事件，则交给first-responder对象处理。</p>
 
-<p>responder对象是是指可以响应event的对象。UIResponder是所有responder对象的基类， UIApplication，UIView，UIViewController等都是responder对象。first－responder是被指定为最先响应event的对象，可以通过canBecomeFirstResponder和ecomeFirstResponder message将object设置为first－responder。当first－responder无法响应event时，其会传递给next responder直到UIWindow，UIApplication。</p>
+<p>responder对象是是指可以响应event的对象。UIResponder是所有responder对象的基类， UIApplication，UIView，UIViewController等都是responder对象。first－responder是被指定为最先响应event的对象，可以通过<code>canBecomeFirstResponder</code>和<code>becomeFirstResponder message</code>将object设置为first－responder。当first－responder无法响应event时，其会传递给next responder直到UIWindow，UIApplication。</p>
 
 <p>对于Touch event，hit－test view即为first－responder，而其响应链的响应顺序如下：  <br/>
 1. viewj将event传递其view controller中view hierarchy的superview，直到topmost view   <br/>
@@ -56,9 +56,9 @@
 <p>在iOS中，我们知道消息是通过runtime在实现表中进行查找来实现响应的，除了通过正常的方式创建方法外，runtime机制还会通过几下步骤进行消息传递：</p>
 
 <ol>
-<li>动态方法解析，ResolveInstanceMethod/ResolveClassMethod,这是最后将方法加入IMP表中的机会，其中可以通过class_addMethond等加入对应的IMP，假如完之后会再进行一次消息的派送。因为这个的真正实现时将方法加入IMP表中，所以isResponseToSelector中是会查找到这其中的实现的。@dynamic是使用动态方法解析的一个很典型的例子，其告诉编译器property的setter和getter会在运行时提供。</li>
-<li>快速消息转发：可以通过ForwardingTargetForSelector来实现，只能将消息转发给一个对象</li>
-<li>标准转发，通过实现- (NSMethodSignature <em>)methodSignatureForSelector:(SEL)aSelector和- (void)forwardInvocation:(NSInvocation </em>)anInvocation这两个方法进行转发。NSMethodSignature是方法签名，为什么要有这个呢？那是因为selector其实只是一个字符串，从它并不能知道参数的类型和返回值的类型，而方法签名实际上是用来描述参数的类型和返回值的类型的。也就是说，相同的返回值与参数的所有selector的签名其实是一致的。而Objc运行时要根据对象返回的这个签名来抓取参数，然后才会调用- (void)forwardInvocation:(NSInvocation *)anInvocation这个方法。</li>
+<li>动态方法解析，<code>ResolveInstanceMethod/ResolveClassMethod</code>,这是最后将方法加入IMP表中的机会，其中可以通过<code>class_addMethond</code>等加入对应的IMP，假如完之后会再进行一次消息的派送。因为这个的真正实现时将方法加入IMP表中，所以isResponseToSelector中是会查找到这其中的实现的。@dynamic是使用动态方法解析的一个很典型的例子，其告诉编译器property的setter和getter会在运行时提供。</li>
+<li>快速消息转发：可以通过<code>ForwardingTargetForSelector</code>来实现，只能将消息转发给一个对象</li>
+<li>标准转发，通过实现<code>-(NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector</code>和<code>-(void)forwardInvocation:(NSInvocation *)anInvocation</code>这两个方法进行转发。NSMethodSignature是方法签名，为什么要有这个呢？那是因为selector其实只是一个字符串，从它并不能知道参数的类型和返回值的类型，而方法签名实际上是用来描述参数的类型和返回值的类型的。也就是说，相同的返回值与参数的所有selector的签名其实是一致的。而Objc运行时要根据对象返回的这个签名来抓取参数，然后才会调用<code>- (void)forwardInvocation:(NSInvocation *)anInvocation</code>这个方法。</li>
 </ol>
 
 
@@ -76,7 +76,7 @@
 
 <ul>
 <li>class-dump的工作原理:因为 obj-c的动态特性导致 obj-c的二进制代码中会保留类名和方法名，所以可以用 otool 得到这些信息，而class-dump所做的就是把otool -ov得到的信息组织成结构更清晰的信息输出</li>
-<li>通过在xcode中设置<code>-Wl,-sectcreate,__RESTRICT,__restrict,/dev/null</code>可以给输出的二进制文件中增加<strong>RESTRICT/</strong>restrict section来防止dylib注入，更多的信息，可以参见<a href="http://bbs.iosre.com/forum.php?mod=viewthread&amp;tid=432">这篇文章</a></li>
+<li>通过在xcode中设置<code>-Wl,-sectcreate,__RESTRICT,__restrict,/dev/null</code>可以给输出的二进制文件中增加<code>__RESTRICT/__restrict section</code>来防止dylib注入，更多的信息，可以参见<a href="http://bbs.iosre.com/forum.php?mod=viewthread&amp;tid=432">这篇文章</a></li>
 </ul>
 
 
