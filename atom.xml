@@ -4,7 +4,7 @@
   <title><![CDATA[Straybird's Blog]]></title>
   <link href="http://straybirdzls.github.io/atom.xml" rel="self"/>
   <link href="http://straybirdzls.github.io/"/>
-  <updated>2015-01-06T20:37:15+08:00</updated>
+  <updated>2015-01-06T20:42:52+08:00</updated>
   <id>http://straybirdzls.github.io/</id>
   <author>
     <name><![CDATA[Straybird]]></name>
@@ -19,6 +19,9 @@
     <updated>2015-01-06T20:35:21+08:00</updated>
     <id>http://straybirdzls.github.io/blog/2015/01/06/ioslearning3</id>
     <content type="html"><![CDATA[<p>最近又重新看了下斯坦福公开课的课程，也看了下effective objective-c这本书，还杂七杂八看了一些东西，课程和书还都没有看完，但已觉得学到了不少新的知识点，或者是以前没有意识到的知识点。这里记录一下。</p>
+
+<!--more-->
+
 
 <h3>语法糖</h3>
 
