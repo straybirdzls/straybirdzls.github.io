@@ -102,15 +102,19 @@
 
 <h3>Event响应机制</h3>
 
-<p>这一部分基本算是翻译自苹果的<a href="https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009541-CH1-SW1">官方文档</a>。
-ios中的事件分为3种，1.触摸事件 2.传感器事件 3.远程控制事件。当事件发生时，UIKit会创建对应的event并将其放入app的event队列中。事件在被响应需要经过层层传递，首先UIApplication会从event队列中选出top event进行分发，通常会发给UIWindow，最终传递给一个初始对象进行处理。
-对于触摸事件，初始对象被称为hit-test view，而找到其的过程称为hit-testing。hit-testing通过hitTest:withEvent:返回touch发生的view，其内部通过递归地调用pointInside:withEvent:来得到hit-test view.
-而对于传感器事件和远程控制事件，则交给first-responder对象处理。
-responder对象是是指可以响应event的对象。UIResponder是所有responder对象的基类， UIApplication，UIView，UIViewController等都是responder对象。first－responder是被指定为最先响应event的对象，可以通过canBecomeFirstResponder和ecomeFirstResponder message将object设置为first－responder。当first－responder无法响应event时，其会传递给next responder直到UIWindow，UIApplication。
-对于Touch实践，hit－test view即为first－responder，而其响应链的响应顺序如下：
-1. viewj将event传递其view controller中view hierarchy的superview，直到topmost view
-2. topmost view将event传递给其view controller
-3. view controller将event传递给其topmost view的superview
+<p>这一部分基本算是翻译自苹果的<a href="https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009541-CH1-SW1">官方文档</a>。</p>
+
+<p>ios中的事件分为3种，1.触摸事件 2.传感器事件 3.远程控制事件。当事件发生时，UIKit会创建对应的event并将其放入app的event队列中。事件在被响应需要经过层层传递，首先UIApplication会从event队列中选出top event进行分发，通常会发给UIWindow，最终传递给一个初始对象进行处理。
+对于触摸事件，初始对象被称为hit-test view，而找到其的过程称为hit-testing。hit-testing通过hitTest:withEvent:返回touch发生的view，其内部通过递归地调用pointInside:withEvent:来得到hit-test view.</p>
+
+<p>而对于传感器事件和远程控制事件，则交给first-responder对象处理。</p>
+
+<p>responder对象是是指可以响应event的对象。UIResponder是所有responder对象的基类， UIApplication，UIView，UIViewController等都是responder对象。first－responder是被指定为最先响应event的对象，可以通过canBecomeFirstResponder和ecomeFirstResponder message将object设置为first－responder。当first－responder无法响应event时，其会传递给next responder直到UIWindow，UIApplication。</p>
+
+<p>对于Touch实践，hit－test view即为first－responder，而其响应链的响应顺序如下：  <br/>
+1. viewj将event传递其view controller中view hierarchy的superview，直到topmost view   <br/>
+2. topmost view将event传递给其view controller  <br/>
+3. view controller将event传递给其topmost view的superview  <br/>
 1-3循环，直至根view controller，最终至UIWindow直至UIApplication。</p>
 
 <h3>消息机制</h3>
