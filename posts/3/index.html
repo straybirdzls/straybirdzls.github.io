@@ -71,6 +71,52 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/11/08/memeorybook2/">读书笔记(2) iOS与OSX多线程和内存管理</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-08T20:00:04+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:00 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>续上文，这一篇主要记录block中的一些点。block中最需要理解的就2个概念：匿名函数,局部变量，表面看起来很简单，但实际上深究起来，里面的涵义大有可以挖掘的地方。</p>
+
+<h4>访问局部变量</h4>
+
+<p>在block中可以使用局部变量，如下所示：</p>
+
+<pre><code>int i = 1;
+^{
+    NSLog(@"i is %d",i);
+}();
+</code></pre>
+
+<p>第一反应也许你会觉得这有什么了不起的？block定义在i之后，可以访问不是很正常么？想想函数，再想想block这种匿名函数，就会明白这的确是有些不一样的。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/11/08/memeorybook2/">阅读全文&rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2014/11/04/memorybook/">读书笔记(1) iOS与OSX多线程和内存管理</a></h1>
     
     
@@ -235,45 +281,9 @@ static  Singleton *sharedInstance = nil ;
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/10/22/title/">成长悄然来临</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-10-22T17:36:54+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>5:36 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>今天终于成功在github上开通个人博客了，主要是想记录生活和学习。但今天只谈生活，不谈学习。</p>
-
-<h3>序</h3>
-
-<p>不知不觉中已经在杭州待了1年半了，回想起，似乎大部分时光都过得很简单。最近时常有种长大了，不再是小孩子了的感觉，但内心却是无比地抗拒，想永远地当个孩子，想永远无忧无虑，永远不知道伤心，难过，孤独是什么滋味。但就如同突然开始在意起自己地长相，突然开始明白人与人的差距一样，成长就是这样，它悄然来袭，给你一个措手不及。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/10/22/title/">阅读全文&rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/posts/4">上一页</a>
     
     <a href="/blog/archives">所有文章</a>
     
@@ -286,6 +296,10 @@ static  Singleton *sharedInstance = nil ;
     <section>
   <h1>最近文章</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/01/24/zixing/">自省小记</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/01/12/littlething/">一件小事</a>
@@ -321,10 +335,6 @@ static  Singleton *sharedInstance = nil ;
     
       <li class="post">
         <a href="/blog/2014/11/11/memeorybook3/">读书笔记(3) iOS与OSX多线程和内存管理</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/11/08/memeorybook2/">读书笔记(2) iOS与OSX多线程和内存管理</a>
       </li>
     
   </ul>

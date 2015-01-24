@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Objective-C单例模式之ARC+GCD实现 - Straybird&#8217;s Blog</title>
+  <title>自省小记 - Straybird&#8217;s Blog</title>
   <meta name="author" content="Straybird">
 
   
-  <meta name="description" content="Objective-C单例模式之ARC+GCD实现">
-  <meta name="keywords" content="Objective-C,单例模式,ARC,GCD">
+  <meta name="description" content="转眼间就24号了，拖拖拉拉，最终还是没能在第三周写下一篇博客，回想起近日的种种，深刻地觉得该反省一下了。 最近工作上由于处于换组的阶段，所以总感觉有些混乱。ios组总有一些事情需要处理，而自己又想早点参与到devops的项目，却一直处于学习期，搞得每天的站立会议都会让自己觉得没能出上什么力， &hellip;">
+  
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://straybirdzls.github.io/blog/2014/10/28/arc">
+  <link rel="canonical" href="http://straybirdzls.github.io/blog/2015/01/24/zixing">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Straybird's Blog" type="application/atom+xml">
@@ -68,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">Objective-C单例模式之ARC+GCD实现</h1>
+      <h1 class="entry-title">自省小记</h1>
     
     
       <p class="meta">
@@ -77,74 +77,31 @@
 
 
 
-<time class='entry-date' datetime='2014-10-28T19:30:43+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>7:30 pm</span></time>
+<time class='entry-date' datetime='2015-01-24T11:11:08+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:11 am</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>单例模式是什么，这里姑且不谈，只谈谈ARC+GCD实现下单例模式比较特殊和受争议的点。</p>
+<div class="entry-content"><p>转眼间就24号了，拖拖拉拉，最终还是没能在第三周写下一篇博客，回想起近日的种种，深刻地觉得该反省一下了。</p>
 
-<p>首先看一个ARC+GCD实现：</p>
+<p>最近工作上由于处于换组的阶段，所以总感觉有些混乱。ios组总有一些事情需要处理，而自己又想早点参与到devops的项目，却一直处于学习期，搞得每天的站立会议都会让自己觉得没能出上什么力，却还需要花时间来培训自己。在工作中也看到了自己的惰性，经常会拿两边的事情来搪塞自己，塘塞别人，其实真正算下来，两边组的事情都没能处理得很好。</p>
 
-<pre><code>@interface Singleton : NSObject
-+ (Singleton *)sharedInstance;     
-@end     
+<p>近日也开始思考，自己到底想要工作中的一些什么样的特质，也特别佩服“处于什么角色，就拿出什么状态”的一些人们。</p>
 
-@implementation Singleton     
-static  Singleton *sharedInstance = nil ;             
-+ (Singleton *) sharedInstance           
-{      
-    static dispatch_once_t onceToken;  // 锁      
-    dispatch_once (&amp; onceToken, ^ {     // 最多调用一次        
-    sharedInstance = [[self alloc] init];         
-    });      
-    return  sharedInstance;            
-}        
-@end       
-</code></pre>
+<p>雷厉风行，我想这四个字足以表达我对工作状态的一种期望。现在的我总是会觉得不愿意做那些边边角角，特别琐碎的事情，所以当遇到一些问题的时候，只愿意扮演其中找出问题关键点的角色，剩下的事情就不愿管了。还有现在在工作中也越来越淡定，碰到“escalation”，一番研究发现没什么成果之后，都能淡定地等着，直到邮件催命符，才愿意去继续努力一把，然后周而复始，弄上个一个多月。前几天，又遇到一个这种状况，抓到问题的关键点之后，就想撒手不管了，把问题向gloria描述了一番之后就装作与自己无关了，直到gloria的一封邮件出来之后，才开始慢慢地感觉到自己的不是，以及“雷厉风行”的做事态度应该是什么样。</p>
 
-<!--more-->
+<p>首先，拖拖拉拉永远只是自己的借口，网速不行，邮箱挂了，这些统统都只是借口。其次，遇到事情，应该扮演什么样的角色，心里应该给自己一个预期，能不能独立地让人信任地去完成一件事情？再次，觉得这个很烦，那个也很烦，请问什么不烦？每一件小事中都能学到东西，一封邮件不同的人写出来可能完全是另一番风景。</p>
 
+<p>我想，雷厉风行这四个字我的理解还非常地粗浅，但可不可以先从以下几点做起？  <br/>
+1. 邮件来了,马上处理，不清楚的地方可以立马回复提出疑问，不要说等到什么时候再处理，其实那就有点double work的感觉，至少邮件就需要读两次。如果有不可阻挡力，则给自己定一个deadline，并标示，什么时候之前必须处理。  <br/>
+2. 每天分出一个固定的时间去集中处理遇到的issue，需要找人交流的，立马找人交流，不要等  <br/>
+3. 每天standup会议之前，要好好总结，必须是针对明天要完成什么这一样，一定要谨慎思考，然后第二上早上到的时候将其温习一遍，并为今天的时间做出安排</p>
 
-<p>这个实现很简单，但是并不能防止用户通过[[Singleton alloc]init]创建多个实例，通过小小的测试即可：</p>
+<p>团队精神，昨天的乌镇之行让我感触良多，在团队中应该怎么发挥自己的力量，应该怎样去面对困难，想扮演什么样的角色，这些都是自己的主动力可以解决的。有些人可以一直鼓励大家，有些人却容易影响团队的志气，你想成为哪个？</p>
 
-<pre><code>Singleton *signleton1= [Singleton sharedInstance];       
-NSLog(@"singleton1 is %@",signleton1);       
-Singleton *signleton2= [[Singleton alloc]init];       
-NSLog(@"singleton2 is %@",signleton2);       
-</code></pre>
-
-<p>可以看出多个实例被创建出来了。</p>
-
-<p>怎么防止这一点呢？我们需要注意的几点：<br/>
-1.Objective-c并不像C++那样，可以直接将构造函数设成private，使外部不能调用<br/>
-2.只能考虑在alloc分配内存的时候把路给堵死<br/>
-3.alloc中实际上调用了allocWithZone:，就算把alloc堵死了，也不能防止allocWithZone被用户直接调用<br/>
-&ndash;>>所以我们必须通过allocWithZone将用户堵死</p>
-
-<p>参考<a href="https://developer.apple.com/legacy/library/documentation/Cocoa/Conceptual/CocoaFundamentals/CocoaObjects/CocoaObjects.html#//apple_ref/doc/uid/TP40002974-CH4-SW32">非ARC的实现</a>，我们很容易写出如下所示的代码：</p>
-
-<pre><code>+(instanceType)allocWithZone:(struc _NZone)zone  
-{  
-    return [self sharedInstance];  
-}    
-</code></pre>
-
-<p>但一运行，会发现程序hang住了。分析程序可知，程序在block中block住了。同样考虑到线程安全，allocWithZone的代码应该这样写：</p>
-
-<pre><code>+(instanceType)allocWithZone:(struc _NZone)zone  
-{   
-    static dispatch_once_t onceToken;  
-    dispatch_once(&amp;onceToken,^{  
-    sharedInstance = [super allocWithZone:zone];
-    });  
-    return sharedInstance;   
-}   
-</code></pre>
-
-<p>再运行之前的测试代码，这回单例只有一个了。</p>
+<p>热爱生活，积极主动，每个人都无法拒绝阳光，有些人就可以让阳光一样，照耀别人，如果无法做到这些，至少是不是应该不要当作乌云，遮挡别人的阳光？工作中雷厉风行，生活中阳光灿烂，其实身边有很多这样的榜样，可不可以多观察多学习？放下自己的固执，放下自己以为的很重要的一些东西，用心去体验一切，一切都会变成另一番景色。</p>
 </div>
 
 
@@ -160,7 +117,7 @@ NSLog(@"singleton2 is %@",signleton2);
 
 
 
-<time class='entry-date' datetime='2014-10-28T19:30:43+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>7:30 pm</span></time>
+<time class='entry-date' datetime='2015-01-24T11:11:08+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:11 am</span></time>
       
 
 
@@ -175,10 +132,8 @@ NSLog(@"singleton2 is %@",signleton2);
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/10/22/title/" title="Previous Post: 成长悄然来临">上一篇:&nbsp; 成长悄然来临</a>
+        <a class="basic-alignment left" href="/blog/2015/01/12/littlething/" title="Previous Post: 一件小事">上一篇:&nbsp; 一件小事</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/11/01/chuaijing/" title="Next Post: 柴静-看见">下一篇:&nbsp;柴静-看见</a>
       
     </p>
   </footer>
