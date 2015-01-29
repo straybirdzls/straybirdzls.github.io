@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>读书笔记(3) iOS与OSX多线程和内存管理 - Straybird&#8217;s Blog</title>
+  <title>语言的哲学 - Straybird&#8217;s Blog</title>
   <meta name="author" content="Straybird">
 
   
-  <meta name="description" content="读书笔记(3)：iOS与OSX多线程和内存管理">
-  <meta name="keywords" content="objective-c,GCD,block,内存管理,多线程,ARC">
+  <meta name="description" content="最近在看"programming ruby"这本书的时候，被序言深深吸引，也解答了我心中最近一直存在的一些疑问。 回想起，从大学到现在，接触过的语言和技术，不分先后地包括：汇编，C, C++, Java, Javascript, python, Objective-c, ruby, ruby on &hellip;">
+  
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://straybirdzls.github.io/blog/2014/11/11/memeorybook3">
+  <link rel="canonical" href="http://straybirdzls.github.io/blog/2015/01/29/language">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Straybird's Blog" type="application/atom+xml">
@@ -68,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">读书笔记(3) iOS与OSX多线程和内存管理</h1>
+      <h1 class="entry-title">语言的哲学</h1>
     
     
       <p class="meta">
@@ -77,35 +77,28 @@
 
 
 
-<time class='entry-date' datetime='2014-11-11T20:30:54+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:30 pm</span></time>
+<time class='entry-date' datetime='2015-01-29T20:54:33+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:54 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>今天是&lt;iOS与OSX多线程和内存管理>读书笔记的最后一篇了，主题是多线程。书中主要是讲GCD,并没有讲NSOperation的东西，我这一篇一方面简要地对GCD记录一些知识点，也谈一点点NSOperation方面的东西。对于NSOperation方面的知识，我看了很多人推荐的<a href="http://www.raywenderlich.com/19788/how-to-use-nsoperations-and-nsoperationqueues">教程</a>，觉得写得非常好，推荐想学习的人看一看。</p>
+<div class="entry-content"><p>最近在看&#8221;programming ruby&#8221;这本书的时候，被序言深深吸引，也解答了我心中最近一直存在的一些疑问。</p>
 
-<h4>慎用@sync</h4>
-
-<p>从字面意思<code>@async</code>是异步执行，那<code>@sync</code>就是同步执行了。使用<code>@sync</code>时一定要万分小心，比如主线程，则会直接造成阻塞，死锁。因为任务执行完之后才会返回，但任务又必须等待其之前的任务完成才能执行。</p>
-
-<!--more-->
+<!-- more -->
 
 
-<h4>UI刷新</h4>
+<p>回想起，从大学到现在，接触过的语言和技术，不分先后地包括：汇编，C, C++, Java, Javascript, python, Objective-c, ruby, ruby on rails, mysql, node.js, coffeescript, html/css, php, swift, JSP，编译原理, R, Tweak, Cycript, 密码学，http/https等等。有些在在校期间学习的，有些是工作中的需求，有的是自我督促学习的。这一年，在自我和被逼学习的过程，心中的疑问确是越来越多，为什么要学习这么多不同的语言？似乎也派不上用场？甚至，为什么这个世界上要有这么的不同却又如此相似的语言，如果全部来个大统一，不是所有人都开心？</p>
 
-<p>移动端非常注重用户体验，所以UI刷新一定要放在主线程。若使用GCD，可以用<code>dispatch_get_main_queue()</code>来获取主线程，若使用NSOperation,可以用<code>[NSOperationQueue mainQueue]</code>来获取，当然也可以通过delegate使用<code>performSelectorOnMainThread</code>来实现。</p>
+<p>第一次看到有人这么正式地说到此问题，是在看编译原理公开课的时候，为什么需要这么多不同的语言？教授的解答是，不同的平台有不同的需求，比如涉及到硬件，就需要c这种方便与底层交互的，涉及到强大的数据处理，就需要R语言这种的。当时看到这的时候，发现，其实这些我也都明白，也承认有一些主流的语言，主流的平台确实有其存在的道理，但为什么还是有一些新语言不断的出现，关键是他们看起来跟已有的语言区别并没有那么大呢？</p>
 
-<h4>一些好用的关键字</h4>
+<p>在不断学习放弃的过程中，我逐渐认识到，其实学会什么语言，什么技术都是次要的，关键是你可以拿你学到的东西去做点什么，而不断的去学习一些新东西，一方面是日后需要的时候有备无患，而另一方面则是技术更新换代速度太快，是应该局限于当前，还是应该开放视野，拥抱变化呢？</p>
 
-<p>在GCD中，有很多很好用的功能，比如<code>dispatch_once</code>可以保证代码只被调用一次;<code>dispatch_group_async</code>可以定义一组任务，当一组任务全部完成时，会通过<code>dispatch_group_notify</code>来给通知;<code>dispatch_barrier_async</code>用于等待其他任务的完成，并完成任务之后，才能启动之后的任务，对于数据库访问以及文件的读写都非常有用;<code>dispatch_apply</code>是跟<code>@sync</code>和<code>group</code>都有关系的，它可以定义一组任务，并等待其完成;<code>dispatch_semaphore</code>提供类似于<code>dispatch_barrier_async</code>的功能，但是可以保证更小的粒度，它是通过信号量的方式来工作的。</p>
+<p>对，变化，我们每个人在学习语言技术的时候，很容易机械地去学习一些表面上看起来一样的语法，无非就是控制流程，面向对象，翻来覆起几个词说得都要烂掉，而其实真正应该关注的是语言和技术的背景是什么样的，是基于一种什么样的需求的产物，而不应该是语言本身。回想起我自己学过的这些东西，其实每一样都是一些特殊时代，特殊需求的产物，汇编和C就不用说了，python和ruby，一直以来对比良多，我之前也一直苦于该学习哪个，但其实两种语言本身的哲学就不一样，根据需求，根据个人喜好，一切都有答案，想起最开始接触objective-c的时候，被它的语法搞得很崩溃，但竟慢慢地喜欢上这么语言，惊叹于如此强大的runtime实现，而一开始的时候一直都不认为那些类，方法等面向对象的概念与c++有什么不同，实在是有点对不住这两门语言，而再慢慢被这门语言吸引的时候，苹果却又推出了swift，一直有点抵触，觉得之前花那么大精力学的是不是白学了，可事实上是，这个时代就是变化的，每个平台，都种技术都在努力完善更新，应该用下心来去了解新技术，了解技术背后传达的思想和哲学。我们知道的永远都是浅显的，我们所学习的也永远只是一角，最近学node.js才知道，原来javascript已经可以脱离浏览器运行，但自己却还活在javascript是前端脚本语言的世界里。技术的世界又怎么可能有个大统一？大统一何来进步？这天下都合久必分，分久必合，还指望技术的世界一成不变？</p>
 
-<h4>NSOperationQueue和GCD</h4>
-
-<p>自GCD出来后，NSOperationQueue就是用GCD来实现了。通过对上面推荐的教程的学习，NSOperation对于代码管理是非常方便的，而且可以cancel，对于依赖的管理也非常方便。根据苹果使用high level实现的惯例，一般情况下都是推荐使用NSOperation。当然GCD很轻量级，使用起来非常方便，所以根据具体的使用场景，也有很多需要的时候。</p>
-
-<p>其实书中还讲了很多其他方面的内容，GCD确实很强大，有了它，我们不用自己管理线程，因为这方面我还处于学习阶段，所以暂时还没能有一些比较深刻的见解，有兴趣的可以看objc的这个<a href="http://objcio.cn/issue-2/">专题</a>，讲得非常精彩。截止到现在，这本书&lt;iOS与OSX多线程和内存管理>我也算是粗略地过了一遍，但实践出真知，我现在还处于学习阶段，接下来要多多练习，方能将这些全部变成自己的知识。</p>
+<p>这篇文章叫语言的哲学，其实已经完全偏题了，开始想表达的跟最终写出来的竟如此差别之大。其实最近的感觉和ruby书的序言告诉我们的，千言万语汇成如下几句:
+这个世界是不会停止变化的，技术的世界更加如此，如果想要在技术的世界中行走的更远，那么就用心去了解技术背后传达的思想和哲学，与之为友，而不是机械地灌输。先用心踏实地用已有的知识汇聚成面，做点实事，然后保持open heart 以及 keep learning。</p>
 </div>
 
 
@@ -121,7 +114,7 @@
 
 
 
-<time class='entry-date' datetime='2014-11-11T20:30:54+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:30 pm</span></time>
+<time class='entry-date' datetime='2015-01-29T20:54:33+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:54 pm</span></time>
       
 
 
@@ -136,10 +129,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/11/08/memeorybook2/" title="Previous Post: 读书笔记(2) iOS与OSX多线程和内存管理">上一篇:&nbsp; 读书笔记(2) iOS与OSX多线程和内存管理</a>
+        <a class="basic-alignment left" href="/blog/2015/01/24/zixing/" title="Previous Post: 自省小记">上一篇:&nbsp; 自省小记</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/11/16/xianche/" title="Next Post: 谈谈Foundation">下一篇:&nbsp;谈谈Foundation</a>
       
     </p>
   </footer>

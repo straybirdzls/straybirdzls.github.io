@@ -71,6 +71,40 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/11/30/security/">谈谈iOS Security</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-30T21:33:59+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:33 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>近一年多跟iOS的交互中有一半都是与security的，其实现在关于iOS security的讨论也有非常多了，这里只是对于自己的学习和工作做一个小小的总结。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/11/30/security/">阅读全文&rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2014/11/26/viewcontroller/">iOS学习笔记2</a></h1>
     
     
@@ -210,44 +244,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/11/memeorybook3/">读书笔记(3) iOS与OSX多线程和内存管理</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-11T20:30:54+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:30 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>今天是&lt;iOS与OSX多线程和内存管理>读书笔记的最后一篇了，主题是多线程。书中主要是讲GCD,并没有讲NSOperation的东西，我这一篇一方面简要地对GCD记录一些知识点，也谈一点点NSOperation方面的东西。对于NSOperation方面的知识，我看了很多人推荐的<a href="http://www.raywenderlich.com/19788/how-to-use-nsoperations-and-nsoperationqueues">教程</a>，觉得写得非常好，推荐想学习的人看一看。</p>
-
-<h4>慎用@sync</h4>
-
-<p>从字面意思<code>@async</code>是异步执行，那<code>@sync</code>就是同步执行了。使用<code>@sync</code>时一定要万分小心，比如主线程，则会直接造成阻塞，死锁。因为任务执行完之后才会返回，但任务又必须等待其之前的任务完成才能执行。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/11/11/memeorybook3/">阅读全文&rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">上一页</a>
@@ -263,6 +259,10 @@
     <section>
   <h1>最近文章</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/01/29/language/">语言的哲学</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/01/24/zixing/">自省小记</a>
@@ -298,10 +298,6 @@
     
       <li class="post">
         <a href="/blog/2014/11/16/xianche/">谈谈Foundation</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/11/11/memeorybook3/">读书笔记(3) iOS与OSX多线程和内存管理</a>
       </li>
     
   </ul>
