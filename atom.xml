@@ -4,7 +4,7 @@
   <title><![CDATA[Straybird's Blog]]></title>
   <link href="http://straybirdzls.github.io/atom.xml" rel="self"/>
   <link href="http://straybirdzls.github.io/"/>
-  <updated>2015-02-06T21:41:42+08:00</updated>
+  <updated>2015-02-06T23:21:30+08:00</updated>
   <id>http://straybirdzls.github.io/</id>
   <author>
     <name><![CDATA[Straybird]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Ruby,就是这么任性(1)]]></title>
-    <link href="http://straybirdzls.github.io/blog/2015/02/03/ruby/"/>
-    <updated>2015-02-03T21:16:23+08:00</updated>
-    <id>http://straybirdzls.github.io/blog/2015/02/03/ruby</id>
+    <link href="http://straybirdzls.github.io/blog/2015/02/06/ruby/"/>
+    <updated>2015-02-06T22:00:23+08:00</updated>
+    <id>http://straybirdzls.github.io/blog/2015/02/06/ruby</id>
     <content type="html"><![CDATA[<p>由于工作需求，最近开始学习ruby了，其实前段时间也学过一些，但因为久未用之，再捡起来发现已经是忘得差不多了。而且由于之前学习的时候只是在机械的学习一些语法，对这门语言并没有多么深刻的领悟，这次学习的时候心态就不一样了。</p>
 
 <!--more-->
