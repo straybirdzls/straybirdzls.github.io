@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>谈谈iOS Security - Straybird&#8217;s Blog</title>
+  <title>暂停一周 - Straybird&#8217;s Blog</title>
   <meta name="author" content="Straybird">
 
   
-  <meta name="description" content="谈谈iOS Security">
-  <meta name="keywords" content="ios,security">
+  <meta name="description" content="很想将写博客这个事情坚持下去，可今天提笔了很多次，最终还是没能写点什么出来。也是因为最近做的事情变化比较快，以至于ruby还没能继续深入地学习下去，而又开始研究C++ code coverage以及debugger相关的一些知识。所以实在没能找到一个可以写下去的话题，以此标示一下，希望日后可以补起 &hellip;">
+  
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://straybirdzls.github.io/blog/2014/11/30/security">
+  <link rel="canonical" href="http://straybirdzls.github.io/blog/2015/02/14/pause">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Straybird's Blog" type="application/atom+xml">
@@ -68,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">谈谈iOS Security</h1>
+      <h1 class="entry-title">暂停一周</h1>
     
     
       <p class="meta">
@@ -77,40 +77,14 @@
 
 
 
-<time class='entry-date' datetime='2014-11-30T21:33:59+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:33 pm</span></time>
+<time class='entry-date' datetime='2015-02-14T22:01:19+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:01 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>近一年多跟iOS的交互中有一半都是与security的，其实现在关于iOS security的讨论也有非常多了，这里只是对于自己的学习和工作做一个小小的总结。</p>
-
-<!--more-->
-
-
-<h4>怎样测试一个app的安全?</h4>
-
-<p>与安全相关的面试中，这是一个绝对的热点，根据我自己的浅见以及学习，我觉得需要考虑的如下：</p>
-
-<ol>
-<li><p>数据存储</p>
-
-<p> 数据存储表面看起来很简单，但实际上却是移动app中最容易出现的安全问题。在数据存储中，我们有很多需要注意的地方：1.第一步一定是play with app，这个的目的一方面是熟悉app的功能，另一方面是尽可能多的产生一些本地文件 2.本地数据的存储主要包含在2处，一个是app的sandbox，另一个就是keychain 3.app的sandbox中文件很多，这里需要注意的就是关键敏感信息的处理，一定是需要加密的，说到加密，加密算法的使用也非常重要，比如hash的话至少要加盐等，对于sandbox中的文件，我们需要认真对待，很多敏感信息泄漏都出在这里，比如用户名/密码，server地址等等 4.keychain在越狱的设备中不安全，也这是众所周知的，但很多app可能依然就将明文存在keychain中</p></li>
-<li><p>网络通信</p>
-
-<p> 现在的移动app都会与服务器进行通信，网络通信中的中间人攻击很常见，http受到攻击太容易了，https的话要看有没有启用certificate pinning，没有的话，攻击起来也不困难。在与服务器的交互之中也涉及到一些web安全的东西，也要考虑暴露服务器的脆弱性的问题。有些app的服务器将数据传回客户端时候就完全信任客户端，这也是非常不安全的。</p></li>
-<li><p>动态攻击</p>
-
-<p> 动态攻击涉及到的就是逆向工程了，逆向工程威力很强大，比如代码泄漏/bypass一些关键的逻辑等，所以要看app有没有做binary的保护，没有的话，可以做的事情那就多了。动态攻击方面主要是检查有没有暴露在外很容易攻击又很关键的接口，脆弱的逻辑等等。</p></li>
-</ol>
-
-
-<h4>需要学习的知识点</h4>
-
-<p>做安全一定是要懂开发的，对于ios的一些系统知识也需要了然于心，比如mach-o格式等，还需要掌握很多工具，比如class－dump/theos/gdb/lldb等等.</p>
-
-<p>今晚由于时间紧张，暂时就写这么多了，回头有机会再细化补全。</p>
+<div class="entry-content"><p>很想将写博客这个事情坚持下去，可今天提笔了很多次，最终还是没能写点什么出来。也是因为最近做的事情变化比较快，以至于ruby还没能继续深入地学习下去，而又开始研究C++ code coverage以及debugger相关的一些知识。所以实在没能找到一个可以写下去的话题，以此标示一下，希望日后可以补起。</p>
 </div>
 
 
@@ -126,7 +100,7 @@
 
 
 
-<time class='entry-date' datetime='2014-11-30T21:33:59+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:33 pm</span></time>
+<time class='entry-date' datetime='2015-02-14T22:01:19+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:01 pm</span></time>
       
 
 
@@ -141,10 +115,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/11/26/viewcontroller/" title="Previous Post: iOS学习笔记2">上一篇:&nbsp; iOS学习笔记2</a>
+        <a class="basic-alignment left" href="/blog/2015/02/06/ruby/" title="Previous Post: ruby,就是这么任性(1)">上一篇:&nbsp; ruby,就是这么任性(1)</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/12/30/summary/" title="Next Post: 2014年终总结">下一篇:&nbsp;2014年终总结</a>
       
     </p>
   </footer>

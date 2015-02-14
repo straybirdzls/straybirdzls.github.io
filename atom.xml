@@ -4,7 +4,7 @@
   <title><![CDATA[Straybird's Blog]]></title>
   <link href="http://straybirdzls.github.io/atom.xml" rel="self"/>
   <link href="http://straybirdzls.github.io/"/>
-  <updated>2015-02-06T23:21:30+08:00</updated>
+  <updated>2015-02-14T22:05:07+08:00</updated>
   <id>http://straybirdzls.github.io/</id>
   <author>
     <name><![CDATA[Straybird]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[暂停一周]]></title>
+    <link href="http://straybirdzls.github.io/blog/2015/02/14/pause/"/>
+    <updated>2015-02-14T22:01:19+08:00</updated>
+    <id>http://straybirdzls.github.io/blog/2015/02/14/pause</id>
+    <content type="html"><![CDATA[<p>很想将写博客这个事情坚持下去，可今天提笔了很多次，最终还是没能写点什么出来。也是因为最近做的事情变化比较快，以至于ruby还没能继续深入地学习下去，而又开始研究C++ code coverage以及debugger相关的一些知识。所以实在没能找到一个可以写下去的话题，以此标示一下，希望日后可以补起。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby,就是这么任性(1)]]></title>
