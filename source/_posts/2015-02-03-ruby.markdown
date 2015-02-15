@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "ruby,就是这么任性(1)"
-date: 2015-02-03 21:16:23 +0800
+date: 2015-02-06 22:00:23 +0800
 comments: true
 categories: 
 ---
