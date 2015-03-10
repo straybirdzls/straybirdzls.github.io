@@ -10,3 +10,4 @@ published: false
 
 <!-- more -->
 
+node.js中最重要的点就是单线程，异步以及事件循环机制。
