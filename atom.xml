@@ -4,7 +4,7 @@
   <title><![CDATA[Straybird's Blog]]></title>
   <link href="http://straybirdzls.github.io/atom.xml" rel="self"/>
   <link href="http://straybirdzls.github.io/"/>
-  <updated>2015-03-22T22:56:51+08:00</updated>
+  <updated>2015-03-22T23:04:45+08:00</updated>
   <id>http://straybirdzls.github.io/</id>
   <author>
     <name><![CDATA[Straybird]]></name>
@@ -19,6 +19,9 @@
     <updated>2015-03-14T19:01:36+08:00</updated>
     <id>http://straybirdzls.github.io/blog/2015/03/14/javascript1</id>
     <content type="html"><![CDATA[<p>随着近些年来nodejs的火爆，Javascript终于在一等语言公民中站稳了脚，其实Javascript并不是一门简单的脚本语言，其也有很多高级特性，而且其中很多概念跟其他语言有相当大的差别。Javascript算是由三部分组成：ECMAScript+DOM+BOM，后两者都是为Web前端服务的，而ECMAScript则定义了其语法。</p>
+
+<!-- more -->
+
 
 <h3>类型</h3>
 

@@ -89,32 +89,12 @@
 
   <div class="entry-content"><p>随着近些年来nodejs的火爆，Javascript终于在一等语言公民中站稳了脚，其实Javascript并不是一门简单的脚本语言，其也有很多高级特性，而且其中很多概念跟其他语言有相当大的差别。Javascript算是由三部分组成：ECMAScript+DOM+BOM，后两者都是为Web前端服务的，而ECMAScript则定义了其语法。</p>
 
-<h3>类型</h3>
-
-<p>Javascript中有6种数据类型，其中5种基本数据类型Undefined, Null, Boolean, Number, String。1种复杂数据类型Object。其中Undefined类型只有一个指，即特殊的undefined，变量定义没有初始化都会默认赋为此值, Null类型也只有一个值，即null（空指针对象），如果定义的变量准备用来保存对象，则最好将其初始化为null。typeof操作符可以帮忙确定变量的类型。</p>
-
-<h3>执行环境与作用域链</h3>
-
-<p>执行环境是Javascript中最为重要的一个概念，其定义了变量或函数有权访问的其他数据，决定了它们各自的行为。有全局执行环境（web浏览器中为windows）和函数执行环境。当代码在一个环境中执行时，会创建变量对象的一个作用链域，其作用是保证对执行环境有权访问的所有变量和函数的有序访问，作用链域的前段，始终都是当前执行环境的变量对象。Try，catch语句的catch块以及with语句可以在作用域链的前端新增一个变量对象。相当值得注意的是Javascript中没有块级作用域。</p>
-
-<h3>函数</h3>
-
-<p>Javascript很有意思的一部分就属函数了，函数类型是一种引用类型，也即是说函数实际上是Object,而函数名仅仅是一个包含指针的对象。基于这个原因，Javascript中没有函数重载(申明同名函数，结果是后面的函数覆盖了前面的函数)。在Javascript中函数还有一些特性。</p>
-
-<ol>
-<li>参数传递全部是值传递</li>
-<li>函数有2个内部属性，<code>arguments</code>和<code>this</code>，其中<code>arguments</code>代表着参数，所以进行参数传递时，对于参数的个数无所谓，<code>arguments</code>除去参数列表外，还有一个<code>callee</code>属性，其是一个指针，指向拥有这个<code>arguments</code>对象的函数，在写递归时，用<code>callee</code>属性是最安全的；而<code>this</code>是函数据以执行的环境对象。</li>
-<li>因为函数只是<code>object</code>，所以其也有属性，<code>length</code>和<code>prototype</code>，其中<code>length</code>表示函数希望接收的命名参数的个数，对于引用类型而言，<code>prototype</code>是保存它们所有实例方法的真正所在。</li>
-<li>每个函数都包含两个非继承而来的方法，<code>apply()</code>和<code>call()</code>，它们的区别就是参数传递的方式不一样，<code>apply</code>使用数组传递，而<code>call</code>则直接传递，两个方法的第一个参数都是运行函数的作用域</li>
-<li>函数分函数声明和函数表达式两种定义方式，函数声明有函数提升的能力（调用在前，声明在后），函数表达式的方式则是定义了匿名函数</li>
-<li>支持闭包，是指有权访问另一个函数作用域中的变量的函数。也就是说当函数结束放回时，其执行环境已经销毁，但是活动对象还没销毁，所以在闭包中依然可以访问。</li>
-<li>可以通过<code>(function() {...})()</code>的方式来模仿块级作用域。</li>
-</ol>
-
-
-<p>这里只是记录一些学习笔记，对于Javascript我也只是初入茅庐，Javascript中另外一个很有意思的就是其对象和其原型实现了，这个下次再记录了。</p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/03/14/javascript1/">阅读全文&rarr;</a>
+    </footer>
   
 
 
