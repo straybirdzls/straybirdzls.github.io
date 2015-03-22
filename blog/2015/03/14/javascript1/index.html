@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Markdown语法个人总结 - Straybird&#8217;s Blog</title>
+  <title>Javascript学习1 - Straybird&#8217;s Blog</title>
   <meta name="author" content="Straybird">
 
   
-  <meta name="description" content="Markdown语法个人总结">
-  <meta name="keywords" content="Markdown">
+  <meta name="description" content="随着近些年来nodejs的火爆，Javascript终于在一等语言公民中站稳了脚，其实Javascript并不是一门简单的脚本语言，其也有很多高级特性，而且其中很多概念跟其他语言有相当大的差别。Javascript算是由三部分组成：ECMAScript+DOM+BOM，后两者都是为Web前端服务的 &hellip;">
+  
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://straybirdzls.github.io/blog/2014/11/01/marddown">
+  <link rel="canonical" href="http://straybirdzls.github.io/blog/2015/03/14/javascript1">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Straybird's Blog" type="application/atom+xml">
@@ -68,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">Markdown语法个人总结</h1>
+      <h1 class="entry-title">Javascript学习1</h1>
     
     
       <p class="meta">
@@ -77,57 +77,39 @@
 
 
 
-<time class='entry-date' datetime='2014-11-01T22:00:01+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>10:00 pm</span></time>
+<time class='entry-date' datetime='2015-03-14T19:01:36+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>7:01 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>最近开始写博客了，用的是Markdown写然后生成静态网页，最开始的时候只匆匆过了一遍Markdown语法，然后写的时候也懒得去看，觉得很多时候还不如直接使用html方便，但这样导致的问题就是文章的存根不太漂亮，然后我对html的很多标签并不太熟悉，所以写的时候Markdown和html标签混合使用，会遇到一些问题，然后查询所花费的时间也不少。考虑既然想把写博客这件事情继续下去，那还是应该先花些时间在基础建设上。今天将Markdown语法好好地看了一下，下面总结一下，主要记录一下我在写博文中最常用到的一些。</p>
+<div class="entry-content"><p>随着近些年来nodejs的火爆，Javascript终于在一等语言公民中站稳了脚，其实Javascript并不是一门简单的脚本语言，其也有很多高级特性，而且其中很多概念跟其他语言有相当大的差别。Javascript算是由三部分组成：ECMAScript+DOM+BOM，后两者都是为Web前端服务的，而ECMAScript则定义了其语法。</p>
 
-<!--more-->
+<h3>类型</h3>
+
+<p>Javascript中有6种数据类型，其中5种基本数据类型Undefined, Null, Boolean, Number, String。1种复杂数据类型Object。其中Undefined类型只有一个指，即特殊的undefined，变量定义没有初始化都会默认赋为此值, Null类型也只有一个值，即null（空指针对象），如果定义的变量准备用来保存对象，则最好将其初始化为null。typeof操作符可以帮忙确定变量的类型。</p>
+
+<h3>执行环境与作用域链</h3>
+
+<p>执行环境是Javascript中最为重要的一个概念，其定义了变量或函数有权访问的其他数据，决定了它们各自的行为。有全局执行环境（web浏览器中为windows）和函数执行环境。当代码在一个环境中执行时，会创建变量对象的一个作用链域，其作用是保证对执行环境有权访问的所有变量和函数的有序访问，作用链域的前段，始终都是当前执行环境的变量对象。Try，catch语句的catch块以及with语句可以在作用域链的前端新增一个变量对象。相当值得注意的是Javascript中没有块级作用域。</p>
+
+<h3>函数</h3>
+
+<p>Javascript很有意思的一部分就属函数了，函数类型是一种引用类型，也即是说函数实际上是Object,而函数名仅仅是一个包含指针的对象。基于这个原因，Javascript中没有函数重载(申明同名函数，结果是后面的函数覆盖了前面的函数)。在Javascript中函数还有一些特性。</p>
+
+<ol>
+<li>参数传递全部是值传递</li>
+<li>函数有2个内部属性，<code>arguments</code>和<code>this</code>，其中<code>arguments</code>代表着参数，所以进行参数传递时，对于参数的个数无所谓，<code>arguments</code>除去参数列表外，还有一个<code>callee</code>属性，其是一个指针，指向拥有这个<code>arguments</code>对象的函数，在写递归时，用<code>callee</code>属性是最安全的；而<code>this</code>是函数据以执行的环境对象。</li>
+<li>因为函数只是<code>object</code>，所以其也有属性，<code>length</code>和<code>prototype</code>，其中<code>length</code>表示函数希望接收的命名参数的个数，对于引用类型而言，<code>prototype</code>是保存它们所有实例方法的真正所在。</li>
+<li>每个函数都包含两个非继承而来的方法，<code>apply()</code>和<code>call()</code>，它们的区别就是参数传递的方式不一样，<code>apply</code>使用数组传递，而<code>call</code>则直接传递，两个方法的第一个参数都是运行函数的作用域</li>
+<li>函数分函数声明和函数表达式两种定义方式，函数声明有函数提升的能力（调用在前，声明在后），函数表达式的方式则是定义了匿名函数</li>
+<li>支持闭包，是指有权访问另一个函数作用域中的变量的函数。也就是说当函数结束放回时，其执行环境已经销毁，但是活动对象还没销毁，所以在闭包中依然可以访问。</li>
+<li>可以通过<code>(function() {...})()</code>的方式来模仿块级作用域。</li>
+</ol>
 
 
-<h4>标题</h4>
-
-<p>使用＃就可以使用标题了，其中1个到6个分别对应h1到h6。</p>
-
-<h4>换行</h4>
-
-<p>Markdown中如果一段文字前面有空行，则认为是一个新的段落，会自动加上<code>&lt;p&gt;</code> 标签。但如果有时候不想加空行，有更简便的方法可以换行，那就是在一行的末尾加上2个或以上的空格然后回车。</p>
-
-<h4>代码</h4>
-
-<p>技术人员在博客中加入代码是很常用的。有2种形式:</p>
-
-<p>第一种是一段代码，直接在每行开头上加入tab或者4个空格就可以了。之后转换的时候会自动加上<code>&lt;pre&gt;&lt;code&gt;</code>标签。</p>
-
-<p>第二种是在行内加代码，只需要用｀｀包住代码就可以了 ，我上面的行内的的代码就是用这种方式写的。转换的时候会自动加上<code>&lt;code&gt;</code>标签。</p>
-
-<h4>引用</h4>
-
-<p>我们在博文中有时候会引用别人的话语，只需要在段落前加上>就可以了,转换的时候会自动加上<code>&lt;blockquote&gt;</code>。值得注意的是，自带的引用字体太大，显得很不和谐，而且斜体也不是很好看，需要进行一些调整，在sass/base/_typography.scss中改动就可以了。</p>
-
-<h4>列表</h4>
-
-<p>无序列表用<code>+,-,*</code>都可以，注意符号之后必须增加一个空格之后才可以加列表的元素。转换的时候会自动加上<code>&lt;ol&gt;&lt;ul&gt;</code>。</p>
-
-<p>有序列表用数字接着一个英文句话就可以，值得注意的是前面的数字并不会影响最后生成的静态网站。转换的时候会自动加上<code>&lt;ol&gt;&lt;li&gt;</code>。</p>
-
-<h4>链接</h4>
-
-<p>链接也是很常用的，只需要使用<code>[文字](链接地址，title)</code>形式就可以了。其中tile可以省略。值得注意的是，链接地址不需要加上&#8221;&ldquo;来包含，否则会在当前路径下寻找资源。转换的时候会自动加上<code>&lt;a href&gt;</code>。</p>
-
-<h4>HTML</h4>
-
-<p>Markdown兼容HTML,可以直接使用HTML标签。</p>
-
-<p>不过对区块元素，比如<code>&lt;div&gt;、&lt;table&gt;、&lt;pre&gt;、&lt;p&gt;</code>等标签必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进。Markdown 的生成器有足够智能，不会在 HTML 区块标签外加上不必要的 <code>&lt;p&gt;</code> 标签。需要注意一点的是HTML 区块标签间的 Markdown格式语法将不会被处理。</p>
-
-<p>而HTML的区段标签则可以随意使用，而且其中的Markdown格式语法是有效的。</p>
-
-<p>我这里只列出了一些我觉得比较常用的一些语法，Markdown确实很方便，可以节约很多排版格式的时间，其实还有很多别的比如图片、文字强调等，有兴趣了解更多的，可以看这个<a href="http://markdown.tw/">链接</a>，如果我在写博客的过程中发现有更多常用的语法，也会继续更新。最后推荐一个在mac上写Markdown的app：mou，这个app很方便使用，可以实时预览，同时convert功能可以免去我们记忆这些Markdown语法，但是考虑效率的话，个人还是觉得记住这些语法更好，熟能生巧，用的多了自然也就都记住了。</p>
+<p>这里只是记录一些学习笔记，对于Javascript我也只是初入茅庐，Javascript中另外一个很有意思的就是其对象和其原型实现了，这个下次再记录了。</p>
 </div>
 
 
@@ -143,7 +125,7 @@
 
 
 
-<time class='entry-date' datetime='2014-11-01T22:00:01+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>10:00 pm</span></time>
+<time class='entry-date' datetime='2015-03-14T19:01:36+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>7:01 pm</span></time>
       
 
 
@@ -158,10 +140,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/11/01/chuaijing/" title="Previous Post: 柴静-看见">上一篇:&nbsp; 柴静-看见</a>
+        <a class="basic-alignment left" href="/blog/2015/03/10/agile/" title="Previous Post: 敏捷初体验">上一篇:&nbsp; 敏捷初体验</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/11/04/memorybook/" title="Next Post: 读书笔记(1) iOS与OSX多线程和内存管理">下一篇:&nbsp;读书笔记(1) iOS与OSX多线程和内存管理</a>
       
     </p>
   </footer>
