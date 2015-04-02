@@ -71,6 +71,46 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2015/04/02/chaohuashiyi1/">朝花拾遗1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-04-02T20:28:21+08:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>8:28 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>请忽略我的文不对题，只是来补充一些知识遗漏点。</p>
+
+<ol>
+<li>memmove和memcpy，都是从source拷贝n个字符到dest，memmove可以保证在目标区域和源区域有内存覆盖的情况下保证复制的准确性。原理：读了下源码，很简单，memmove会开辟一个临时空间。</li>
+<li>弱网络测试。1).apple本身提供开发者工具 2).用工具限制丢包率，网络响应速度等。还可以结合instrument的Net Activity工具进行检测。</li>
+<li>性能测试。1).快速启动时间，结合time profile 2)内存泄漏，静态分析+leaks/allocation 3).设备，cpu，内存，io，电量等指标，activity monitor，energe diagonize。性能测试也需要针对性，但从用户体验的角度来看，具备快速启动，优秀的内存管理，尽量少地消耗电量等。</li>
+<li>散列表函数:除法散列法，乘法散列法，全域散列法。解决冲突的方式：链接法和开放寻址法。</li>
+<li>大数据，数据类型是什么？数字吗，数字的话可以通过1)申请内存，通过位来标示。2）将数字按照二进制形式，从最高位开始0或者1,然后依次，相当于2分查找了。一个普遍法则是分而治理之加哈希。</li>
+</ol>
+
+
+<p>嗯，保持学习，加油～</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2015/03/22/javascript1/">Javascript学习1</a></h1>
     
     
@@ -197,40 +237,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/02/06/ruby/">Ruby,就是这么任性(1)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-02-06T22:00:23+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:00 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>由于工作需求，最近开始学习ruby了，其实前段时间也学过一些，但因为久未用之，再捡起来发现已经是忘得差不多了。而且由于之前学习的时候只是在机械的学习一些语法，对这门语言并没有多么深刻的领悟，这次学习的时候心态就不一样了。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/02/06/ruby/">阅读全文&rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">上一页</a>
@@ -244,6 +250,10 @@
     <section>
   <h1>最近文章</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/04/02/chaohuashiyi1/">朝花拾遗1</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/03/22/javascript1/">Javascript学习1</a>
@@ -279,10 +289,6 @@
     
       <li class="post">
         <a href="/blog/2015/01/06/ioslearning3/">iOS学习笔记3</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/12/30/summary/">2014年终总结</a>
       </li>
     
   </ul>

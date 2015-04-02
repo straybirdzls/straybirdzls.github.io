@@ -5,12 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Straybird&#8217;s Blog</title>
+  <title>朝花拾遗1 - Straybird&#8217;s Blog</title>
   <meta name="author" content="Straybird">
 
   
-  <meta name="description" content="straybird的个人博客">
-  <meta name="keywords" content="生活,学习,objective-c,markdown">
+  <meta name="description" content="请忽略我的文不对题，只是来补充一些知识遗漏点。 memmove和memcpy，都是从source拷贝n个字符到dest，memmove可以保证在目标区域和源区域有内存覆盖的情况下保证复制的准确性。原理：读了下源码，很简单，memmove会开辟一个临时空间。
+弱网络测试。1). &hellip;">
+  
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://straybirdzls.github.io/posts/5">
+  <link rel="canonical" href="http://straybirdzls.github.io/blog/2015/04/02/chaohuashiyi1">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Straybird's Blog" type="application/atom+xml">
@@ -63,15 +64,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/01/chuaijing/">柴静-看见</a></h1>
+      <h1 class="entry-title">朝花拾遗1</h1>
     
     
       <p class="meta">
@@ -80,125 +78,64 @@
 
 
 
-<time class='entry-date' datetime='2014-11-01T20:00:50+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>8:00 pm</span></time>
+<time class='entry-date' datetime='2015-04-02T20:28:21+08:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>8:28 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>今天在网易公开课上看了柴静新书发布的一个<a href="http://v.163.com/movie/2014/7/V/6/MA1I1BARD_MA1II0AV6.html">视频</a>,看完之后蛮有感触的，我不懂新闻学，也不懂传播，但是我仍然能从这位知性女性温柔而又坚定中的阐述中获得力量。</p>
+<div class="entry-content"><p>请忽略我的文不对题，只是来补充一些知识遗漏点。</p>
 
+<ol>
+<li>memmove和memcpy，都是从source拷贝n个字符到dest，memmove可以保证在目标区域和源区域有内存覆盖的情况下保证复制的准确性。原理：读了下源码，很简单，memmove会开辟一个临时空间。</li>
+<li>弱网络测试。1).apple本身提供开发者工具 2).用工具限制丢包率，网络响应速度等。还可以结合instrument的Net Activity工具进行检测。</li>
+<li>性能测试。1).快速启动时间，结合time profile 2)内存泄漏，静态分析+leaks/allocation 3).设备，cpu，内存，io，电量等指标，activity monitor，energe diagonize。性能测试也需要针对性，但从用户体验的角度来看，具备快速启动，优秀的内存管理，尽量少地消耗电量等。</li>
+<li>散列表函数:除法散列法，乘法散列法，全域散列法。解决冲突的方式：链接法和开放寻址法。</li>
+<li>大数据，数据类型是什么？数字吗，数字的话可以通过1)申请内存，通过位来标示。2）将数字按照二进制形式，从最高位开始0或者1,然后依次，相当于2分查找了。一个普遍法则是分而治理之加哈希。</li>
+</ol>
+
+
+<p>嗯，保持学习，加油～</p>
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/11/01/chuaijing/">阅读全文&rarr;</a>
-    </footer>
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/10/28/arc/">Objective-C单例模式之ARC+GCD实现</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-10-28T19:30:43+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>7:30 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>单例模式是什么，这里姑且不谈，只谈谈ARC+GCD实现下单例模式比较特殊和受争议的点。</p>
-
-<p>首先看一个ARC+GCD实现：</p>
-
-<pre><code>@interface Singleton : NSObject
-+ (Singleton *)sharedInstance;     
-@end     
-
-@implementation Singleton     
-static  Singleton *sharedInstance = nil ;             
-+ (Singleton *) sharedInstance           
-{      
-    static dispatch_once_t onceToken;  // 锁      
-    dispatch_once (&amp; onceToken, ^ {     // 最多调用一次        
-    sharedInstance = [[self alloc] init];         
-    });      
-    return  sharedInstance;            
-}        
-@end       
-</code></pre>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/10/28/arc/">阅读全文&rarr;</a>
-    </footer>
   
 
+<span class="byline author vcard">Posted by <span class="fn">Straybird</span></span>
 
-    </article>
-  
-  
-    <article>
       
-  <header>
+
+
+
+
+<time class='entry-date' datetime='2015-04-02T20:28:21+08:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>8:28 pm</span></time>
+      
+
+
+    </p>
     
-      <h1 class="entry-title"><a href="/blog/2014/10/22/title/">成长悄然来临</a></h1>
+      <div class="sharing">
+  
+  
+  
+</div>
+
     
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-10-22T17:36:54+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>5:36 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>今天终于成功在github上开通个人博客了，主要是想记录生活和学习。但今天只谈生活，不谈学习。</p>
-
-<h3>序</h3>
-
-<p>不知不觉中已经在杭州待了1年半了，回想起，似乎大部分时光都过得很简单。最近时常有种长大了，不再是小孩子了的感觉，但内心却是无比地抗拒，想永远地当个孩子，想永远无忧无虑，永远不知道伤心，难过，孤独是什么滋味。但就如同突然开始在意起自己地长相，突然开始明白人与人的差距一样，成长就是这样，它悄然来袭，给你一个措手不及。</p>
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/03/22/javascript1/" title="Previous Post: javascript学习1">上一篇:&nbsp; javascript学习1</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/10/22/title/">阅读全文&rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">所有文章</a>
-    
-    <a class="next" href="/posts/4">下一页</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -254,6 +191,26 @@ static  Singleton *sharedInstance = nil ;
 
   
 </aside>
+
+
+  <section>
+    <h1>Comments</h1>
+    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"straybird"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END --></div>
+  </section>
+
 
     </div>
   </div>
