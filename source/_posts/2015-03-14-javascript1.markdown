@@ -1,15 +1,17 @@
 ---
 layout: post
 title: "javascript学习1"
-date: 2015-03-14 19:01:36 +0800
+date: 2015-03-22 22:50:36 +0800
 comments: true
 categories: 
 ---
 
 随着近些年来nodejs的火爆，Javascript终于在一等语言公民中站稳了脚，其实Javascript并不是一门简单的脚本语言，其也有很多高级特性，而且其中很多概念跟其他语言有相当大的差别。Javascript算是由三部分组成：ECMAScript+DOM+BOM，后两者都是为Web前端服务的，而ECMAScript则定义了其语法。
 
+<!-- more -->
+
 ###类型
-Javascript中有6种数据类型，其中5种基本数据类型Undefined, Null, Boolean, Number, String。1种复杂数据类型Object。其中Undefined类型只有一个指，即特殊的undefined，变量定义没有初始化都会默认赋为此值, Null类型也只有一个值，即null（空指针对象），如果定义的变量准备用来保存对象，则最好将其初始化为null。typeof操作符可以帮忙确定变量的类型。
+Javascript中有6种数据类型，其中5种基本数据类型Undefined, Null, Boolean, Number, String。1种复杂数据类型Object。其中Undefined类型只有一个指，即特殊的undefined，变量定义没有初始化都会默认赋为此值, Null类型也只有一个值，即null（空指针对象），如果定义的变量准备用来保存对象，则最好将其初始化为null。typeof操作符可以帮忙确定变量的类型。值得注意一点的是：对于尚未声明过的变量，只能执行一项操作，即使用typeof操作符检测其数据类型（会返回"undefined"）。
 
 ###执行环境与作用域链
 执行环境是Javascript中最为重要的一个概念，其定义了变量或函数有权访问的其他数据，决定了它们各自的行为。有全局执行环境（web浏览器中为windows）和函数执行环境。当代码在一个环境中执行时，会创建变量对象的一个作用链域，其作用是保证对执行环境有权访问的所有变量和函数的有序访问，作用链域的前段，始终都是当前执行环境的变量对象。Try，catch语句的catch块以及with语句可以在作用域链的前端新增一个变量对象。相当值得注意的是Javascript中没有块级作用域。
