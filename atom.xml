@@ -4,7 +4,7 @@
   <title><![CDATA[Straybird's Blog]]></title>
   <link href="http://straybirdzls.github.io/atom.xml" rel="self"/>
   <link href="http://straybirdzls.github.io/"/>
-  <updated>2015-04-12T14:54:38+08:00</updated>
+  <updated>2015-04-12T14:57:22+08:00</updated>
   <id>http://straybirdzls.github.io/</id>
   <author>
     <name><![CDATA[Straybird]]></name>
@@ -19,6 +19,9 @@
     <updated>2015-04-12T14:54:51+08:00</updated>
     <id>http://straybirdzls.github.io/blog/2015/04/12/javascript2</id>
     <content type="html"><![CDATA[<p>这篇接着上篇，不过有些迟到了。随着Facebook React Native的开源，现在Javascript颇有点“王道”的意思了，一定要将学习坚持下去！这篇主要说说Javascript中的面向对象。</p>
+
+<!-- more -->
+
 
 <h3>对象</h3>
 
