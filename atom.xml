@@ -4,7 +4,7 @@
   <title><![CDATA[Straybird's Blog]]></title>
   <link href="http://straybirdzls.github.io/atom.xml" rel="self"/>
   <link href="http://straybirdzls.github.io/"/>
-  <updated>2015-04-02T21:35:48+08:00</updated>
+  <updated>2015-04-12T14:54:38+08:00</updated>
   <id>http://straybirdzls.github.io/</id>
   <author>
     <name><![CDATA[Straybird]]></name>
@@ -14,22 +14,142 @@
 
   
   <entry>
-    <title type="html"><![CDATA[朝花拾遗1]]></title>
-    <link href="http://straybirdzls.github.io/blog/2015/04/02/chaohuashiyi1/"/>
-    <updated>2015-04-02T20:28:21+08:00</updated>
-    <id>http://straybirdzls.github.io/blog/2015/04/02/chaohuashiyi1</id>
-    <content type="html"><![CDATA[<p>请忽略我的文不对题，只是来补充一些知识遗漏点。</p>
+    <title type="html"><![CDATA[Javascript2]]></title>
+    <link href="http://straybirdzls.github.io/blog/2015/04/12/javascript2/"/>
+    <updated>2015-04-12T14:54:51+08:00</updated>
+    <id>http://straybirdzls.github.io/blog/2015/04/12/javascript2</id>
+    <content type="html"><![CDATA[<p>这篇接着上篇，不过有些迟到了。随着Facebook React Native的开源，现在Javascript颇有点“王道”的意思了，一定要将学习坚持下去！这篇主要说说Javascript中的面向对象。</p>
 
-<ol>
-<li>memmove和memcpy，都是从source拷贝n个字符到dest，memmove可以保证在目标区域和源区域有内存覆盖的情况下保证复制的准确性。原理：读了下源码，很简单，memmove会开辟一个临时空间。</li>
-<li>弱网络测试。1).apple本身提供开发者工具 2).用工具限制丢包率，网络响应速度等。还可以结合instrument的Net Activity工具进行检测。</li>
-<li>性能测试。1).快速启动时间，结合time profile 2)内存泄漏，静态分析+leaks/allocation 3).设备，cpu，内存，io，电量等指标，activity monitor，energe diagonize。性能测试也需要针对性，但从用户体验的角度来看，具备快速启动，优秀的内存管理，尽量少地消耗电量等。</li>
-<li>散列表函数:除法散列法，乘法散列法，全域散列法。解决冲突的方式：链接法和开放寻址法。</li>
-<li>大数据，数据类型是什么？数字吗，数字的话可以通过1)申请内存，通过位来标示。2）将数字按照二进制形式，从最高位开始0或者1,然后依次，相当于2分查找了。一个普遍法则是分而治理之加哈希。</li>
-</ol>
+<h3>对象</h3>
 
+<p>ECMAScript中把对象定义为：无序属性的集合，其属性可以包含基本值，对象或者函数。其没有类的概念，每个对象都基于一种引用类型创建的，这种引用类型可以是原生的，也可以是自定义的。所以在javascript中其对象跟一般oo语言中的区别还是蛮大的。</p>
 
-<p>嗯，保持学习，加油～</p>
+<p>ECMAScript中给对象定义了2种（内部）属性，数据属性和访问器属性。数据属性包含一个数据值的位置，在这个位置可以读取和写入值。数据属性有4个描述其行为的特性:[[Configurable]],[[Enumerable]],[[Writable]],[[Value]]。要修改属性默认的特性，必须使用Object.defineProperty()方法。访问器属性不包含函数值：他们包含一对getter和setter函数（不是必需的）。使用Object.getOwnPropertyDescriptor()可以取得给定属性的描述符。</p>
+
+<h3>创建对象</h3>
+
+<p>创建对象的最简单的方式就是使用new操作符或者字面量法，其如下：</p>
+
+<pre><code>//new操作符
+var person = new Object();
+person.name = "hao";
+//字面量法
+var person = {name:"hao"};
+</code></pre>
+
+<p>这很明显的一个缺点就是会有大量的重复代码，为了解决这个问题，就有很多种设计模式，在javascript里用的最多的就是工厂模式，构造函数模式，原型模式以及组合使用构造函数与原型模式了，当然也还有其他很多的模式，不过它们基本都是对构造函数模式或者原型模式的变种。这里我只谈下最基本的。</p>
+
+<h4>工厂模式</h4>
+
+<p>工厂模式抽象了创建具体对象的过程，考虑到在ECMAScript中无法创建类，开发人员就发明了一种函数来封装以特定接口创建对象的细节。</p>
+
+<pre><code>function createPerson(name,age)
+{
+    var o = new Object();
+    o.name = name;
+    o.age = age;
+    o.sayName = function() {
+        console.log(this.name);
+    };
+    return o;
+}
+
+var person = createPerson("hao",26);
+</code></pre>
+
+<p>工厂模式解决了创建相似对象时代码重复的问题，但没有解决对象识别的问题。</p>
+
+<h4>构造函数模式</h4>
+
+<p>在ECMAScript中，任何函数都可以当作构造函数，只要使用new操作符。但按照管理，构造函数应该使用大写字母开头，而非构造函数则用小写字母开头，以做区分。</p>
+
+<pre><code>function Person(name,age)
+{
+    this.name = name;
+    this.age = age;
+    this.sayName = function() {
+        console.log(this.name);
+    }
+}
+
+var person = new Person("hao",26);
+</code></pre>
+
+<p>使用new操作符时，会经历4个步骤：1）创建1个新对象 2）将构造函数的作用域赋给新对象3）执行构造函数中的代码 4）返回新对象。使用构造函数模式时，生成的对象都会有一个constructor属性，上例中，该属性指向Person。但是检测对象类型，还是使用instanceof操作符会更好。</p>
+
+<pre><code>console.log(person instanceof Object);
+console.log(person instanceof Person);
+</code></pre>
+
+<p>使用构造函数模式有一个问题就是函数对象不是共享的，每一个实力都会产生自己的函数对象，但实际上它们是可以共享的，为了解决这个问题，可以将函数定义转移到构造函数外部，如下</p>
+
+<pre><code>this.sayName = sayName; 
+function sayName(){
+    console.log(this.name);
+}
+</code></pre>
+
+<p>这样带来的问题就是会有很多的全局函数，既破坏了封装性，也让全局作用域名不副实-全局作用域中定义的函数实际上只能被某个对象调用。</p>
+
+<h4>原型模式</h4>
+
+<p>在1中，我们提到过每个函数都有一个prototype属性，这个属性是一个指针，指向一个对象，而这个对象的用途是包含可以由特定类型的所有实例共享的属性和当法。</p>
+
+<pre><code>function Person(){
+}
+Person.prototype.name = "hao";
+Person.prototype.age = 26;
+Person.prototype.sayName = function() {
+    console.log(this.name);
+};
+
+var person = new Person();
+</code></pre>
+
+<p>原型模式创建出来的对象，属性和方法都是共享的，即原型对象的。默认情况下，原型对象都会自动获得一个constructor属性，这个属性包含一个指向prototpye属性所在函数的指针。当创建一个新对象时，该对象内部包含一个指针(内部属性)，指向构造函数的原型对象。虽然无法直接访问[[Prototype]]，但可以通过isPrototypeOf()方法来确定对象间是否存在这种关系。ECMAScript5中也新增了一个方法Object.getPrototypeOf().</p>
+
+<pre><code>console.log(Person.prototype.isPrototypeOf(person)); //ture
+console.log(Object.getPrototypeOf(person) == Person.prototype); //true
+</code></pre>
+
+<p>当访问对象属性时，会首先搜索实例对象中的，没搜索到则搜索其原型对象中的。值得注意的是可以通过对象访问原型中的值，但不能重写。如果往实例中增加与原型中相同的属性，则会屏蔽原型中的。可以通过hasOwnProperty来检测属性是否来自于实例。而in操作符则不论属性属于实例还是原型中时都会返回true。</p>
+
+<pre><code>var person1 = new Person();
+var person2 = new Person();
+person1.name = "test";
+console.log(person1.hasOwnProperty("name"));  //true
+console.log("name" in person1);               //true
+console.log(person2.hasOwnProperty("name"));  //false
+console.log("name" in person2);               //true
+</code></pre>
+
+<p>可以给原型对象直接赋值，但是会破坏constructor属性(不会影响instanceof操作符)。所以如果需要直接赋值时，最好自己将constructor属性补上(下面有示例)。</p>
+
+<p>原型模式可以弥补构造函数模式不方便共享实例函数的不足，但是对于属性而言，则共享就不是很合理了。对于那些包含基本值的属性而言，可以用同名属性覆盖，但对于引用类型的属性而言，问题就比较突出了。</p>
+
+<pre><code>function Person() {
+}
+Person.prototype = {
+    constructor : Person,
+    friends : ["hao"]
+};
+
+var person1 = new Person();
+var person2 = new Person();
+person1.friends.push("test");
+console.log(person1.friends);     //[ 'hao', 'test' ]
+console.log(person2.friends);     //[ 'hao', 'test' ]
+</code></pre>
+
+<h4>组合使用构造函数模式与原型模式</h4>
+
+<p>通过上面的构造函数模式和原型模式的分析，我们知道，对于属性而言，我们一般不需要共享，最好使用构造函数模式，而对于函数而言，一般需要共享，最好使用原型模式，所以就有了组合模式，现在也是被用的最多的一种模式，这里也就不多做说明了。</p>
+
+<p>本想这次也记录一下继承的，不过发现内容有点多，这个就放到下回了。</p>
+
+<h3>参考文献</h3>
+
+<p>JavaScript高级程序设计（第3版）</p>
 ]]></content>
   </entry>
   
@@ -51,9 +171,13 @@
 
 <p>执行环境是Javascript中最为重要的一个概念，其定义了变量或函数有权访问的其他数据，决定了它们各自的行为。有全局执行环境（web浏览器中为windows）和函数执行环境。当代码在一个环境中执行时，会创建变量对象的一个作用链域，其作用是保证对执行环境有权访问的所有变量和函数的有序访问，作用链域的前段，始终都是当前执行环境的变量对象。Try，catch语句的catch块以及with语句可以在作用域链的前端新增一个变量对象。相当值得注意的是Javascript中没有块级作用域。</p>
 
+<h3>引用类型</h3>
+
+<p>在ECMAScript中，引用类型是一种数据结构，用于将数据和功能组织在一起。其与类看起来很像，但它们并不是相同的概念。引用类型的值（对象）是引用类型的一个实例。原生的引用类型有如下几种：Object，Array，Data，RegExp，Function，基本包装类型（Boolean，Number和String）－ 每当读取一个基本类型值时，后台就会创建一个对应的基本包装类型的对象，从而让我们能够调用一些当法来操作这些数据，单体内置对象（Global对象和Math对象）。</p>
+
 <h3>函数</h3>
 
-<p>Javascript很有意思的一部分就属函数了，函数类型是一种引用类型，也即是说函数实际上是Object,而函数名仅仅是一个包含指针的对象。基于这个原因，Javascript中没有函数重载(申明同名函数，结果是后面的函数覆盖了前面的函数)。在Javascript中函数还有一些特性。</p>
+<p>Javascript很有意思的一部分就属函数了，如上所说，函数类型是一种引用类型，也即是说函数实际上是Object,而函数名仅仅是一个包含指针的对象。基于这个原因，Javascript中没有函数重载(申明同名函数，结果是后面的函数覆盖了前面的函数)。在Javascript中函数还有一些特性。</p>
 
 <ol>
 <li>参数传递全部是值传递</li>
@@ -67,6 +191,10 @@
 
 
 <p>这里只是记录一些学习笔记，对于Javascript我也只是初入茅庐，Javascript中另外一个很有意思的就是其对象和其原型实现了，这个下次再记录了。</p>
+
+<h4>参考文献</h4>
+
+<p>JavaScript高级程序设计（第3版）</p>
 ]]></content>
   </entry>
   

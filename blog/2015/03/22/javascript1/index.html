@@ -97,9 +97,13 @@
 
 <p>执行环境是Javascript中最为重要的一个概念，其定义了变量或函数有权访问的其他数据，决定了它们各自的行为。有全局执行环境（web浏览器中为windows）和函数执行环境。当代码在一个环境中执行时，会创建变量对象的一个作用链域，其作用是保证对执行环境有权访问的所有变量和函数的有序访问，作用链域的前段，始终都是当前执行环境的变量对象。Try，catch语句的catch块以及with语句可以在作用域链的前端新增一个变量对象。相当值得注意的是Javascript中没有块级作用域。</p>
 
+<h3>引用类型</h3>
+
+<p>在ECMAScript中，引用类型是一种数据结构，用于将数据和功能组织在一起。其与类看起来很像，但它们并不是相同的概念。引用类型的值（对象）是引用类型的一个实例。原生的引用类型有如下几种：Object，Array，Data，RegExp，Function，基本包装类型（Boolean，Number和String）－ 每当读取一个基本类型值时，后台就会创建一个对应的基本包装类型的对象，从而让我们能够调用一些当法来操作这些数据，单体内置对象（Global对象和Math对象）。</p>
+
 <h3>函数</h3>
 
-<p>Javascript很有意思的一部分就属函数了，函数类型是一种引用类型，也即是说函数实际上是Object,而函数名仅仅是一个包含指针的对象。基于这个原因，Javascript中没有函数重载(申明同名函数，结果是后面的函数覆盖了前面的函数)。在Javascript中函数还有一些特性。</p>
+<p>Javascript很有意思的一部分就属函数了，如上所说，函数类型是一种引用类型，也即是说函数实际上是Object,而函数名仅仅是一个包含指针的对象。基于这个原因，Javascript中没有函数重载(申明同名函数，结果是后面的函数覆盖了前面的函数)。在Javascript中函数还有一些特性。</p>
 
 <ol>
 <li>参数传递全部是值传递</li>
@@ -113,6 +117,10 @@
 
 
 <p>这里只是记录一些学习笔记，对于Javascript我也只是初入茅庐，Javascript中另外一个很有意思的就是其对象和其原型实现了，这个下次再记录了。</p>
+
+<h4>参考文献</h4>
+
+<p>JavaScript高级程序设计（第3版）</p>
 </div>
 
 
@@ -146,7 +154,7 @@
         <a class="basic-alignment left" href="/blog/2015/03/10/agile/" title="Previous Post: 敏捷初体验">上一篇:&nbsp; 敏捷初体验</a>
       
       
-        <a class="basic-alignment right" href="/blog/2015/04/02/chaohuashiyi1/" title="Next Post: 朝花拾遗1">下一篇:&nbsp;朝花拾遗1</a>
+        <a class="basic-alignment right" href="/blog/2015/04/12/javascript2/" title="Next Post: Javascript2">下一篇:&nbsp;Javascript2</a>
       
     </p>
   </footer>
@@ -161,7 +169,7 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/04/02/chaohuashiyi1/">朝花拾遗1</a>
+        <a href="/blog/2015/04/12/javascript2/">Javascript2</a>
       </li>
     
       <li class="post">
