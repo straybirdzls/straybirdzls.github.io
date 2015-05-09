@@ -1,12 +1,14 @@
 ---
 layout: post
-title: "Javascript2"
+title: "Javascript学习2"
 date: 2015-04-12 14:54:51 +0800
 comments: true
 categories: 
 ---
 
 这篇接着上篇，不过有些迟到了。随着Facebook React Native的开源，现在Javascript颇有点“王道”的意思了，一定要将学习坚持下去！这篇主要说说Javascript中的面向对象。
+
+<!-- more -->
 
 ###对象
 ECMAScript中把对象定义为：无序属性的集合，其属性可以包含基本值，对象或者函数。其没有类的概念，每个对象都基于一种引用类型创建的，这种引用类型可以是原生的，也可以是自定义的。所以在javascript中其对象跟一般oo语言中的区别还是蛮大的。
