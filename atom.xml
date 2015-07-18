@@ -4,7 +4,7 @@
   <title><![CDATA[Straybird's Blog]]></title>
   <link href="http://straybirdzls.github.io/atom.xml" rel="self"/>
   <link href="http://straybirdzls.github.io/"/>
-  <updated>2015-07-10T17:42:28+08:00</updated>
+  <updated>2015-07-18T20:23:27+08:00</updated>
   <id>http://straybirdzls.github.io/</id>
   <author>
     <name><![CDATA[Straybird]]></name>
@@ -12,6 +12,26 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[一件难过的事]]></title>
+    <link href="http://straybirdzls.github.io/blog/2015/07/18/sad/"/>
+    <updated>2015-07-18T20:07:52+08:00</updated>
+    <id>http://straybirdzls.github.io/blog/2015/07/18/sad</id>
+    <content type="html"><![CDATA[<p>写出这个题目的时候，觉得似曾相识，然后突然想起小学时候经常写“一件难忘的事”。这是一件难过的事，也许也难忘，但我希望我可以尽快忘掉。</p>
+
+<!-- more -->
+
+
+<p>其实昨天这件事在心中还只是一点小火花，可晚上睡觉的时候，本来很困很困，不知道为啥突然又想到这件事，然后就像发酵了一样，越想越难过，难过到快不能忍。于是拿出手机，想了想也不知道给谁说，怎么去开这个口，但必须找个墙洞，否则就有种过不去的感觉，于是打开无密，编辑了一个秘密，编辑好之后却又开始觉得发出去似乎不太好，当事人们看到了肯定会一眼辨别出来，虽然我很想去问问他们，但还是明白这种问题的确是不应该说出口的。犹豫了很久，把未发出的秘密复制给了以前的头，现在我们不在一个生活圈了，然后她也一定明白我在说什么。很意外，她居然很快回复了，大半夜12点我还想着她一定已经休息了。她安慰了我很久，虽然对事实本身是没有任何可以有所为的地方，但聊着聊着竟然慢慢觉得豁然开朗起来，睡意也渐渐回来了。</p>
+
+<p>然而今天每每想到这件事，虽然不会像昨晚那样连呼吸都不畅快了，但依然有点隐隐地难受，对于事实的本身不能接受，也完全无法猜测到事实的背后有没有发生过什么，或者是不是完全没有发生过什么，是不是自己误解了什么。</p>
+
+<p>也许还是太年轻吧。很多事情都看不明白。</p>
+
+<p>也许读者你看得一头雾水，但这件事我无法在公共场合说，只是想记录下现在心情。也许多年以后我已经无法回想起来这件事情，就当让自己见识见识时间的力量吧。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[胡言乱语]]></title>
@@ -860,130 +880,6 @@ mutableArray is (test,{1 = test1;2 = test2;},test3)
 <p>MRC时代，当block中当问局部变量时，默认是在stack上，所以需要的时候需要将其复制到heap上。相较而言，ARC时代对block进行内存管理就容易多了，因为默认就在heap上，也没有stack上这种类型了。</p>
 
 <p>block在objective-c中的确是属于比较难一些的，但是究其根底，其实也还好，书中还有很多内容很精彩，尽管有些部分在ARC时代已经不适用了，但仍然很值得细细品味，我这里只记录了一些很简单的笔记。想自己看实现的也可以通过书中给出的简单的<code>clang -rewrite-objc</code>即可将objc代码转换成c/c++代码。最后附上一个block快速测试的一个<a href="http://blog.parse.com/2013/02/05/objective-c-blocks-quiz/">链接</a>，我也是看到别人的博客推荐，觉得很值得尝试下的。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[读书笔记(1) iOS与OSX多线程和内存管理]]></title>
-    <link href="http://straybirdzls.github.io/blog/2014/11/04/memorybook/"/>
-    <updated>2014-11-04T21:25:41+08:00</updated>
-    <id>http://straybirdzls.github.io/blog/2014/11/04/memorybook</id>
-    <content type="html"><![CDATA[<p>最近这些天看了&lt;iOS与OSX多线程和内存管理>这边书，觉得这本书还是写得很不错的，这一篇对内存管理中的一些点记一些笔记，主要集中在ARC上，关于block的以后再谈。我这里也不准备从最基本的概念入手，因为介绍ARC的文章已经太多了，所以我只记录一些我觉得比较特殊的点。</p>
-
-<h4>查看自动释放池的状态</h4>
-
-<p>只需要先使用声明:</p>
-
-<pre><code>extern void _objc_autoreleasePoolPrint();
-</code></pre>
-
-<p>就可以使用</p>
-
-<pre><code>_objc_autoreleasePoolPrint();
-</code></pre>
-
-<p>打印释放池里的状态了。这个API是私有API,对于osx和iOS通用，还有一个API只对iOS可以使用，这里就不提了，个人觉得上面这个API就够用了。</p>
-
-<!--more-->
-
-
-<p></p>
-
-<h4>ARC下查看retain count</h4>
-
-<p>在启用了ARC的项目中，因为<code>RetainCount</code>已经不能使用了，但有时候我们也想观察一下当前对象到底有多少引用指向，这时候我们就可以使用<code>_objc_rootRetainCount(obj)</code>来查看对象的引用计数。</p>
-
-<h4>使用__weak对象时是否会retain一个对象并放入自动释放池?</h4>
-
-<p>在书中，提到当使用<code>__weak</code>对象时，会<code>retain</code>一个<code>autorealeasing</code>对象，这么做的原因是可以保证在<code>@autoreleasepool</code>块结束之前对象可以保证正常访问。读到这里的时候，我非常困惑，因为实在很难想像有什么这样的使用场景。当没有对象强引用时，<code>__weak</code>对象将会自动指向nil，为什么还要将其放入自动释放池呢? 我百思不得其解。然后在实验书中代码时，我得到了不一样的结果。经过自己实验，我发现应该是苹果改了实现，也许是他们也发现将<code>__weak</code>对象<code>retain</code>一个<code>autorealeasing</code>对象是没有意义的。测试代码如下。</p>
-
-<pre><code>id  __strong obj = [[NSObject alloc]init];
-_objc_autoreleasePoolPrint();
-id __weak o = obj;
-NSLog(@"count: %d",_objc_rootRetainCount(obj));
-NSLog(@"class=%@",[o class]);
-NSLog(@"count: %d",_objc_rootRetainCount(obj));
-_objc_autoreleasePoolPrint();
-</code></pre>
-
-<p>在xcode4.6中运行的结果如下，使用__weak，会有相应的对象放入自动释放池。</p>
-
-<pre><code>objc[20987]: ##############
-objc[20987]: AUTORELEASE POOLS for thread 0x7fff761d3310
-objc[20987]: 1 releases pending.
-objc[20987]: [0x100803000]  ................  PAGE  (hot) (cold)
-objc[20987]: [0x100803038]  ################  POOL 0x100803038
-objc[20987]: ##############
-2014-11-04 15:26:15.094 memory-xcode46[20987:303] count: 1
-2014-11-04 15:26:15.094 memory-xcode46[20987:303] class=NSObject
-2014-11-04 15:26:15.095 memory-xcode46[20987:303] count: 2
-objc[20987]: ##############
-objc[20987]: AUTORELEASE POOLS for thread 0x7fff761d3310
-objc[20987]: 2 releases pending.
-objc[20987]: [0x100803000]  ................  PAGE  (hot) (cold)
-objc[20987]: [0x100803038]  ################  POOL 0x100803038
-objc[20987]: [0x100803040]       0x100500f10  NSObject
-objc[20987]: ##############
-</code></pre>
-
-<p>在xcode5/xcode6中的运行结果如下，使用__weak，并不会有相应的对象放入自动释放池。</p>
-
-<pre><code>objc[20761]: ##############
-objc[20761]: AUTORELEASE POOLS for thread 0x7fff761d3310
-objc[20761]: 1 releases pending.
-objc[20761]: [0x100803000]  ................  PAGE  (hot) (cold)
-objc[20761]: [0x100803038]  ################  POOL 0x100803038
-objc[20761]: ##############
-2014-11-04 15:20:51.001 memeroy_test_xcode5[20761:303] count: 1
-2014-11-04 15:20:51.003 memeroy_test_xcode5[20761:303] class=NSObject
-2014-11-04 15:20:51.003 memeroy_test_xcode5[20761:303] count: 1
-objc[20761]: ##############
-objc[20761]: AUTORELEASE POOLS for thread 0x7fff761d3310
-objc[20761]: 1 releases pending.
-objc[20761]: [0x100803000]  ................  PAGE  (hot) (cold)
-objc[20761]: [0x100803038]  ################  POOL 0x100803038
-objc[20761]: ##############
-</code></pre>
-
-<p>由此可见，实现确实是不一样了，我尝试找apple的源码，在老版本的<a href="http://www.opensource.apple.com/source/objc4/objc4-493.11/runtime/objc-arr.mm">实现</a>中(objc-arr.mm文件),可以看到: 使用<code>__weak</code>对象确实有相应的对象放入了自动释放池。</p>
-
-<pre><code>id objc_loadWeak(id *location)
-{
-    return objc_autorelease(objc_loadWeakRetained(location));
-}
-
-objc_loadWeakRetained(id *location)
-{
-    ......
-}
-</code></pre>
-
-<p>遗憾的时候，在最新<a href="http://www.opensource.apple.com/source/objc4/objc4-646/runtime">源码</a>中，已找不到objc-arc.mm文件，我尝试在其他可能的文件中找objc_loadWeak，可惜没找到，不知道是换到别处去了，还是苹果决定不再公开此文件。于是我尝试了一下在新的版本上查看汇编代码，可以看到直接调用了<code>_objc_loadWeakRetained</code>,这也侧面证明了现在使用<code>__weak</code>对象并没有相应的对象放入释放池。</p>
-
-<pre><code>main.m:50:0
-movl    %ecx, -108(%rbp)            callq   _objc_storeStrong
-leaq    -32(%rbp), %rdi
-.loc    1 52 0                 
-callq   _objc_loadWeakRetained
-movq    %rax, %rsi
-</code></pre>
-
-<p>这本书出来的时间也比较久了，所以可能有些内容跟最新的实现有出入，但通过书中的引子来思考并且找到最终答案让我受益颇多。</p>
-
-<h4>默认一定是__strong?</h4>
-
-<p>ARC声明对象时，默认是<code>__strong</code>的，也即 <code>id test;</code>等同于<code>id __strong test;</code>。但是一定要注意<code>id *test;</code>是等同于<code>id __autoreleasing *test;</code>。即指向对象的指针默认是<code>__autoreleasing</code>的。 分配指向对象的时针时，必须得保证两边得所有权限制符是一致的，像如下的代码，编译器会报错。</p>
-
-<pre><code>NSError *error = nil; 
-NSError **pError = &amp;error;
-</code></pre>
-
-<p>改成如下就没问题啦。</p>
-
-<pre><code>NSError *error = nil;   NSError * __strong *pError = &amp;error;
-</code></pre>
-
-<p>最后总结一下，这本书关于所有权的阐述蛮有意思的，然后对苹果的实现机制也挖掘的比较深入，推荐想了解内存机制的人读一下。</p>
 ]]></content>
   </entry>
   

@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>iOS学习笔记2 - Straybird&#8217;s Blog</title>
+  <title>一件难过的事 - Straybird&#8217;s Blog</title>
   <meta name="author" content="Straybird">
 
   
-  <meta name="description" content="iOS学习笔记2">
-  <meta name="keywords" content="ios,Core Foubdation,views,id,instancetype,file's owner,Core Graphics">
+  <meta name="description" content="写出这个题目的时候，觉得似曾相识，然后突然想起小学时候经常写“一件难忘的事”。这是一件难过的事，也许也难忘，但我希望我可以尽快忘掉。 其实昨天这件事在心中还只是一点小火花，可晚上睡觉的时候，本来很困很困，不知道为啥突然又想到这件事，然后就像发酵了一样，越想越难过，难过到快不能忍。于是拿出手机， &hellip;">
+  
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://straybirdzls.github.io/blog/2014/11/26/viewcontroller">
+  <link rel="canonical" href="http://straybirdzls.github.io/blog/2015/07/18/sad">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Straybird's Blog" type="application/atom+xml">
@@ -68,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">iOS学习笔记2</h1>
+      <h1 class="entry-title">一件难过的事</h1>
     
     
       <p class="meta">
@@ -77,35 +77,25 @@
 
 
 
-<time class='entry-date' datetime='2014-11-26T22:12:09+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:12 pm</span></time>
+<time class='entry-date' datetime='2015-07-18T20:07:52+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:07 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>这一篇接上篇，依然是iOS Programming: The Big Nerd Ranch Guides这本书的学习笔记，这本书对于各种点讲的还比较清楚，这一篇主要集中在view controller相关的点上。</p>
+<div class="entry-content"><p>写出这个题目的时候，觉得似曾相识，然后突然想起小学时候经常写“一件难忘的事”。这是一件难过的事，也许也难忘，但我希望我可以尽快忘掉。</p>
 
-<!--more-->
+<!-- more -->
 
 
-<h4>View Controller之间的关系</h4>
+<p>其实昨天这件事在心中还只是一点小火花，可晚上睡觉的时候，本来很困很困，不知道为啥突然又想到这件事，然后就像发酵了一样，越想越难过，难过到快不能忍。于是拿出手机，想了想也不知道给谁说，怎么去开这个口，但必须找个墙洞，否则就有种过不去的感觉，于是打开无密，编辑了一个秘密，编辑好之后却又开始觉得发出去似乎不太好，当事人们看到了肯定会一眼辨别出来，虽然我很想去问问他们，但还是明白这种问题的确是不应该说出口的。犹豫了很久，把未发出的秘密复制给了以前的头，现在我们不在一个生活圈了，然后她也一定明白我在说什么。很意外，她居然很快回复了，大半夜12点我还想着她一定已经休息了。她安慰了我很久，虽然对事实本身是没有任何可以有所为的地方，但聊着聊着竟然慢慢觉得豁然开朗起来，睡意也渐渐回来了。</p>
 
-<p>刚开始的时候，容易被View Controller之间的关系搞迷糊，其实归根到底关系就2种，family关系和presented/presenting关系。</p>
+<p>然而今天每每想到这件事，虽然不会像昨晚那样连呼吸都不畅快了，但依然有点隐隐地难受，对于事实的本身不能接受，也完全无法猜测到事实的背后有没有发生过什么，或者是不是完全没有发生过什么，是不是自己误解了什么。</p>
 
-<p>family关系，显而易见，就是包含关系了，一个view controller包含几个子view controller，可以通过UIViewController的viewControllers来获取。子view controller可以通过parentViewController/navigationController/tabBarController/splitViewController来获取父controller，当然后3个都是会顺着view controller的关系往上查找相应的view controller类型，若没有，则返回nil。</p>
+<p>也许还是太年轻吧。很多事情都看不明白。</p>
 
-<p>presented/presenting关系，描述的是一种模态controller，presented的controller将会之于当前view的top之上，可以通过presentedViewController/presentingViewController来访问。值得注意的是1).family中有一个view controlly拥有presentedViewController，则其他的也跟着拥有; 2).默认的presentingViewController会去controller family里寻找最父级的controller，如果不想拥有这种行为，需要将view controller的definesPresentationContext属性设为YES,并将modalPresentationStyle设置为UIModalPresentationCurrentContext。</p>
-
-<h4>UITableViewController</h4>
-
-<p>UITableViewController是实际中非常常用的view conroller，其自带了一个tableView，然后还拥有delegate和datasource，datasource主要是用来管理数据源，其只用来数据源的获取和刷新，真正跟tableview交互的是delegate。UITableViewController自带的API非常丰富，从我的学习中，有需求的时候就多看看API的说明，总能找到一款满足需求的API。</p>
-
-<p>本来还想再多写一点，结果发现很多东西不是三言两语可以说得清楚，只需要自己动手跟着书中的例子走一遍，然后再实践几次，慢慢地熟悉了，就都了然于心了。</p>
-
-<h3>参考文献</h3>
-
-<p>书籍: iOS Programming: The Big Nerd Ranch Guides</p>
+<p>也许读者你看得一头雾水，但这件事我无法在公共场合说，只是想记录下现在心情。也许多年以后我已经无法回想起来这件事情，就当让自己见识见识时间的力量吧。</p>
 </div>
 
 
@@ -121,7 +111,7 @@
 
 
 
-<time class='entry-date' datetime='2014-11-26T22:12:09+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:12 pm</span></time>
+<time class='entry-date' datetime='2015-07-18T20:07:52+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:07 pm</span></time>
       
 
 
@@ -136,10 +126,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/11/21/views/" title="Previous Post: iOS学习笔记1">上一篇:&nbsp; iOS学习笔记1</a>
+        <a class="basic-alignment left" href="/blog/2015/07/10/zatan/" title="Previous Post: 胡言乱语">上一篇:&nbsp; 胡言乱语</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/11/30/security/" title="Next Post: 谈谈iOS Security">下一篇:&nbsp;谈谈iOS Security</a>
       
     </p>
   </footer>
