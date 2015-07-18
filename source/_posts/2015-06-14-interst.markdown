@@ -1,0 +1,11 @@
+---
+layout: post
+title: "旅途趣事"
+date: 2015-06-14 11:30:24 +0800
+comments: true
+categories: 
+published: false
+---
+前天，公司组织去宁波奉化旅游，两天的行程，第一天安排去溪口风景区，第二天则是雪窦山风景区。
+
+
